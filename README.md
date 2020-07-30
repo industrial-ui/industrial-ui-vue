@@ -1,24 +1,24 @@
-# docs
+# Industrial-ui Vue adaptation
 
-## Project setup
-```
-npm install
-```
+## Installation
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+```bash
+npm i industrial-ui-vue
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Usage
 
-### Lints and fixes files
-```
-npm run lint
-```
+```html
+<template>
+  <IUIButton>
+    Hello, world!
+  </IUIButton>
+</template>
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+<script>
+import {IUIButton} from 'industrial-ui-vue';
+export default {
+  components: {IUIButton},
+}
+</script>
+```

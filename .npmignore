@@ -1,0 +1,8 @@
+demo
+dist/demo.html
+src/demo
+src/main.js
+node_modules
+.git
+.idea
+.DS_Store
