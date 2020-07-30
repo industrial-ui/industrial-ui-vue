@@ -6,11 +6,13 @@
   </button>
 </template>
 
-<script>
-  export default {
-    name: 'IUIButton',
+<script lang="ts">
+  import Vue from 'vue';
+
+  export default Vue.extend({
+    name: 'Button',
     props: {
       label: String,
     },
-  };
+  });
 </script>

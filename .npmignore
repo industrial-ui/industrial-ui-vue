@@ -1,7 +1,7 @@
-demo
+docs
 dist/demo.html
-src/demo
-src/main.js
+src/docs
+src/main.ts
 node_modules
 .git
 .idea

@@ -10,15 +10,15 @@ npm i industrial-ui-vue
 
 ```html
 <template>
-  <IUIButton>
+  <Button>
     Hello, world!
-  </IUIButton>
+  </Button>
 </template>
 
 <script>
-import {IUIButton} from 'industrial-ui-vue';
+import {Button} from 'industrial-ui-vue';
 export default {
-  components: {IUIButton},
+  components: {Button},
 }
 </script>
 ```
