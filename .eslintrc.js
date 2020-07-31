@@ -31,6 +31,7 @@ module.exports = {
     'curly': [0, 'multi'],
     'comma-dangle': ['error', {
       objects: 'always-multiline',
+      arrays: 'always-multiline',
     }],
     'import/prefer-default-export': 0,
 
@@ -61,5 +62,11 @@ module.exports = {
     // Typescript options
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/ban-ts-ignore': 0,
+    '@typescript-eslint/member-delimiter-style': ['error', {
+      multiline: {
+        delimiter: 'comma',
+        requireLast: true,
+      },
+    }]
   },
 };
