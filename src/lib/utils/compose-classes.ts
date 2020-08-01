@@ -5,7 +5,7 @@
  * @returns {string|null} – string of nicely concatenated classes
  */
 
-const composeClasses = (...args: string[]) => {
+const composeClasses = (...args: string[]): string|null => {
   const classes = args.join(' ').trim().replace(/ false | +/g, ' ');
   return classes || null;
 };

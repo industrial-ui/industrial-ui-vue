@@ -6,7 +6,7 @@ module.exports = {
   extends: [
     'plugin:vue/essential',
     '@vue/airbnb',
-    '@vue/typescript/recommended'
+    '@vue/typescript/recommended',
   ],
   parser: 'vue-eslint-parser',
   parserOptions: {
@@ -16,10 +16,10 @@ module.exports = {
   plugins: ['@typescript-eslint/eslint-plugin'],
   rules: {
     // ES options
-    'semi': [2, 'always'],
-    'indent': 0,
+    semi: [2, 'always'],
+    indent: 0,
     'spaced-comment': 0,
-    'camelcase': 0,
+    camelcase: 0,
     'space-before-function-paren': 0,
     'jsx-quotes': 0,
     'no-class-assign': 0,
@@ -28,7 +28,7 @@ module.exports = {
     'no-return-assign': 0,
     'no-trailing-spaces': 0,
     'no-param-reassign': 0,
-    'curly': [0, 'multi'],
+    curly: [0, 'multi'],
     'comma-dangle': ['error', {
       objects: 'always-multiline',
       arrays: 'always-multiline',
@@ -67,6 +67,6 @@ module.exports = {
         delimiter: 'comma',
         requireLast: true,
       },
-    }]
+    }],
   },
 };

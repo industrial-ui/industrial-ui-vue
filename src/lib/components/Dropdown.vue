@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
   import Vue from 'vue';
   import ClickOutside from 'vue-click-outside';
   import checkPosition from '@/lib/utils/check-position';
@@ -87,7 +87,7 @@
       position: {
         type: String,
         default: null,
-        validator: (val) => [
+        validator: (val: string) => [
           'bottom left',
           'bottom right',
           'top left',
@@ -116,28 +116,26 @@
        * Compose classes from the ui-configuration and dynamic properties
        * to pass to wrapper, trigger or dropdown
        */
-      wrapperClasses () {
+      wrapperClasses (): string|null {
+        const component = this.$iui.components.dropdown;
         return composeClasses(
-          this.$iuiconfig.dropdown.class,
-          this.val ? this.$iuiconfig.dropdown.openClass : this.$iuiconfig.dropdown.closeClass
+          component.class, this.val ? component.openClass : component.closeClass
         );
       },
-      triggerClasses () {
+      triggerClasses (): string|null {
+        const component = this.$iui.components.dropdown;
         return composeClasses(
           this.triggerClass,
-          this.$iuiconfig.dropdown.triggerClass,
-          this.val
-            ? this.$iuiconfig.dropdown.openTriggerClass
-            : this.$iuiconfig.dropdown.closeTriggerClass
+          component.triggerClass,
+          this.val ? component.openTriggerClass : component.closeTriggerClass
         );
       },
-      dropdownClasses () {
+      dropdownClasses (): string|null {
+        const component = this.$iui.components.dropdown;
         return composeClasses(
           this.dropdownClass,
-          this.$iuiconfig.dropdown.dropdownClass,
-          this.val
-            ? this.$iuiconfig.dropdown.openDropdownClass
-            : this.$iuiconfig.dropdown.closeDropdownClass
+          component.dropdownClass,
+          this.val ? component.openDropdownClass : component.closeDropdownClass
         );
       },
     },
@@ -161,7 +159,7 @@
         if (this.val) this.close();
         else this.open();
       },
-      onHover (val) {
+      onHover (val: boolean) {
         // TODO: add mobile touch screen property (probably in the config)
         if (window.matchMedia('(max-width: 1023px)').matches) return;
         if (!this.openOnHover) return;

@@ -5,7 +5,7 @@ import defaultConfig from '../config';
 
 const plugin = {
   install (Vue: CombinedVueInstance<any, any, any, any, any>, options: Partial<Config>) {
-    Vue.prototype.$iuiconfig = prepareConfig(defaultConfig, options);
+    Vue.prototype.$iui = prepareConfig(defaultConfig, options);
   },
 };
 export default plugin;
