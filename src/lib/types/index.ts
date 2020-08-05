@@ -1,3 +1,5 @@
+import {DeepPartial} from '@/lib/types/special';
+
 export interface IsProperties {
     [isProp: string]: string,
 }
@@ -67,3 +69,5 @@ export interface Config {
     } | null,
     components: ConfigComponents,
 }
+
+export type PartialConfig = DeepPartial<Config>;
