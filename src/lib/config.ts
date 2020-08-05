@@ -58,6 +58,21 @@ const config: Config = {
       openBodyClass: '',
       closeBodyClass: '',
     },
+
+    checkbox: {
+      isProperties: {},
+      class: '',
+      checkedClass: '',
+      uncheckedClass: '',
+
+      labelClass: '',
+      checkedLabelClass: '',
+      uncheckedLabelClass: '',
+
+      customizerClass: '',
+      checkedCustomizerClass: '',
+      uncheckedCustomizerClass: '',
+    },
   },
 };
 export default config;
