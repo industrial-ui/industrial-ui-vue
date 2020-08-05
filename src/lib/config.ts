@@ -65,6 +65,10 @@ const config: Config = {
       checkedClass: '',
       uncheckedClass: '',
 
+      inputClass: '',
+      checkedInputClass: '',
+      uncheckedInputClass: '',
+
       labelClass: '',
       checkedLabelClass: '',
       uncheckedLabelClass: '',

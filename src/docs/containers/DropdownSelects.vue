@@ -3,6 +3,13 @@
     <h2 class="text-xl mb-2">Dropdown multiselect</h2>
     <DropdownSelect
       :options="options1"
+      :dropdown-props="{
+        dropdownClass: 'w-full mt-4 py-1'
+      }"
+      :checkbox-props="{
+        class: 'py-1 px-2 border-t hover:bg-gray-200 cursor-pointer',
+        inputClass: 'hidden'
+      }"
       checkbox-id-prefix="dd-select-cb1-"
     >
       <template #trigger>

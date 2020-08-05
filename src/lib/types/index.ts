@@ -58,6 +58,10 @@ export interface CheckboxConfig extends ComponentConfig {
   checkedClass: string,
   uncheckedClass: string,
 
+  inputClass: string,
+  checkedInputClass: string,
+  uncheckedInputClass: string,
+
   labelClass: string,
   checkedLabelClass: string,
   uncheckedLabelClass: string,

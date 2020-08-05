@@ -1,8 +1,5 @@
 <template>
-  <Dropdown
-    :trigger-class="triggerClass"
-    :dropdown-class="dropdownClass"
-  >
+  <Dropdown v-bind="dropdownProps">
     <template #trigger="slotProps">
       <slot name="trigger" v-bind="slotProps" />
     </template>
@@ -18,6 +15,7 @@
         :key="option.slug"
         :label="option.text"
         :value="vals.some(val => val.slug === option.slug)"
+        v-bind="checkboxProps"
         @toggle="val => change(option, val, slotProps.close)"
       />
     </template>
@@ -104,8 +102,8 @@
         default: false,
       },
 
-      triggerClass: String,
-      dropdownClass: String,
+      dropdownProps: Object,
+      checkboxProps: Object,
     },
     data () {
       return {

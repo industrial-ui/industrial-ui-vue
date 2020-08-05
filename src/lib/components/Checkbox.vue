@@ -3,6 +3,7 @@
     <input
       :id="id"
       v-model="checked"
+      :class="inputClasses"
       type="checkbox"
       @change="change"
     >
@@ -38,6 +39,7 @@
         default: false,
       },
       label: String,
+      inputClass: String,
       labelClass: String,
       customizerClass: String,
     },
@@ -49,13 +51,21 @@
     computed: {
       /**
        * Compose classes from the ui-configuration and dynamic properties
-       * to pass to wrapper, trigger or dropdown
+       * to pass to all elements of the checkbox: wpapper, input, label, customizer
        */
       wrapperClasses(): string | null {
         const component = this.$iui.components.checkbox;
         return composeClasses(
           component.class,
           this.checked ? component.checkedClass : component.uncheckedClass
+        );
+      },
+      inputClasses (): string|null {
+        const component = this.$iui.components.checkbox;
+        return composeClasses(
+          this.inputClass,
+          component.inputClass,
+          this.checked ? component.checkedInputClass : component.uncheckedInputClass
         );
       },
       labelClasses (): string|null {

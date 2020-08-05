@@ -1,12 +1,12 @@
 <template>
-  <div class="p-8">
-    <div class="w-full lg:w-1/3">
+  <div class="p-8 grid row-gap-6 lg:col-gap-6 lg:grid-cols-3">
+    <div class="w-full">
       <Dropdowns />
     </div>
-    <div class="w-full lg:w-1/3">
+    <div class="w-full">
       <DropdownSelects />
     </div>
-    <div class="w-full lg:w-1/3"></div>
+    <div class="w-full"></div>
   </div>
 </template>
 
