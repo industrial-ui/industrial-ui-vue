@@ -14,7 +14,7 @@
       checkbox-id-prefix="dd-select-cb1-"
     >
       <template #trigger>
-        <Button>Open select</Button>
+        <Button is:primary>Open select</Button>
       </template>
     </DropdownSelect>
   </section>

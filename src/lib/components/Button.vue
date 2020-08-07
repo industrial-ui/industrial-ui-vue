@@ -9,6 +9,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
+  import isProperties from '@/lib/utils/is-properties';
 
   export default Vue.extend({
     name: 'Button',
@@ -22,7 +23,10 @@
        */
       wrapperClasses(): string | null {
         const component = this.$iui.components.button;
-        return composeClasses(component.class);
+        return composeClasses(
+          isProperties(component.isProperties, this.$attrs),
+          component.class
+        );
       },
     },
   });

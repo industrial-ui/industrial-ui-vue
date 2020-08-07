@@ -3,7 +3,7 @@
     <h2 class="text-xl mb-2">Simple dropdown</h2>
     <Dropdown>
       <template #trigger>
-        <Button>Tap on me</Button>
+        <Button is:primary>Tap on me</Button>
       </template>
       <template #default="slotProps">
         <span
@@ -20,7 +20,7 @@
     <h2 class="text-xl mb-2">On-hover dropdown</h2>
     <Dropdown open-on-hover>
       <template #trigger>
-        <Button>Hover on me</Button>
+        <Button is:primary>Hover on me</Button>
       </template>
       <template>
         <span
