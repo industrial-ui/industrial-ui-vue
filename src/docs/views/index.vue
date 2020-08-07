@@ -6,7 +6,9 @@
     <div class="w-full">
       <DropdownSelects />
     </div>
-    <div class="w-full"></div>
+    <div class="w-full">
+      <Checkboxes />
+    </div>
   </div>
 </template>
 
@@ -14,12 +16,14 @@
   import Vue from 'vue';
   import Dropdowns from '../containers/Dropdowns.vue';
   import DropdownSelects from '../containers/DropdownSelects.vue';
+  import Checkboxes from '../containers/Checkboxes.vue';
 
   export default Vue.extend({
     name: 'Home',
     components: {
       Dropdowns,
       DropdownSelects,
+      Checkboxes,
     },
   });
 </script>

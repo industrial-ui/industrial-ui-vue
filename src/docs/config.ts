@@ -29,6 +29,11 @@ const config: PartialConfig = {
       openOverlayClass: '',
       closeOverlayClass: 'hidden',
     },
+
+    checkbox: {
+      class: 'cbx',
+      checkedClass: 'checked',
+    },
   },
 };
 

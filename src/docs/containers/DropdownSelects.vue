@@ -8,6 +8,7 @@
       }"
       :checkbox-props="{
         class: 'py-1 px-2 border-t hover:bg-gray-200 cursor-pointer',
+        checkedClass: 'bg-gray-300',
         inputClass: 'hidden'
       }"
       checkbox-id-prefix="dd-select-cb1-"

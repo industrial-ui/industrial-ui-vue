@@ -39,6 +39,8 @@
         default: false,
       },
       label: String,
+
+      checkedClass: String,
       inputClass: String,
       labelClass: String,
       customizerClass: String,
@@ -57,6 +59,7 @@
         const component = this.$iui.components.checkbox;
         return composeClasses(
           component.class,
+          this.checked && this.checkedClass ? this.checkedClass : '',
           this.checked ? component.checkedClass : component.uncheckedClass
         );
       },
