@@ -17,6 +17,26 @@
         <Button is:primary>Open select</Button>
       </template>
     </DropdownSelect>
+
+    <DropdownSelect
+      :options="options1"
+      :dropdown-props="{
+        dropdownClass: 'w-full mt-4 py-1'
+      }"
+      checkbox-id-prefix="dd-select-cb2-"
+      @change="log"
+    >
+      <template #trigger>
+        <Button is:danger>Open select</Button>
+      </template>
+      <template #option="{option}">
+        <Checkbox
+          :key="'dd-select-cb2-' + option.slug"
+          :id="'dd-select-cb2-' + option.slug"
+          :label="option.text"
+        />
+      </template>
+    </DropdownSelect>
   </section>
 </template>
 
@@ -24,12 +44,14 @@
   import Vue from 'vue';
   import DropdownSelect from '@/lib/components/DropdownSelect.vue';
   import Button from '@/lib/components/Button.vue';
+  import Checkbox from '../components/CustomCheckbox.vue';
 
   export default Vue.extend({
     name: 'Dropdowns',
     components: {
       Button,
       DropdownSelect,
+      Checkbox,
     },
     data () {
       return {

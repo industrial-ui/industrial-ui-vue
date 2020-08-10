@@ -4,21 +4,27 @@
       <slot name="trigger" v-bind="slotProps" />
     </template>
 
-    <!--<template #default="slotProps">
-      <slot v-bind="slotProps" />
-    </template>-->
-
-    <template v-if="multiple" v-slot:default="slotProps">
-      <Checkbox
+    <template v-slot:default="slotProps">
+      <div
         v-for="option in options"
-        :id="checkboxIdPrefix + option.slug"
-        :key="option.slug"
-        :label="option.text"
-        :value="vals.some(val => val.slug === option.slug)"
-        v-bind="checkboxProps"
-        @toggle="val => change(option, val, slotProps.close)"
-      />
+        :key="checkboxIdPrefix + option.slug"
+        ref="options"
+        @change="changeScoped"
+      >
+        <slot name="option" v-bind:option="option">
+          <template v-if="multiple">
+            <Checkbox
+              :id="checkboxIdPrefix + option.slug"
+              :label="option.text"
+              :value="vals.some(val => val.slug === option.slug)"
+              v-bind="checkboxProps"
+              @toggle="val => change(option, val, slotProps.close)"
+            />
+          </template>
+        </slot>
+      </div>
     </template>
+
     <!--<template v-else v-slot:default="slotProps">
       <div
         v-for="option in options"
@@ -116,7 +122,7 @@
       },
     },
     methods: {
-      change (option: Option, val: Option, close: () => {}) {
+      change (option: Option, val: boolean, close: (() => {})|null) {
         if (this.multiple) {
           let update;
           if (val) update = [...this.vals, option];
@@ -130,7 +136,17 @@
             this.$emit('change', [option]);
           }
 
-        if (this.closeOnClick) close();
+        if (this.closeOnClick && close) close();
+      },
+      changeScoped ({target}: {target: HTMLInputElement}) {
+        if (this.$scopedSlots.option) {
+          const matcher = new RegExp(`${this.checkboxIdPrefix}(.+)`);
+          const match = target.id.match(matcher);
+          if (match?.[1]) {
+            const val = this.options.find((opt: Option) => opt.slug === match[1]);
+            if (val) this.change(val, target.checked, null);
+          }
+        }
       },
     },
   });
