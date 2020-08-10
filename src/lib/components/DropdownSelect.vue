@@ -11,6 +11,11 @@
         ref="options"
         @change="changeScoped"
       >
+        <!--
+          You can add your own checkbox or radio button,
+          but for the best experience,
+          there should be an input inside of it
+        -->
         <slot name="option" v-bind:option="option">
           <template v-if="multiple">
             <Checkbox
@@ -119,7 +124,11 @@
     watch: {
       values (val) {
         this.vals = val;
+        this.updateCheckboxes();
       },
+    },
+    mounted () {
+      this.updateCheckboxes();
     },
     methods: {
       change (option: Option, val: boolean, close: (() => {})|null) {
@@ -138,6 +147,8 @@
 
         if (this.closeOnClick && close) close();
       },
+
+      // Special bubbles-handler of the scoped change event
       changeScoped ({target}: {target: HTMLInputElement}) {
         if (this.$scopedSlots.option) {
           const matcher = new RegExp(`${this.checkboxIdPrefix}(.+)`);
@@ -146,6 +157,18 @@
             const val = this.options.find((opt: Option) => opt.slug === match[1]);
             if (val) this.change(val, target.checked, null);
           }
+        }
+      },
+
+      // Manually check all the checkboxes in the scoped slot
+      updateCheckboxes () {
+        if (this.$scopedSlots.option && this.vals?.length) {
+          const options = this.$refs.options as HTMLInputElement[];
+          options.forEach((opt) => {
+            const input = opt.querySelector('input');
+            if (input) input.checked = !!this.vals
+              .some((val) => input.id === this.checkboxIdPrefix + val.slug);
+          });
         }
       },
     },

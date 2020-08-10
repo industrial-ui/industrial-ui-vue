@@ -2,6 +2,7 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Dropdown multiselect</h2>
     <DropdownSelect
+      v-model="values1"
       :options="options1"
       :dropdown-props="{
         dropdownClass: 'w-full mt-4 py-1'
@@ -19,6 +20,7 @@
     </DropdownSelect>
 
     <DropdownSelect
+      v-model="values1"
       :options="options1"
       :dropdown-props="{
         dropdownClass: 'w-full mt-4 py-1'
@@ -69,7 +71,16 @@
             text: 'Three',
           },
         ],
+        values1: [{
+          slug: 'two',
+          text: 'Two',
+        }],
       };
+    },
+    methods: {
+      log (val: string) {
+        console.log(val);
+      },
     },
   });
 </script>
