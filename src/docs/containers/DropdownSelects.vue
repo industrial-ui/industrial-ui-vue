@@ -26,7 +26,6 @@
         dropdownClass: 'w-full mt-4 py-1'
       }"
       checkbox-id-prefix="dd-select-cb2-"
-      @change="log"
     >
       <template #trigger>
         <Button is:danger>Open select</Button>
@@ -76,11 +75,6 @@
           text: 'Two',
         }],
       };
-    },
-    methods: {
-      log (val: string) {
-        console.log(val);
-      },
     },
   });
 </script>
