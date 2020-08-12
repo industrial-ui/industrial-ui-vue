@@ -3,14 +3,15 @@
     :is="tag"
     :class="wrapperClasses"
   >
-    <slot>
-      <Radio
-        v-for="option in options"
-        :key="option.slug"
-        :name="groupName"
-        v-bind="option"
-      />
-    </slot>
+    <template v-for="option in options">
+      <slot name="option" v-bind:option="option">
+        <Radio
+          :key="option.slug"
+          :name="groupName"
+          v-bind="option"
+        />
+      </slot>
+    </template>
   </component>
 </template>
 
@@ -31,12 +32,12 @@
       },
 
       options: {
-        type: Object as PropType<Option[]|null>,
+        type: Array as PropType<Option[]|null>,
         default: null,
       },
 
       values: {
-        type: Object as PropType<Option[]|null>,
+        type: Array as PropType<Option[]|null>,
         default: null,
       },
 
