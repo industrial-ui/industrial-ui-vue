@@ -22,6 +22,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
+  import isProperties from '@/lib/utils/is-properties';
 
   export default Vue.extend({
     name: 'Checkbox',
@@ -59,6 +60,7 @@
         const component = this.$iui.components.checkbox;
         return composeClasses(
           component.class,
+          isProperties(component.isProperties, this.$attrs),
           this.checked && this.checkedClass ? this.checkedClass : '',
           this.checked ? component.checkedClass : component.uncheckedClass
         );

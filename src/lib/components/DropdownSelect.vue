@@ -48,13 +48,9 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
+  import {Option} from '@/lib/types';
   import Dropdown from '@/lib/components/Dropdown.vue';
   import Checkbox from '@/lib/components/Checkbox.vue';
-
-  type Option = {
-    slug: string,
-    text: string,
-  };
 
   export default Vue.extend({
     name: 'DropdownSelect',

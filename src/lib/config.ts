@@ -88,6 +88,11 @@ const config: Config = {
       inputClass: '',
       spanClass: '',
     },
+
+    radioGroup: {
+      isProperties: {},
+      class: '',
+    },
   },
 };
 export default config;

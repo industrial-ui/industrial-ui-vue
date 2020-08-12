@@ -31,6 +31,7 @@
   import ClickOutside from 'vue-click-outside';
   import checkPosition from '@/lib/utils/check-position';
   import composeClasses from '@/lib/utils/compose-classes';
+  import isProperties from '@/lib/utils/is-properties';
 
   export default Vue.extend({
     name: 'Dropdown',
@@ -119,7 +120,9 @@
       wrapperClasses (): string|null {
         const component = this.$iui.components.dropdown;
         return composeClasses(
-          component.class, this.val ? component.openClass : component.closeClass
+          component.class,
+          isProperties(component.isProperties, this.$attrs),
+          this.val ? component.openClass : component.closeClass
         );
       },
       triggerClasses (): string|null {

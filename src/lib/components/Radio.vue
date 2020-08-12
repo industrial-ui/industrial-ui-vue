@@ -21,6 +21,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
+  import isProperties from '@/lib/utils/is-properties';
 
   export default Vue.extend({
     name: 'radio',
@@ -61,6 +62,7 @@
         const component = this.$iui.components.radio;
         return composeClasses(
           component.class,
+          isProperties(component.isProperties, this.$attrs),
           this.checked ? component.checkedClass : component.uncheckedClass,
           this.disabled ? component.disabledClass : '',
           this.required ? component.requiredClass : ''

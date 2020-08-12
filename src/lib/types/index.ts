@@ -1,5 +1,10 @@
 import {DeepPartial} from '@/lib/types/special';
 
+export type Option = {
+  slug: string,
+  text: string,
+};
+
 export interface IsProperties {
   [isProp: string]: string,
 }
@@ -80,12 +85,15 @@ export interface RadioConfig extends ComponentConfig {
   spanClass: string,
 }
 
+export type RadioGroupConfig = ComponentConfig;
+
 export interface ConfigComponents {
   button: ButtonConfig,
   dropdown: DropdownConfig,
   modal: ModalConfig,
   checkbox: CheckboxConfig,
   radio: RadioConfig,
+  radioGroup: RadioGroupConfig,
   [key: string]: any,
 }
 
