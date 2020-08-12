@@ -77,6 +77,7 @@ export interface RadioConfig extends ComponentConfig {
   disabledClass: string,
   requiredClass: string,
   inputClass: string,
+  spanClass: string,
 }
 
 export interface ConfigComponents {

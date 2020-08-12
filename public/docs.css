@@ -69,3 +69,15 @@
   border-color: #f4b98e;
   animation: wave .4s ease;
 }
+
+/*
+  Custom radio button stylization along with tailwind classes
+ */
+.radio input[type="radio"]:checked + span span {
+  background-color: #3490DC;
+  box-shadow: 0 0 0 2px white inset;
+}
+
+.radio input[type="radio"]:checked + span span {
+  color: #3490DC;
+}

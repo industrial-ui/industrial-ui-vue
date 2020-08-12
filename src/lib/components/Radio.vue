@@ -10,9 +10,11 @@
       :required="required"
       @change="change"
     />
-    <slot>
-      <span>{{ label }}</span>
-    </slot>
+    <span :class="spanClasses">
+      <slot>{
+        {{ label }}
+      </slot>
+    </span>
   </label>
 </template>
 
@@ -43,6 +45,7 @@
       required: Boolean,
 
       inputClass: String,
+      spanClass: String,
     },
     data () {
       return {
@@ -68,6 +71,13 @@
         return composeClasses(
           this.inputClass,
           component.inputClass
+        );
+      },
+      spanClasses (): string|null {
+        const component = this.$iui.components.radio;
+        return composeClasses(
+          this.spanClass,
+          component.spanClass
         );
       },
     },

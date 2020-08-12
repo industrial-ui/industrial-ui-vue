@@ -86,6 +86,7 @@ const config: Config = {
       disabledClass: '',
       requiredClass: '',
       inputClass: '',
+      spanClass: '',
     },
   },
 };

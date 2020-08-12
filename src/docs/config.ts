@@ -38,6 +38,12 @@ const config: PartialConfig = {
       class: 'cbx',
       checkedClass: 'checked',
     },
+
+    radio: {
+      class: 'radio flex items-center mr-4 mb-4 cursor-pointer',
+      inputClass: 'hidden',
+      spanClass: 'flex items-center',
+    },
   },
 };
 
