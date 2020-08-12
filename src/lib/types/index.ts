@@ -71,11 +71,20 @@ export interface CheckboxConfig extends ComponentConfig {
   uncheckedCustomizerClass: string,
 }
 
+export interface RadioConfig extends ComponentConfig {
+  checkedClass: string,
+  uncheckedClass: string,
+  disabledClass: string,
+  requiredClass: string,
+  inputClass: string,
+}
+
 export interface ConfigComponents {
   button: ButtonConfig,
   dropdown: DropdownConfig,
   modal: ModalConfig,
   checkbox: CheckboxConfig,
+  radio: RadioConfig,
   [key: string]: any,
 }
 

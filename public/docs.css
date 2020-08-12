@@ -2,6 +2,9 @@
   display: none;
 }
 
+/*
+  Custom checkbox stylization
+ */
 .cbx .inl {
   position: absolute;
   width: 0;

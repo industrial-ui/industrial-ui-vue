@@ -77,6 +77,16 @@ const config: Config = {
       checkedCustomizerClass: '',
       uncheckedCustomizerClass: '',
     },
+
+    radio: {
+      isProperties: {},
+      class: '',
+      checkedClass: '',
+      uncheckedClass: '',
+      disabledClass: '',
+      requiredClass: '',
+      inputClass: '',
+    },
   },
 };
 export default config;
