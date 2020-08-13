@@ -4,13 +4,13 @@
     :class="wrapperClasses"
   >
     <template v-for="option in options">
-      <slot name="option" v-bind:option="option">
-        <Radio
-          :key="option.slug"
-          :name="groupName"
-          v-bind="option"
-        />
-      </slot>
+      <Radio
+        :key="option.slug"
+        :name="groupName"
+        v-bind="option"
+      >
+        <slot name="option" v-bind="option" />
+      </Radio>
     </template>
   </component>
 </template>

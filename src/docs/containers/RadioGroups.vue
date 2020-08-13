@@ -1,14 +1,10 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Radio group</h2>
-    <RadioGroup :options="options" group-name="radiogroup1" />
-
-    <RadioGroup :options="options">
+    <RadioGroup :options="options" group-name="radiogroup1">
       <template #option="option">
-        <Radio name="radio1" v-bind="option">
-          <span class="w-6 h-6 inline-block mr-2 rounded-full border border-grey flex-no-shrink" />
-          Second choice
-        </Radio>
+        <span class="w-6 h-6 inline-block mr-2 rounded-full border border-grey flex-no-shrink" />
+        {{ option.label }}
       </template>
     </RadioGroup>
   </section>
@@ -16,12 +12,11 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Radio from '@/lib/components/Radio.vue';
   import RadioGroup from '@/lib/components/RadioGroup.vue';
 
   export default Vue.extend({
     name: 'Radios',
-    components: {Radio, RadioGroup},
+    components: {RadioGroup},
     data () {
       return {
         options: [
