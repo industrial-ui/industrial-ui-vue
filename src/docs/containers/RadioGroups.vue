@@ -1,7 +1,7 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Radio group</h2>
-    <RadioGroup :options="options" group-name="radiogroup1">
+    <RadioGroup :options="options" :value="options[0]" group-name="radiogroup1">
       <template #option="option">
         <span class="w-6 h-6 inline-block mr-2 rounded-full border border-grey flex-no-shrink" />
         {{ option.label }}
@@ -31,6 +31,7 @@
           {
             slug: 'opt3',
             label: 'Radio 3',
+            disabled: true,
           },
         ],
       };

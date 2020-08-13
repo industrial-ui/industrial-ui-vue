@@ -2,9 +2,10 @@
   <label :class="wrapperClasses">
     <input
       :id="id"
-      :name="name"
-      v-model="checked"
       type="radio"
+      :name="name"
+      :value="slug"
+      :checked="checked"
       :class="inputClasses"
       :disabled="disabled"
       :required="required"
@@ -35,6 +36,7 @@
         required: true,
       },
       id: String,
+      slug: String,
       label: String,
 
       value: {
@@ -81,6 +83,11 @@
           this.spanClass,
           component.spanClass
         );
+      },
+    },
+    watch: {
+      value (val) {
+        this.checked = val;
       },
     },
     methods: {

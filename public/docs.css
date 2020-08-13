@@ -81,3 +81,7 @@
 .radio input[type="radio"]:checked + span span {
   color: #3490DC;
 }
+
+.radio input[type="radio"][disabled] + span {
+  cursor: not-allowed;
+}
