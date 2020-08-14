@@ -47,7 +47,7 @@
 
       values: {
         type: Array as PropType<Option[]>,
-        default: [],
+        default: () => ([]),
       },
     },
     data () {

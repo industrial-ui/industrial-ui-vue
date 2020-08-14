@@ -5,44 +5,28 @@
     </template>
 
     <template v-slot:default="slotProps">
-      <div
-        v-for="option in options"
-        :key="checkboxIdPrefix + option.slug"
-        ref="options"
-        @change="changeScoped"
+      <CheckboxGroup
+        v-if="multiple"
+        :options="options"
+        :group-name="groupName"
+        @change="newVal => change(newVal, slotProps.close)"
       >
-        <!--
-          You can add your own checkbox or radio button,
-          but for the best experience,
-          there should be an input inside of it
-        -->
-        <slot name="option" v-bind:option="option">
-          <template v-if="multiple">
-            <Checkbox
-              :id="checkboxIdPrefix + option.slug"
-              :label="option.text"
-              :value="vals.some(val => val.slug === option.slug)"
-              v-bind="checkboxProps"
-              @toggle="val => change(option, val, slotProps.close)"
-            />
-          </template>
-        </slot>
-      </div>
-    </template>
+        <template #option="optionProps">
+          <slot name="option" v-bind="optionProps" />
+        </template>
+      </CheckboxGroup>
 
-    <!--<template v-else v-slot:default="slotProps">
-      <div
-        v-for="option in options"
-        :key="option.slug"
-        :class="{current: vals.some(val => val.slug === option.slug)}"
-        class="select-item w-inline-block pointer no-outline"
-        tabindex="0"
-        @click="change(option, true, slotProps.close)"
+      <RadioGroup
+        v-else
+        :options="options"
+        :group-name="groupName"
+        @change="newVal => change(newVal, slotProps.close)"
       >
-        {{ option.text }}
-        <CheckIcon class="icon-20px" />
-      </div>
-    </template>-->
+        <template #option="optionProps">
+          <slot name="option" v-bind="optionProps" />
+        </template>
+      </RadioGroup>
+    </template>
   </Dropdown>
 </template>
 
@@ -50,21 +34,30 @@
   import Vue, {PropType} from 'vue';
   import {Option} from '@/lib/types';
   import Dropdown from '@/lib/components/Dropdown.vue';
-  import Checkbox from '@/lib/components/Checkbox.vue';
+  import CheckboxGroup from '@/lib/components/CheckboxGroup.vue';
+  import RadioGroup from '@/lib/components/RadioGroup.vue';
 
   export default Vue.extend({
     name: 'DropdownSelect',
-    components: {Dropdown, Checkbox},
+    components: {Dropdown, CheckboxGroup, RadioGroup},
     model: {
-      prop: 'values',
+      prop: 'value',
       event: 'change',
     },
     props: {
       /**
-       * Required, the array of {slug: 'Unique identifier', text: 'Whatever it means'}
+       * Required, the array of {slug: 'Unique identifier', ...anyOtherProps}
        */
       options: {
         type: Array as PropType<Option[]>,
+        required: true,
+      },
+
+      /**
+       * Group checkboxes or radio buttons with the name on input
+       */
+      groupName: {
+        type: String,
         required: true,
       },
 
@@ -80,9 +73,9 @@
        * Values ({slug, text}) of options that are currently chosen
        * In any case, select returns an array on every change
        */
-      values: {
-        type: Array as PropType<Option[]>,
-        default: () => ([]),
+      value: {
+        type: [Object, Array] as PropType<Option[]|Option|null>,
+        default: null,
       },
 
       /**
@@ -91,14 +84,6 @@
       multiple: {
         type: Boolean,
         default: true,
-      },
-
-      /**
-       * Identify the checkbox for proper work
-       */
-      checkboxIdPrefix: {
-        type: String,
-        default: 'checkbox-',
       },
 
       /**
@@ -114,58 +99,18 @@
     },
     data () {
       return {
-        vals: this.values,
+        val: this.value,
       };
     },
-    watch: {
-      values (val) {
-        this.vals = val;
-        this.updateCheckboxes();
-      },
-    },
-    mounted () {
-      this.updateCheckboxes();
-    },
+    // watch: {
+    //   values (val) {
+    //     this.vals = val;
+    //     this.updateCheckboxes();
+    //   },
+    // },
     methods: {
-      change (option: Option, val: boolean, close: (() => {})|null) {
-        if (this.multiple) {
-          let update;
-          if (val) update = [...this.vals, option];
-          else update = this.vals.filter((opt) => opt.slug !== option.slug);
-
-          this.vals = update;
-          this.$emit('change', update);
-        } else
-          if (val && (!this.vals[0] || option.slug !== this.vals[0].slug)) {
-            this.vals = [option];
-            this.$emit('change', [option]);
-          }
-
+      change (val: Option[]|Option, close: (() => {})|null) {
         if (this.closeOnClick && close) close();
-      },
-
-      // Special bubbles-handler of the scoped change event
-      changeScoped ({target}: {target: HTMLInputElement}) {
-        if (this.$scopedSlots.option) {
-          const matcher = new RegExp(`${this.checkboxIdPrefix}(.+)`);
-          const match = target.id.match(matcher);
-          if (match?.[1]) {
-            const val = this.options.find((opt: Option) => opt.slug === match[1]);
-            if (val) this.change(val, target.checked, null);
-          }
-        }
-      },
-
-      // Manually check all the checkboxes in the scoped slot
-      updateCheckboxes () {
-        if (this.$scopedSlots.option && this.vals?.length) {
-          const options = this.$refs.options as HTMLInputElement[];
-          options.forEach((opt) => {
-            const input = opt.querySelector('input');
-            if (input) input.checked = !!this.vals
-              .some((val) => input.id === this.checkboxIdPrefix + val.slug);
-          });
-        }
       },
     },
   });
