@@ -13,9 +13,8 @@
     <h2 class="text-xl mb-2">Checkbox group</h2>
     <CheckboxGroup
       :options="options"
-      v-model="vals"
+      :values="[options[0], options[2]]"
       group-name="radiogroup1"
-      @change="change"
     >
       <template #option="option">
         <span class="w-4 h-4 inline-block mr-6 rounded flex-no-shrink">
@@ -52,28 +51,13 @@
             slug: 'opt3',
             label: 'Radio 3',
           },
-        ],
-        vals: [
           {
-            slug: 'opt1',
-            label: 'Radio 1',
-          },
-          {
-            slug: 'opt3',
-            label: 'Radio 3',
+            slug: 'opt4',
+            label: 'Radio 4',
+            disabled: true,
           },
         ],
       };
-    },
-    methods: {
-      change () {
-        this.vals = [
-          {
-            slug: 'opt1',
-            label: 'Radio 1',
-          },
-        ];
-      },
     },
   });
 </script>

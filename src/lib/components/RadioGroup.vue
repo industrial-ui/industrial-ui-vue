@@ -67,10 +67,9 @@
     watch: {
       value (val) {
         if (val?.slug !== this.val?.slug) {
-          this.val = val;
-
-          // Check the new input that came from parent
-          this.checkBySlug(val?.slug);
+          this.$nextTick(() => {
+            this.val = val;
+          });
         }
       },
     },
@@ -83,13 +82,6 @@
             this.$emit('change', newVal);
           }
         }
-      },
-
-      checkBySlug (slug: string) {
-        this.$nextTick(() => {
-          const input = (this.$refs.group as HTMLElement).querySelector(`input[value="${slug}"]`) as HTMLInputElement;
-          if (input) input.checked = true;
-        });
       },
     },
   });
