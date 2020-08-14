@@ -10,7 +10,7 @@
         :name="groupName"
         :value="vals && vals.some(val => val.slug === option.slug)"
         v-bind="option"
-        @toggle="newVal => change(option, newVal)"
+        @toggle="(newVal, event) => change(option, newVal, event)"
       >
         <slot name="option" v-bind="option" />
       </Checkbox>
@@ -49,6 +49,11 @@
         type: Array as PropType<Option[]>,
         default: () => ([]),
       },
+
+      /**
+       * Disable the group to select to checkboxes if maxAmount is already checked
+       */
+      maxAmount: [Number, String],
     },
     data () {
       return {
@@ -74,13 +79,17 @@
       },
     },
     methods: {
-      change (option: Option, val: boolean) {
-        let update;
-        if (val) update = [...this.vals, option];
-        else update = this.vals.filter((opt) => opt.slug !== option.slug);
+      change (option: Option, val: boolean, event: Event) {
+        if (val && this.maxAmount && this.vals.length + 1 > this.maxAmount) {
+          this.$nextTick(() => (event.target as HTMLInputElement).checked = false);
+        } else {
+          let update;
+          if (val) update = [...this.vals, option];
+          else update = this.vals.filter((opt) => opt.slug !== option.slug);
 
-        this.vals = update;
-        this.$emit('change', update);
+          this.vals = update;
+          this.$emit('change', update);
+        }
       },
     },
   });

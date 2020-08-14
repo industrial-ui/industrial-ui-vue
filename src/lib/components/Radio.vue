@@ -91,9 +91,9 @@
       },
     },
     methods: {
-      change ({target}: {target: HTMLInputElement}) {
-        this.checked = target.checked;
-        this.$emit('toggle', target.checked);
+      change (event: {target: HTMLInputElement}) {
+        this.checked = event.target.checked;
+        this.$emit('toggle', event.target.checked, event);
       },
     },
   });

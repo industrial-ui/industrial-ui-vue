@@ -14,6 +14,7 @@
     <CheckboxGroup
       :options="options"
       :values="[options[0], options[2]]"
+      :max-amount="3"
       group-name="radiogroup1"
     >
       <template #option="option">
@@ -41,19 +42,23 @@
         options: [
           {
             slug: 'opt1',
-            label: 'Radio 1',
+            label: 'Check 1',
           },
           {
             slug: 'opt2',
-            label: 'Radio 2',
+            label: 'Check 2',
           },
           {
             slug: 'opt3',
-            label: 'Radio 3',
+            label: 'Check 3',
           },
           {
             slug: 'opt4',
-            label: 'Radio 4',
+            label: 'Check 4',
+          },
+          {
+            slug: 'opt5',
+            label: 'Disabled',
             disabled: true,
           },
         ],
