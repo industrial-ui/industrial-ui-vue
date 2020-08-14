@@ -15,9 +15,6 @@
     <div class="w-full">
       <Radios />
     </div>
-    <div class="w-full">
-      <RadioGroups />
-    </div>
   </div>
 </template>
 
@@ -28,7 +25,6 @@
   import DropdownSelects from '../containers/DropdownSelects.vue';
   import Checkboxes from '../containers/Checkboxes.vue';
   import Radios from '../containers/Radios.vue';
-  import RadioGroups from '../containers/RadioGroups.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -38,7 +34,6 @@
       DropdownSelects,
       Checkboxes,
       Radios,
-      RadioGroups,
     },
   });
 </script>
