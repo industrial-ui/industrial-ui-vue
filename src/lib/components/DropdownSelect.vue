@@ -7,8 +7,10 @@
     <template v-slot:default="slotProps">
       <CheckboxGroup
         v-if="multiple"
+        :values="val"
         :options="options"
         :group-name="groupName"
+        v-bind="groupProps"
         @change="newVal => change(newVal, slotProps.close)"
       >
         <template #option="optionProps">
@@ -18,8 +20,10 @@
 
       <RadioGroup
         v-else
+        :value="val"
         :options="options"
         :group-name="groupName"
+        v-bind="groupProps"
         @change="newVal => change(newVal, slotProps.close)"
       >
         <template #option="optionProps">
@@ -95,21 +99,23 @@
       },
 
       dropdownProps: Object,
-      checkboxProps: Object,
+      groupProps: Object,
     },
     data () {
       return {
         val: this.value,
       };
     },
-    // watch: {
-    //   values (val) {
-    //     this.vals = val;
-    //     this.updateCheckboxes();
-    //   },
-    // },
+    watch: {
+      value (value) {
+        if (value !== this.val) this.val = value;
+      },
+    },
     methods: {
       change (val: Option[]|Option, close: (() => {})|null) {
+        this.val = val;
+        this.$emit('change', val);
+
         if (this.closeOnClick && close) close();
       },
     },

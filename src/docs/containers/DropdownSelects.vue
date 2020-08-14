@@ -2,7 +2,7 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Dropdown select</h2>
     <DropdownSelect
-      v-model="values1"
+      v-model="values"
       :options="options1"
       group-name="dd-select-1"
       :dropdown-props="{dropdownClass: 'mt-2 w-full'}"
@@ -23,7 +23,7 @@
     <br>
 
     <DropdownSelect
-      v-model="values1"
+      v-model="value"
       :options="options1"
       :multiple="false"
       close-on-click
@@ -73,10 +73,14 @@
             label: 'Option 4',
           },
         ],
-        values1: [{
-          slug: 'two',
-          text: 'Two',
+        values: [{
+          slug: 'opt1',
+          label: 'Option 1',
         }],
+        value: {
+          slug: 'opt1',
+          label: 'Option 1',
+        },
       };
     },
   });
