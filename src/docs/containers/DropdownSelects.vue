@@ -1,7 +1,7 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Dropdown multiselect</h2>
-    <DropdownSelect
+    <!--<DropdownSelect
       v-model="values1"
       :options="options1"
       :dropdown-props="{
@@ -38,7 +38,7 @@
           :label="option.text"
         />
       </template>
-    </DropdownSelect>
+    </DropdownSelect>-->
   </section>
 </template>
 

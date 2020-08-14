@@ -85,6 +85,11 @@ const config: Config = {
       isProperties: {},
       class: '',
     },
+
+    checkboxGroup: {
+      isProperties: {},
+      class: '',
+    },
   },
 };
 export default config;

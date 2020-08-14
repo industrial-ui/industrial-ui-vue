@@ -78,6 +78,7 @@ export interface RadioConfig extends ComponentConfig {
 }
 
 export type RadioGroupConfig = ComponentConfig;
+export type CheckboxGroupConfig = ComponentConfig;
 
 export interface ConfigComponents {
   button: ButtonConfig,
@@ -86,6 +87,7 @@ export interface ConfigComponents {
   checkbox: CheckboxConfig,
   radio: RadioConfig,
   radioGroup: RadioGroupConfig,
+  checkboxGroup: CheckboxGroupConfig,
   [key: string]: any,
 }
 

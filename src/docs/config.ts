@@ -39,6 +39,7 @@ const config: PartialConfig = {
       inputClass: 'hidden',
       spanClass: 'flex items-center',
       checkedClass: 'checked',
+      disabledClass: 'cursor-not-allowed',
     },
 
     radio: {
