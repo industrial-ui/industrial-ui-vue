@@ -35,7 +35,9 @@ const config: PartialConfig = {
     },
 
     checkbox: {
-      class: 'cbx',
+      class: 'cbx flex items-center mr-4 mb-4 cursor-pointer',
+      inputClass: 'hidden',
+      spanClass: 'flex items-center',
       checkedClass: 'checked',
     },
 

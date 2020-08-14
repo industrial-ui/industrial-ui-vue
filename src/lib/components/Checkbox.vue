@@ -1,22 +1,22 @@
 <template>
-  <div :class="wrapperClasses">
+  <label :class="wrapperClasses">
     <input
       :id="id"
-      v-model="checked"
-      :class="inputClasses"
       type="checkbox"
+      :name="name"
+      :value="slug"
+      :checked="checked"
+      :class="inputClasses"
+      :disabled="disabled"
+      :required="required"
       @change="change"
-    >
-    <label :class="labelClasses" :for="id">
-      <slot>
+    />
+    <span :class="spanClasses">
+      <slot>{
         {{ label }}
       </slot>
-    </label>
-
-    <div :class="customizerClasses">
-      <slot name="customizer" />
-    </div>
-  </div>
+    </span>
+  </label>
 </template>
 
 <script lang="ts">
@@ -31,20 +31,24 @@
       event: 'toggle',
     },
     props: {
-      id: {
+      name: {
         type: String,
         required: true,
       },
+      id: String,
+      slug: String,
+      label: String,
+
       value: {
         type: Boolean,
         default: false,
       },
-      label: String,
 
-      checkedClass: String,
+      disabled: Boolean,
+      required: Boolean,
+
       inputClass: String,
-      labelClass: String,
-      customizerClass: String,
+      spanClass: String,
     },
     data () {
       return {
@@ -52,41 +56,28 @@
       };
     },
     computed: {
-      /**
-       * Compose classes from the ui-configuration and dynamic properties
-       * to pass to all elements of the checkbox: wpapper, input, label, customizer
-       */
-      wrapperClasses(): string | null {
+      wrapperClasses (): string|null {
         const component = this.$iui.components.checkbox;
         return composeClasses(
           component.class,
           isProperties(component.isProperties, this.$attrs),
-          this.checked && this.checkedClass ? this.checkedClass : '',
-          this.checked ? component.checkedClass : component.uncheckedClass
+          this.checked ? component.checkedClass : component.uncheckedClass,
+          this.disabled ? component.disabledClass : '',
+          this.required ? component.requiredClass : ''
         );
       },
       inputClasses (): string|null {
         const component = this.$iui.components.checkbox;
         return composeClasses(
           this.inputClass,
-          component.inputClass,
-          this.checked ? component.checkedInputClass : component.uncheckedInputClass
+          component.inputClass
         );
       },
-      labelClasses (): string|null {
+      spanClasses (): string|null {
         const component = this.$iui.components.checkbox;
         return composeClasses(
-          this.labelClass,
-          component.labelClass,
-          this.checked ? component.checkedLabelClass : component.uncheckedLabelClass
-        );
-      },
-      customizerClasses (): string|null {
-        const component = this.$iui.components.checkbox;
-        return composeClasses(
-          this.customizerClass,
-          component.customizerClass,
-          this.checked ? component.checkedCustomizerClass : component.uncheckedCustomizerClass
+          this.spanClass,
+          component.spanClass
         );
       },
     },

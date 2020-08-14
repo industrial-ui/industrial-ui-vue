@@ -64,18 +64,10 @@ const config: Config = {
       class: '',
       checkedClass: '',
       uncheckedClass: '',
-
+      disabledClass: '',
+      requiredClass: '',
       inputClass: '',
-      checkedInputClass: '',
-      uncheckedInputClass: '',
-
-      labelClass: '',
-      checkedLabelClass: '',
-      uncheckedLabelClass: '',
-
-      customizerClass: '',
-      checkedCustomizerClass: '',
-      uncheckedCustomizerClass: '',
+      spanClass: '',
     },
 
     radio: {

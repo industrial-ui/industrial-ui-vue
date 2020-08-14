@@ -62,18 +62,10 @@ export interface ModalConfig extends ComponentConfig {
 export interface CheckboxConfig extends ComponentConfig {
   checkedClass: string,
   uncheckedClass: string,
-
+  disabledClass: string,
+  requiredClass: string,
   inputClass: string,
-  checkedInputClass: string,
-  uncheckedInputClass: string,
-
-  labelClass: string,
-  checkedLabelClass: string,
-  uncheckedLabelClass: string,
-
-  customizerClass: string,
-  checkedCustomizerClass: string,
-  uncheckedCustomizerClass: string,
+  spanClass: string,
 }
 
 export interface RadioConfig extends ComponentConfig {

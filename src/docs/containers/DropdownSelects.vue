@@ -32,6 +32,7 @@
       </template>
       <template #option="{option}">
         <Checkbox
+          name="dd-cbx-2"
           :key="'dd-select-cb2-' + option.slug"
           :id="'dd-select-cb2-' + option.slug"
           :label="option.text"
@@ -45,7 +46,7 @@
   import Vue from 'vue';
   import DropdownSelect from '@/lib/components/DropdownSelect.vue';
   import Button from '@/lib/components/Button.vue';
-  import Checkbox from '../components/CustomCheckbox.vue';
+  import Checkbox from '@/lib/components/Checkbox.vue';
 
   export default Vue.extend({
     name: 'Dropdowns',
