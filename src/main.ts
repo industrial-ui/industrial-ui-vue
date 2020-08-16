@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import App from './docs/index.vue';
 import router from './docs/router';
-import {plugin as iuiplugin} from './index';
+import {iui} from './index';
 import tailwindConfig from './docs/config';
 
 Vue.config.productionTip = false;
-Vue.use(iuiplugin, tailwindConfig);
+Vue.use(iui, tailwindConfig);
 
 new Vue({
   router,

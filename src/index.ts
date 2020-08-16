@@ -6,4 +6,4 @@ export { default as RadioGroup } from './lib/components/RadioGroup.vue';
 export { default as Dropdown } from './lib/components/Dropdown.vue';
 export { default as DropdownSelect } from './lib/components/DropdownSelect.vue';
 
-export { default as plugin } from './lib/utils/plugin';
+export { default as iui } from './lib/utils/plugin';
