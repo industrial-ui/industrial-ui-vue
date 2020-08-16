@@ -8,17 +8,32 @@ npm i industrial-ui-vue
 
 ## Usage
 
+Firstly, install the IUI plugin with your [configuration](https://industrial-ui.com/docs/configuration). 
+For this, go to the main vue file and do:
+```js
+import Vue from 'vue';
+import config from './config';
+import { iui } from 'industrial-ui-vue';
+
+Vue.use(iui, config);
+```
+
+Now, you are ready to use components inside the app:
+ 
 ```html
 <template>
-  <Button>
+  <Dropdown>
+    <template #trigger>
+      <Button>Click on me</Button>
+    </template>
     Hello, world!
-  </Button>
+  </Dropdown>
 </template>
 
 <script>
-import {Button} from 'industrial-ui-vue';
+import { Dropdown, Button } from 'industrial-ui-vue';
 export default {
-  components: {Button},
-}
+  components: { Dropdown, Button },
+};
 </script>
 ```

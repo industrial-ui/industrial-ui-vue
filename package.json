@@ -1,7 +1,7 @@
 {
   "name": "industrial-ui-vue",
-  "version": "0.3.2",
-  "main": "./dist/iui-vue.common.js",
+  "version": "0.3.3",
+  "main": "./dist/iui-vue.umd.min.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "lib": "vue-cli-service build --target lib --name iui-vue ./src/index.ts",
