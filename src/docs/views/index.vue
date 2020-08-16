@@ -15,6 +15,9 @@
     <div class="w-full">
       <Radios />
     </div>
+    <div class="w-full">
+      <Modals />
+    </div>
   </div>
 </template>
 
@@ -25,6 +28,7 @@
   import DropdownSelects from '../containers/DropdownSelects.vue';
   import Checkboxes from '../containers/Checkboxes.vue';
   import Radios from '../containers/Radios.vue';
+  import Modals from '../containers/Modals.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -34,6 +38,7 @@
       DropdownSelects,
       Checkboxes,
       Radios,
+      Modals,
     },
   });
 </script>
