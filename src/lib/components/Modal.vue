@@ -15,9 +15,14 @@
     <div
       :class="wrapperClasses"
       v-bind="$attrs"
+      :key="key"
       @click.stop
     >
-      <slot :open="open" :close="close" :value="val" />
+      <slot
+        :open="open"
+        :close="close"
+        :value="val"
+      />
     </div>
   </dialog>
 </template>
@@ -39,9 +44,14 @@
         default: false,
       },
 
-      closable: {
+      nonClosable: {
         type: Boolean,
-        default: true,
+        default: false,
+      },
+
+      destroyable: {
+        type: Boolean,
+        default: false,
       },
 
       overlayClass: String,
@@ -49,6 +59,7 @@
     data () {
       return {
         val: this.value,
+        key: 0,
       };
     },
     computed: {
@@ -84,11 +95,15 @@
     },
     methods: {
       close (closingInComponent = false) {
-        if (!this.closable && !closingInComponent) return;
+        // Disallow clicking on overlay and pressing Escape cause modal closing
+        if (this.nonClosable && typeof closingInComponent === 'boolean' && closingInComponent) return;
 
         this.val = false;
-        this.$emit('open');
+        this.$emit('close');
         this.$emit('toggle', false);
+
+        // Destroy all modal's insides via changing a key of the content
+        if (this.destroyable) this.$nextTick(() => this.key += 1);
       },
       open () {
         this.val = true;
