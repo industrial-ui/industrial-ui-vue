@@ -21,6 +21,22 @@ export interface TransitionOptions {
   speed: number,
 }
 
+export interface TransitionHooks {
+  beforeEnter: (el: HTMLElement) => void,
+  enter: (el: HTMLElement, done: () => {}) => void,
+  afterEnter: (el: HTMLElement) => void,
+  enterCancelled: (el: HTMLElement) => void,
+  beforeLeave: (el: HTMLElement) => void,
+  leave: (el: HTMLElement, done: () => {}) => void,
+  afterLeave: (el: HTMLElement) => void,
+  leaveCancelled: (el: HTMLElement) => void,
+}
+
+export interface Transition extends Partial<TransitionOptions> {
+  name: string,
+  hooks?: Partial<TransitionHooks>,
+}
+
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
@@ -94,9 +110,9 @@ export interface ConfigComponents {
 export interface Config {
   stylesheets: [string] | [],
   globalClass: string,
-  customTransitions: {
-      [name: string]: void,
-  } | null,
+  transitions: {
+    [name: string]: Transition,
+  },
   components: ConfigComponents,
 }
 

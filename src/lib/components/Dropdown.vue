@@ -20,9 +20,11 @@
         :value="val"
       />
     </div>
-    <div v-check-position="{position, positionRelative}" :class="dropdownClasses">
-      <slot :open="open" :close="close" :value="val" />
-    </div>
+    <transition :name="transitionProps">
+      <div v-show="val" v-check-position="{position, positionRelative}" :class="dropdownClasses">
+        <slot :open="open" :close="close" :value="val" />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -106,6 +108,8 @@
         type: String,
         default: null,
       },
+
+      transition: String,
     },
     data () {
       return {
@@ -140,6 +144,11 @@
           component.dropdownClass,
           this.val ? component.openDropdownClass : component.closeDropdownClass
         );
+      },
+
+      transitionProps (): string | null {
+        const component = this.$iui.components.dropdown;
+        return this.transition || component.transition || null;
       },
     },
     watch: {

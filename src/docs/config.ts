@@ -11,16 +11,13 @@ const config: PartialConfig = {
     },
 
     dropdown: {
-      transition: 'slide',
-      transitionOptions: {delay: 0, duration: 300},
+      transition: 'fade',
       isProperties: {
         multiselect: 'rounded border-solid border border-gray-300 py-2 px-4',
         search: 'rounded border-solid border border-gray-300',
       },
       class: 'inline-block relative',
       dropdownClass: 'absolute rounded bg-white shadow-xl z-10',
-      closeDropdownClass: 'hidden',
-      openDropdownClass: 'block',
     },
 
     modal: {

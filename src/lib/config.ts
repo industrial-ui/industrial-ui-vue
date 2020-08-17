@@ -2,6 +2,7 @@
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
 import { TransitionOptions, Config } from './types';
+import transitions from './utils/transitions';
 
 const DEFAULT_TRANSITION_OPTIONS: Partial<TransitionOptions> = {
   delay: 0,
@@ -11,7 +12,7 @@ const DEFAULT_TRANSITION_OPTIONS: Partial<TransitionOptions> = {
 const config: Config = {
   stylesheets: [],
   globalClass: '',
-  customTransitions: {},
+  transitions,
 
   components: {
     button: {

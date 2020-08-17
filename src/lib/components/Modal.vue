@@ -1,5 +1,5 @@
 <template>
-  <transition :name="transitionProps">
+  <Transition :name="transitionProps">
     <dialog
       v-show="val"
       :class="overlayClasses"
@@ -27,16 +27,18 @@
         />
       </div>
     </dialog>
-  </transition>
+  </Transition>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
+  import Transition from '@/lib/components/Transition.vue';
 
   export default Vue.extend({
     name: 'Modal',
+    components: {Transition},
     model: {
       prop: 'value',
       event: 'toggle',
@@ -86,8 +88,9 @@
       },
 
       transitionProps (): string | null {
-        const component = this.$iui.components.modal;
-        return this.transition || component.transition || null;
+        return 'fade';
+        // const component = this.$iui.components.modal;
+        // return component.transition || null;
       },
     },
     watch: {
