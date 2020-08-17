@@ -3,20 +3,24 @@ import animate from '@/lib/utils/animate';
 
 const fadeTransition: Transition = {
   name: 'fade',
+  // Animation object goes straight to hook functions as argument
+  animation: {
+    duration: 500,
+  },
   hooks: {
-    enter (el: HTMLElement, done: () => {}, duration = 500) {
+    enter ({el, done}, animation) {
       el.style.opacity = '0';
       animate({
-        duration,
+        duration: animation.duration,
         draw: (fraction) => el.style.opacity = fraction.toString(),
         callback: done,
       });
     },
 
-    leave (el: HTMLElement, done: () => {}, duration = 500) {
+    leave ({el, done}, animation) {
       el.style.opacity = '1';
       animate({
-        duration,
+        duration: animation.duration,
         draw: (fraction) => el.style.opacity = (1 - fraction).toString(),
         callback: done,
       });

@@ -1,13 +1,8 @@
 /**
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
-import { TransitionOptions, Config } from './types';
+import { Config } from './types';
 import transitions from './utils/transitions';
-
-const DEFAULT_TRANSITION_OPTIONS: Partial<TransitionOptions> = {
-  delay: 0,
-  duration: 300,
-};
 
 const config: Config = {
   stylesheets: [],
@@ -22,7 +17,6 @@ const config: Config = {
 
     dropdown: {
       transition: null,
-      transitionOptions: DEFAULT_TRANSITION_OPTIONS,
       isProperties: {},
 
       class: '',
@@ -40,7 +34,6 @@ const config: Config = {
 
     modal: {
       transition: null,
-      transitionOptions: DEFAULT_TRANSITION_OPTIONS,
 
       isProperties: {},
 

@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="transitionProps">
+  <Transition :name="transitionName" :options="transitionOptions">
     <dialog
       v-show="val"
       :class="overlayClasses"
@@ -31,10 +31,11 @@
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
+  import Vue, {PropType} from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
   import Transition from '@/lib/components/Transition.vue';
+  import {TransitionOptions} from '@/lib/types';
 
   export default Vue.extend({
     name: 'Modal',
@@ -62,6 +63,7 @@
       overlayClass: String,
 
       transition: String,
+      transitionOptions: Object as PropType<TransitionOptions>,
     },
     data () {
       return {
@@ -87,10 +89,9 @@
         );
       },
 
-      transitionProps (): string | null {
-        return 'fade';
-        // const component = this.$iui.components.modal;
-        // return component.transition || null;
+      transitionName (): string | null {
+        const component = this.$iui.components.modal;
+        return this.transition || component.transition || null;
       },
     },
     watch: {

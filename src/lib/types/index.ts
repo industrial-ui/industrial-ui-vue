@@ -9,27 +9,29 @@ export interface IsProperties {
   [isProp: string]: string,
 }
 
-export interface TransitionOptions {
+export interface AnimationOptions {
   delay: number,
   duration: number,
-  easing: void,
-  opacity: number,
-  amount: number,
-  x: number,
-  y: number,
-  start: number,
-  speed: number,
+  easing: (fraction: number) => number,
+}
+
+export interface TransitionOptions {
+  animation: Partial<AnimationOptions>,
+  options: {
+    appear: boolean,
+    mode: 'in-out'|'out-in',
+  },
 }
 
 export interface TransitionHooks {
-  beforeEnter: (el: HTMLElement) => void,
-  enter: (el: HTMLElement, done: () => {}) => void,
-  afterEnter: (el: HTMLElement) => void,
-  enterCancelled: (el: HTMLElement) => void,
-  beforeLeave: (el: HTMLElement) => void,
-  leave: (el: HTMLElement, done: () => {}) => void,
-  afterLeave: (el: HTMLElement) => void,
-  leaveCancelled: (el: HTMLElement) => void,
+  beforeEnter: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
+  enter: (native: {el: HTMLElement; done: () => void}, animation: AnimationOptions) => void,
+  afterEnter: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
+  enterCancelled: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
+  beforeLeave: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
+  leave: (native: {el: HTMLElement; done: () => void}, animation: AnimationOptions) => void,
+  afterLeave: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
+  leaveCancelled: (native: {el: HTMLElement}, animation: AnimationOptions) => void,
 }
 
 export interface Transition extends Partial<TransitionOptions> {
@@ -41,7 +43,6 @@ export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
   transition?: 'fade'|string|null,
-  transitionOptions?: Partial<TransitionOptions>,
 }
 
 export type ButtonConfig = ComponentConfig

@@ -1,11 +1,20 @@
 <template>
-  <transition :name="transition.name" v-on="transition.hooks">
+  <transition
+    :name="transition.name"
+    v-bind="transition.options"
+    v-on="hooks"
+  >
     <slot />
   </transition>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
+  import Vue, {PropType} from 'vue';
+  import {TransitionOptions} from '@/lib/types';
+
+  interface TransitionType extends Partial<TransitionOptions> {
+    hooks?: any,
+  }
 
   export default Vue.extend({
     name: 'CustomTransition',
@@ -14,20 +23,35 @@
         type: String,
         default: null,
       },
+
+      options: Object as PropType<TransitionOptions>,
     },
     computed: {
-      transition () {
+      transition (): TransitionType {
         const {transitions} = this.$iui;
         const transition = transitions[this.name];
 
         if (!transition) {
           throw new Error(
-            `Transition ${this.name} is not configured.
-          Expected one of the names: ${Object.keys(transitions).join(', ')}`
+            `Transition ${this.name} is not configured.\n
+            Expected one of the names: ${Object.keys(transitions).join(', ')}`
           );
         } else {
-          return transition;
+          return {
+            ...transition,
+            animation: this.options?.animation || transition.animation,
+            options: this.options?.options || {},
+          };
         }
+      },
+      hooks () {
+        const hooks = this.transition?.hooks;
+        const newHooks: any = {};
+        if (hooks) Object.keys(hooks).forEach((key) => {
+          const hook = hooks[key];
+          newHooks[key] = (el: any, done: any) => hook({el, done}, this.transition.animation);
+        });
+        return newHooks;
       },
     },
   });

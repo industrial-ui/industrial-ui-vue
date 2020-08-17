@@ -10,7 +10,7 @@
       Open destroyable non-closable modal
     </Button>
 
-    <Modal v-model="open">
+    <Modal v-model="open" :transition-options="{animation: {duration: 1500}}">
       <template #default="{close}">
         <h2>Hello, world</h2>
         <Button @click.native="close" is:danger>Close modal</Button>
