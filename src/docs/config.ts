@@ -24,14 +24,9 @@ const config: PartialConfig = {
     },
 
     modal: {
-      moveToBody: false,
+      transition: 'fade',
       class: 'w-10/12 lg:w-6/12 relative bg-white shadow-lg rounded-md p-8',
-      openClass: '',
-      closeClass: '',
-
       overlayClass: 'fixed inset-0 h-screen w-full flex flex-col items-center justify-center bg-black bg-opacity-75 z-10',
-      openOverlayClass: '',
-      closeOverlayClass: 'hidden',
     },
 
     checkbox: {

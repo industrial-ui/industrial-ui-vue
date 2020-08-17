@@ -2,7 +2,7 @@ import {DeepPartial} from '@/lib/types/special';
 
 export type Option = {
   slug: string,
-  text: string,
+  [key: string]: any,
 };
 
 export interface IsProperties {
@@ -24,7 +24,7 @@ export interface TransitionOptions {
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
-  transition?: string|null,
+  transition?: 'fade'|string|null,
   transitionOptions?: Partial<TransitionOptions>,
 }
 

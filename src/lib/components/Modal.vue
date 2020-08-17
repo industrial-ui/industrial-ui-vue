@@ -1,30 +1,33 @@
 <template>
-  <dialog
-    :class="overlayClasses"
-    :open="val"
-    @click="close(true)"
-  >
-    <slot
-      name="in-overlay"
-      :open="open"
-      :close="close"
-      :value="val"
-    />
-
-    <!-- Modal itself -->
-    <div
-      :class="wrapperClasses"
-      v-bind="$attrs"
-      :key="key"
-      @click.stop
+  <transition :name="transitionProps">
+    <dialog
+      v-show="val"
+      :class="overlayClasses"
+      :open="val"
+      @click="close(true)"
     >
       <slot
+        name="in-overlay"
         :open="open"
         :close="close"
         :value="val"
       />
-    </div>
-  </dialog>
+
+      <!-- Modal itself -->
+      <div
+        :class="wrapperClasses"
+        v-bind="$attrs"
+        :key="key"
+        @click.stop
+      >
+        <slot
+          :open="open"
+          :close="close"
+          :value="val"
+        />
+      </div>
+    </dialog>
+  </transition>
 </template>
 
 <script lang="ts">
@@ -55,6 +58,8 @@
       },
 
       overlayClass: String,
+
+      transition: String,
     },
     data () {
       return {
@@ -78,6 +83,11 @@
           component.overlayClass,
           this.val ? component.openOverlayClass : component.closeOverlayClass
         );
+      },
+
+      transitionProps (): string | null {
+        const component = this.$iui.components.modal;
+        return this.transition || component.transition || null;
       },
     },
     watch: {
