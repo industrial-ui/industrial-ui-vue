@@ -20,23 +20,26 @@
         :value="val"
       />
     </div>
-    <transition :name="transitionProps">
+    <Transition :name="transitionName" :options="transitionOptions">
       <div v-show="val" v-check-position="{position, positionRelative}" :class="dropdownClasses">
         <slot :open="open" :close="close" :value="val" />
       </div>
-    </transition>
+    </Transition>
   </div>
 </template>
 
 <script lang="ts">
-  import Vue from 'vue';
+  import Vue, {PropType} from 'vue';
   import ClickOutside from 'vue-click-outside';
   import checkPosition from '@/lib/utils/check-position';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
+  import Transition from '@/lib/components/Transition.vue';
+  import {TransitionOptions} from '@/lib/types';
 
   export default Vue.extend({
     name: 'Dropdown',
+    components: { Transition },
     directives: { ClickOutside, checkPosition },
     model: {
       prop: 'value',
@@ -110,6 +113,7 @@
       },
 
       transition: String,
+      transitionOptions: Object as PropType<TransitionOptions>,
     },
     data () {
       return {
@@ -146,7 +150,7 @@
         );
       },
 
-      transitionProps (): string | null {
+      transitionName (): string | null {
         const component = this.$iui.components.dropdown;
         return this.transition || component.transition || null;
       },

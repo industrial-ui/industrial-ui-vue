@@ -11,7 +11,7 @@ const config: PartialConfig = {
     },
 
     dropdown: {
-      transition: 'fade',
+      transition: null,
       isProperties: {
         multiselect: 'rounded border-solid border border-gray-300 py-2 px-4',
         search: 'rounded border-solid border border-gray-300',

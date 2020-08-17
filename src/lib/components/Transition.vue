@@ -13,6 +13,7 @@
   import {TransitionOptions} from '@/lib/types';
 
   interface TransitionType extends Partial<TransitionOptions> {
+    name: 'fade'|string|null,
     hooks?: any,
   }
 
@@ -28,6 +29,8 @@
     },
     computed: {
       transition (): TransitionType {
+        if (!this.name) return {name: '', animation: {}, options: {}};
+
         const {transitions} = this.$iui;
         const transition = transitions[this.name];
 

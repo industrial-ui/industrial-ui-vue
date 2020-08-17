@@ -5,7 +5,7 @@ const fadeTransition: Transition = {
   name: 'fade',
   // Animation object goes straight to hook functions as argument
   animation: {
-    duration: 500,
+    duration: 300,
   },
   hooks: {
     enter ({el, done}, animation) {

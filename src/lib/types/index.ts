@@ -18,8 +18,8 @@ export interface AnimationOptions {
 export interface TransitionOptions {
   animation: Partial<AnimationOptions>,
   options: {
-    appear: boolean,
-    mode: 'in-out'|'out-in',
+    appear?: boolean,
+    mode?: 'in-out'|'out-in',
   },
 }
 
