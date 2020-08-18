@@ -12,15 +12,16 @@ export interface IsProperties {
 export interface AnimationOptions {
   delay: number,
   duration: number,
+  type: 'only-in'|'only-out'|'both',
+  // Get easings here: https://easings.net/
   easing: (fraction: number) => number,
 }
 
 export interface TransitionOptions {
   animation: Partial<AnimationOptions>,
-  options: {
-    appear?: boolean,
-    mode?: 'in-out'|'out-in',
-  },
+
+  appear?: boolean,
+  mode?: 'in-out'|'out-in',
 }
 
 export interface TransitionHooks {

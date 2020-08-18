@@ -1,12 +1,12 @@
 const animate = ({
-  timing,
+  easing,
   draw,
   duration,
   callback,
 }: {
   duration: number,
   draw: (fraction: number) => void,
-  timing?: (fraction: number) => number,
+  easing?: (fraction: number) => number,
   callback?: () => void,
 }) => {
   const start = performance.now();
@@ -17,7 +17,7 @@ const animate = ({
     if (timeFraction > 1) timeFraction = 1;
 
     // calculate the current animation state with timing function: linear, ease-in, ease-out etc
-    const progress = timing ? timing(timeFraction) : timeFraction;
+    const progress = easing ? easing(timeFraction) : timeFraction;
 
     draw(progress);
 

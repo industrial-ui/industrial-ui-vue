@@ -15,6 +15,11 @@
   interface TransitionType extends Partial<TransitionOptions> {
     name: 'fade'|string|null,
     hooks?: any,
+    options: {
+      appear?: boolean,
+      mode?: 'in-out'|'out-in'|null,
+      css?: boolean,
+    },
   }
 
   export default Vue.extend({
@@ -43,7 +48,11 @@
           return {
             ...transition,
             animation: this.options?.animation || transition.animation,
-            options: this.options?.options || {},
+            options: {
+              appear: !!this.options?.appear,
+              mode: this.options?.mode || null,
+              css: !this.options?.animation,
+            },
           };
         }
       },

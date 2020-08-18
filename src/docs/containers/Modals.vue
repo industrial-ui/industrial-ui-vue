@@ -10,7 +10,10 @@
       Open destroyable non-closable modal
     </Button>
 
-    <Modal v-model="open" :transition-options="{animation: {duration: 1000}}">
+    <Modal
+      v-model="open"
+      :transition-options="{animation: animationOptions}"
+    >
       <template #default="{close}">
         <h2>Hello, world</h2>
         <Button @click.native="close" is:danger>Close modal</Button>
@@ -38,6 +41,21 @@
       return {
         open: false,
         open1: false,
+        animationOptions: {
+          delay: 300,
+          duration: 1000,
+          type: 'only-in',
+          // Ease-out-bounce easing
+          easing: (x: number) => {
+            const n1 = 7.5625;
+            const d1 = 2.75;
+
+            if (x < 1 / d1) return n1 * x * x;
+            if (x < 2 / d1) return n1 * (x -= 1.5 / d1) * x + 0.75;
+            if (x < 2.5 / d1) return n1 * (x -= 2.25 / d1) * x + 0.9375;
+            return n1 * (x -= 2.625 / d1) * x + 0.984375;
+          },
+        },
       };
     },
   });
