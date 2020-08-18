@@ -61,6 +61,7 @@
       },
 
       overlayClass: String,
+      bodyClass: String,
 
       transition: String,
       transitionOptions: Object as PropType<TransitionOptions>,
@@ -69,6 +70,7 @@
       return {
         val: this.value,
         key: 0,
+        body: '',
       };
     },
     computed: {
@@ -88,6 +90,14 @@
           this.val ? component.openOverlayClass : component.closeOverlayClass
         );
       },
+      bodyClasses(): string | null {
+        const component = this.$iui.components.modal;
+        return composeClasses(
+          this.bodyClass,
+          component.bodyClass,
+          this.val ? component.openBodyClass : component.closeBodyClass
+        );
+      },
 
       transitionName (): string | null {
         const component = this.$iui.components.modal;
@@ -95,17 +105,28 @@
       },
     },
     watch: {
-      value (val) {
+      value (val: boolean) {
         if (val) this.open();
         else this.close();
 
         this.val = val;
-        if (val && typeof document !== 'undefined') {
+        if (val && typeof window !== 'undefined') {
           document.addEventListener('keyup', (e: {key: string}) => {
             if (e.key === 'Escape') this.close(true);
           });
         }
       },
+      bodyClasses (val: string|null) {
+        if (val && typeof window !== 'undefined') {
+          document.body.setAttribute('class', composeClasses(this.body, val) || '');
+        }
+      },
+    },
+    mounted () {
+      // Get initial value of the body's classes and always add it to custom classes
+      const classes = document.body.getAttribute('class') || '';
+      this.body = classes;
+      document.body.setAttribute('class', composeClasses(classes, this.bodyClasses || '') || '');
     },
     methods: {
       close (closingInComponent = false) {
