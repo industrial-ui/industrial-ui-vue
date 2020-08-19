@@ -18,6 +18,9 @@
     <div class="w-full">
       <Modals />
     </div>
+    <div class="w-full">
+      <Tabs />
+    </div>
   </div>
 </template>
 
@@ -29,6 +32,7 @@
   import Checkboxes from '../containers/Checkboxes.vue';
   import Radios from '../containers/Radios.vue';
   import Modals from '../containers/Modals.vue';
+  import Tabs from '../containers/Tabs.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -39,6 +43,7 @@
       Checkboxes,
       Radios,
       Modals,
+      Tabs,
     },
   });
 </script>
