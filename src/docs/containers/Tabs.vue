@@ -1,10 +1,13 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Tabs</h2>
+    <!-- SSR example -->
     <Tabs :options="[{label: 'Good morning'}, {label: 'World'}]">
-      <TabPanel />
+      <TabPanel active />
       <TabPanel />
     </Tabs>
+
+    <!-- SPA example -->
     <Tabs>
       <TabPanel label="Tab1" disabled />
       <TabPanel label="Tab2" :disabled="false" />

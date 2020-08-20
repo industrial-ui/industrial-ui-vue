@@ -84,6 +84,25 @@ const config: Config = {
       isProperties: {},
       class: '',
     },
+
+    tabs: {
+      class: '',
+      isProperties: {},
+      transition: null,
+
+      navClass: '',
+      panelsWrapperClass: '',
+
+      tabClass: '',
+      activeTabClass: '',
+      inactiveTabClass: '',
+      disabledTabClass: '',
+      removableTabClass: '',
+
+      panelClass: '',
+      activePanelClass: '',
+      inactivePanelClass: '',
+    },
   },
 };
 export default config;

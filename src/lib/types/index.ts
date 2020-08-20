@@ -98,6 +98,21 @@ export interface RadioConfig extends ComponentConfig {
 export type RadioGroupConfig = ComponentConfig;
 export type CheckboxGroupConfig = ComponentConfig;
 
+export interface TabsConfig extends ComponentConfig {
+  navClass: string,
+  panelsWrapperClass: string,
+
+  tabClass: string,
+  activeTabClass: string,
+  inactiveTabClass: string,
+  disabledTabClass: string,
+  removableTabClass: string,
+
+  panelClass: string,
+  activePanelClass: string,
+  inactivePanelClass: string,
+}
+
 export interface ConfigComponents {
   button: ButtonConfig,
   dropdown: DropdownConfig,
@@ -106,6 +121,7 @@ export interface ConfigComponents {
   radio: RadioConfig,
   radioGroup: RadioGroupConfig,
   checkboxGroup: CheckboxGroupConfig,
+  tabs: TabsConfig,
   [key: string]: any,
 }
 
