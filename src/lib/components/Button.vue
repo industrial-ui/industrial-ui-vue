@@ -24,6 +24,7 @@
       wrapperClasses(): string | null {
         const component = this.$iui.components.button;
         return composeClasses(
+          this.$iui.globalClass,
           isProperties(component.isProperties, this.$attrs),
           component.class
         );

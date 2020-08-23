@@ -1,6 +1,7 @@
 import {PartialConfig} from '@/lib/types';
 
 const config: PartialConfig = {
+  globalClass: '',
   components: {
     button: {
       class: 'font-bold py-2 px-4 rounded outline-none',
