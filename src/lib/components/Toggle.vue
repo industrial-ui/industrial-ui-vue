@@ -108,7 +108,7 @@
     },
     watch: {
       value (val) {
-        this.checked = val;
+        if (this.checked !== val) this.checked = val;
       },
     },
     methods: {

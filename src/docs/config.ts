@@ -52,6 +52,7 @@ const config: PartialConfig = {
     toggle: {
       class: 'toggle flex w-full py-2 items-center cursor-pointer',
       checkedClass: 'checked',
+      disabledClass: 'cursor-not-allowed',
       inputClass: 'hidden',
       baseClass: 'toggle-base',
       leftLabelClass: 'mr-2',
