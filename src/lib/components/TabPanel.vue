@@ -3,7 +3,7 @@
     v-show="isActive"
     :class="panelClasses"
   >
-    <h2>Hey</h2>
+    <slot />
   </div>
 </template>
 
@@ -25,8 +25,17 @@
     },
     data () {
       return {
+        updater: null,
         mountedLabel: null as string|null,
+        val: null as string|null,
       };
+    },
+    watch: {
+      updater () {
+        const parent = this.$parent as unknown as {value?: string; active?: string};
+        if (parent.value) this.val = parent.value;
+        else this.val = parent.active ?? null;
+      },
     },
     computed: {
       isActive (): boolean {
@@ -35,17 +44,9 @@
 
         if (this.$parent.$options.name !== 'Tabs') throw new Error('TabPanel cannot exist outside the Tabs component');
 
-        const parent = (this.$parent as unknown as {value?: string; active?: string});
+        if (this.val === null) return this.active;
 
-        let val;
-        if (parent?.value) val = parent.value;
-        else val = parent.active ?? null;
-
-        // This means that on initial load active label is not ready in the Tabs parent
-        // TODO: handle such behavior, because initially no tabs will be chosen
-        if (val === null) return false;
-
-        return this.mountedLabel ? (this.mountedLabel === val) : (this.label === val);
+        return this.mountedLabel ? (this.mountedLabel === this.val) : (this.label === this.val);
       },
       panelClasses (): string|null {
         const component = this.$iui.components.tabs;

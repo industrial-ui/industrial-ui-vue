@@ -40,6 +40,14 @@ const config: PartialConfig = {
       inputClass: 'hidden',
       spanClass: 'flex items-center',
     },
+
+    tabs: {
+      navClass: 'flex border-b',
+      tabClass: 'mr-1 inline-block border-l border-t border-r rounded-t py-2 px-4 cursor-pointer',
+      activeTabClass: 'bg-blue-200',
+      inactiveTabClass: 'bg-white',
+      disabledTabClass: 'cursor-not-allowed',
+    },
   },
 };
 

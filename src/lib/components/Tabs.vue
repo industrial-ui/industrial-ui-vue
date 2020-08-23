@@ -6,28 +6,41 @@
           v-for="option in (mountedOptions.length ? mountedOptions : options)"
           :key="option.label"
           :is="tabTag"
-          :class="getTabClass(option.label)"
+          :class="getTabClass(option)"
+          @click="change(option)"
         >
           {{ option.label }}
         </component>
       </template>
     </component>
     <div :class="panelsWrapperClasses">
-      <div>
-        <slot />
-      </div>
+      <slot />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import Vue, {PropType} from 'vue';
+  import Vue, {PropType, VNode} from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
   // import Transition from '@/lib/components/Transition.vue';
   import {TransitionOptions} from '@/lib/types';
 
-  type TabPanelProps = { label: string; disabled?: boolean|string; removable?: boolean|string };
+  type TabPanelProps = {
+    label: string,
+    disabled?: boolean|string,
+    removable?: boolean|string,
+    active?: boolean|string,
+  };
+
+  interface TabPanelInstance extends Vue {
+    mountedLabel?: string,
+    updater?: number,
+  }
+
+  interface TabPanel extends VNode {
+    componentInstance: TabPanelInstance,
+  }
 
   export default Vue.extend({
     name: 'Tabs',
@@ -63,6 +76,7 @@
       return {
         val: this.active,
         mountedOptions: [] as TabPanelProps[],
+        panels: [] as TabPanel[],
       };
     },
     computed: {
@@ -75,6 +89,9 @@
         },
         set (val: string) {
           this.val = val;
+          this.panels.forEach((panel) => {
+            panel.componentInstance.updater = Date.now();
+          });
         },
       },
       navTag (): string {
@@ -113,11 +130,13 @@
     },
     watch: {
       active (val) {
-        if (this.val !== val) this.val = val;
+        if (this.value !== val) this.value = val;
       },
     },
     mounted () {
-      const tabpanels = this.$slots.default?.filter((panel) => panel.componentOptions?.tag === 'TabPanel') || [];
+      const tabpanels = this.$slots.default?.filter((panel) => panel.componentOptions?.tag === 'TabPanel') as TabPanel[] || [];
+      this.panels = tabpanels;
+
       if (this.options.length) {
         // If options prop is passed to Tabs, check for the proper amount of TabPanels
         if (tabpanels.length !== this.options.length) throw new Error(
@@ -126,8 +145,7 @@
 
         // Pass labels from Tabs to TabPanel
         tabpanels.forEach((panel, i) => {
-          (panel.componentInstance as unknown as {mountedLabel: string|null})
-            .mountedLabel = this.options[i]?.label;
+          panel.componentInstance.mountedLabel = this.options[i]?.label;
         });
       } else {
         // If no prop options found, populate it with
@@ -143,7 +161,10 @@
               label: props.label,
               disabled: !!(props?.disabled === '' || props?.disabled),
               removable: !!(props?.removable === '' || props?.removable),
+              active: !!(props?.active === '' || props?.active),
             });
+
+            panel.componentInstance.updater = Date.now();
           }
         });
 
@@ -151,12 +172,22 @@
       }
     },
     methods: {
-      getTabClass (label: string): string|null {
+      getTabClass (option: TabPanelProps): string|null {
         const component = this.$iui.components.tabs;
         return composeClasses(
           this.tabClass,
-          label === this.val ? component.activeTabClass : component.inactiveTabClass
+          component.tabClass,
+          option.disabled ? component.disabledTabClass : '',
+          option.removable ? component.removableTabClass : '',
+          option.label === this.value ? component.activeTabClass : component.inactiveTabClass
         );
+      },
+
+      change (option: TabPanelProps) {
+        if (option.disabled) return;
+
+        this.value = option.label;
+        this.$emit('change', option.label);
       },
     },
   });
