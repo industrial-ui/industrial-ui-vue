@@ -77,6 +77,7 @@
       wrapperClasses(): string | null {
         const component = this.$iui.components.modal;
         return composeClasses(
+          this.$iui.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.val ? component.openClass : component.closeClass

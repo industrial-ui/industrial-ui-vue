@@ -128,6 +128,7 @@
       wrapperClasses (): string|null {
         const component = this.$iui.components.dropdown;
         return composeClasses(
+          this.$iui.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.val ? component.openClass : component.closeClass
