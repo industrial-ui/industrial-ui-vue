@@ -86,6 +86,18 @@ export interface CheckboxConfig extends ComponentConfig {
   spanClass: string,
 }
 
+export interface ToggleConfig extends ComponentConfig {
+  checkedClass: string,
+  uncheckedClass: string,
+  disabledClass: string,
+
+  inputClass: string,
+  baseClass: string,
+  labelClass: string,
+  leftLabelClass: string,
+  rightLabelClass: string,
+}
+
 export interface RadioConfig extends ComponentConfig {
   checkedClass: string,
   uncheckedClass: string,
@@ -122,6 +134,7 @@ export interface ConfigComponents {
   radioGroup: RadioGroupConfig,
   checkboxGroup: CheckboxGroupConfig,
   tabs: TabsConfig,
+  toggle: ToggleConfig,
   [key: string]: any,
 }
 

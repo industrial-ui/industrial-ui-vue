@@ -103,6 +103,21 @@ const config: Config = {
       activePanelClass: '',
       inactivePanelClass: '',
     },
+
+    toggle: {
+      class: '',
+      isProperties: {},
+
+      checkedClass: '',
+      uncheckedClass: '',
+      disabledClass: '',
+
+      inputClass: '',
+      baseClass: '',
+      labelClass: '',
+      leftLabelClass: '',
+      rightLabelClass: '',
+    },
   },
 };
 export default config;
