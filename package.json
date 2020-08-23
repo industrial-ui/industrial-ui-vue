@@ -8,6 +8,26 @@
     "build": "vue-cli-service build --dest ./docs",
     "lint": "vue-cli-service lint --fix"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanishMax/industrial-ui-vue.git"
+  },
+  "keywords": [
+    "industrial-ui-vue",
+    "industrial-ui",
+    "vue",
+    "ui-components",
+    "ui",
+    "ui-kit",
+    "javascript",
+    "typescript"
+  ],
+  "author": "VanishMax (https://vanishmax.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VanishMax/industrial-ui-vue/issues"
+  },
+  "homepage": "https://github.com/VanishMax/industrial-ui-vue#readme",
   "dependencies": {
     "core-js": "^3.6.5",
     "vue": "^2.6.11",

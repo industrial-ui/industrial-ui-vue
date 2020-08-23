@@ -18,7 +18,7 @@
     </Dropdown>
 
     <h2 class="text-xl mb-2">On-hover dropdown</h2>
-    <Dropdown open-on-hover>
+    <Dropdown open-on-hover transition="fade">
       <template #trigger>
         <Button is:primary>Hover on me</Button>
       </template>

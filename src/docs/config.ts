@@ -11,27 +11,20 @@ const config: PartialConfig = {
     },
 
     dropdown: {
-      transition: 'slide',
-      transitionOptions: {delay: 0, duration: 300},
+      transition: null,
       isProperties: {
         multiselect: 'rounded border-solid border border-gray-300 py-2 px-4',
         search: 'rounded border-solid border border-gray-300',
       },
       class: 'inline-block relative',
       dropdownClass: 'absolute rounded bg-white shadow-xl z-10',
-      closeDropdownClass: 'hidden',
-      openDropdownClass: 'block',
     },
 
     modal: {
-      moveToBody: false,
+      transition: 'fade',
       class: 'w-10/12 lg:w-6/12 relative bg-white shadow-lg rounded-md p-8',
-      openClass: '',
-      closeClass: '',
-
       overlayClass: 'fixed inset-0 h-screen w-full flex flex-col items-center justify-center bg-black bg-opacity-75 z-10',
-      openOverlayClass: '',
-      closeOverlayClass: 'hidden',
+      openBodyClass: 'overflow-hidden',
     },
 
     checkbox: {
@@ -46,6 +39,24 @@ const config: PartialConfig = {
       class: 'radio flex items-center mr-4 mb-4 cursor-pointer',
       inputClass: 'hidden',
       spanClass: 'flex items-center',
+    },
+
+    tabs: {
+      navClass: 'flex border-b',
+      tabClass: 'mr-1 inline-block border-l border-t border-r rounded-t py-2 px-4 cursor-pointer',
+      activeTabClass: 'bg-blue-200',
+      inactiveTabClass: 'bg-white',
+      disabledTabClass: 'cursor-not-allowed',
+    },
+
+    toggle: {
+      class: 'toggle flex w-full py-2 items-center cursor-pointer',
+      checkedClass: 'checked',
+      disabledClass: 'cursor-not-allowed',
+      inputClass: 'hidden',
+      baseClass: 'toggle-base',
+      leftLabelClass: 'mr-2',
+      rightLabelClass: 'ml-2',
     },
   },
 };

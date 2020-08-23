@@ -1,0 +1,62 @@
+<template>
+  <section class="w-full rounded shadow-lg p-4">
+    <h2 class="text-xl mb-2">Modal window</h2>
+    <Button @click.native="open = true" is:primary>Open simple modal</Button>
+    <Button
+      @click.native="open1 = true"
+      is:danger
+      class="mt-4"
+    >
+      Open destroyable non-closable modal
+    </Button>
+
+    <Modal
+      v-model="open"
+      :transition-options="{animation: animationOptions}"
+    >
+      <template #default="{close}">
+        <h2>Hello, world</h2>
+        <Button @click.native="close" is:danger>Close modal</Button>
+      </template>
+    </Modal>
+
+    <Modal v-model="open1" destroyable non-closable>
+      <template #default="{close}">
+        <Counter :close="close" />
+      </template>
+    </Modal>
+  </section>
+</template>
+
+<script lang="ts">
+  import Vue from 'vue';
+  import Button from '@/lib/components/Button.vue';
+  import Modal from '@/lib/components/Modal.vue';
+  import Counter from '../components/Counter.vue';
+
+  export default Vue.extend({
+    name: 'Radios',
+    components: {Modal, Button, Counter},
+    data () {
+      return {
+        open: false,
+        open1: false,
+        animationOptions: {
+          delay: 300,
+          duration: 1000,
+          type: 'only-in',
+          // Ease-out-bounce easing
+          easing: (x: number) => {
+            const n1 = 7.5625;
+            const d1 = 2.75;
+
+            if (x < 1 / d1) return n1 * x * x;
+            if (x < 2 / d1) return n1 * (x -= 1.5 / d1) * x + 0.75;
+            if (x < 2.5 / d1) return n1 * (x -= 2.25 / d1) * x + 0.9375;
+            return n1 * (x -= 2.625 / d1) * x + 0.984375;
+          },
+        },
+      };
+    },
+  });
+</script>

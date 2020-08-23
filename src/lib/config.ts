@@ -1,17 +1,13 @@
 /**
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
-import { TransitionOptions, Config } from './types';
-
-const DEFAULT_TRANSITION_OPTIONS: Partial<TransitionOptions> = {
-  delay: 0,
-  duration: 300,
-};
+import { Config } from './types';
+import transitions from './utils/transitions';
 
 const config: Config = {
   stylesheets: [],
   globalClass: '',
-  customTransitions: {},
+  transitions,
 
   components: {
     button: {
@@ -21,7 +17,6 @@ const config: Config = {
 
     dropdown: {
       transition: null,
-      transitionOptions: DEFAULT_TRANSITION_OPTIONS,
       isProperties: {},
 
       class: '',
@@ -39,7 +34,6 @@ const config: Config = {
 
     modal: {
       transition: null,
-      transitionOptions: DEFAULT_TRANSITION_OPTIONS,
 
       isProperties: {},
 
@@ -89,6 +83,40 @@ const config: Config = {
     checkboxGroup: {
       isProperties: {},
       class: '',
+    },
+
+    tabs: {
+      class: '',
+      isProperties: {},
+      transition: null,
+
+      navClass: '',
+      panelsWrapperClass: '',
+
+      tabClass: '',
+      activeTabClass: '',
+      inactiveTabClass: '',
+      disabledTabClass: '',
+      removableTabClass: '',
+
+      panelClass: '',
+      activePanelClass: '',
+      inactivePanelClass: '',
+    },
+
+    toggle: {
+      class: '',
+      isProperties: {},
+
+      checkedClass: '',
+      uncheckedClass: '',
+      disabledClass: '',
+
+      inputClass: '',
+      baseClass: '',
+      labelClass: '',
+      leftLabelClass: '',
+      rightLabelClass: '',
     },
   },
 };
