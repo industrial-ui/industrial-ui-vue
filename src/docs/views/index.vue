@@ -21,6 +21,9 @@
     <div class="w-full">
       <Tabs />
     </div>
+    <div class="w-full">
+      <Toggles />
+    </div>
   </div>
 </template>
 
@@ -33,6 +36,7 @@
   import Radios from '../containers/Radios.vue';
   import Modals from '../containers/Modals.vue';
   import Tabs from '../containers/Tabs.vue';
+  import Toggles from '../containers/Toggles.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -44,6 +48,7 @@
       Radios,
       Modals,
       Tabs,
+      Toggles,
     },
   });
 </script>

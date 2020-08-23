@@ -48,6 +48,15 @@ const config: PartialConfig = {
       inactiveTabClass: 'bg-white',
       disabledTabClass: 'cursor-not-allowed',
     },
+
+    toggle: {
+      class: 'toggle flex w-full py-2 items-center cursor-pointer',
+      checkedClass: 'checked',
+      inputClass: 'hidden',
+      baseClass: 'toggle-base',
+      leftLabelClass: 'mr-2',
+      rightLabelClass: 'ml-2',
+    },
   },
 };
 
