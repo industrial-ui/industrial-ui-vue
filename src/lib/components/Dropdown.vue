@@ -20,7 +20,7 @@
         :value="val"
       />
     </div>
-    <Transition :name="transitionName" :options="transitionOptions">
+    <Transition :name="transitionName" v-bind="transitionProps">
       <div v-show="val" v-check-position="{position, positionRelative}" :class="dropdownClasses">
         <slot :open="open" :close="close" :value="val" />
       </div>
@@ -113,7 +113,7 @@
       },
 
       transition: String,
-      transitionOptions: Object as PropType<TransitionOptions>,
+      transitionProps: Object as PropType<TransitionOptions>,
     },
     data () {
       return {

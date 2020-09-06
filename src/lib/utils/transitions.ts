@@ -3,12 +3,14 @@ import animate from '@/lib/utils/animate';
 
 const fadeTransition: Transition = {
   name: 'fade',
+
   // Animation object goes straight to hook functions as argument
   animation: {
     delay: 0,
     duration: 300,
     type: 'both',
   },
+
   hooks: {
     enter ({el, done}, animation) {
       if (animation.type === 'both' || animation.type === 'only-in') {

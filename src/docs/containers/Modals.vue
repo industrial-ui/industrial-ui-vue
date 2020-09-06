@@ -12,7 +12,7 @@
 
     <Modal
       v-model="open"
-      :transition-options="{animation: animationOptions}"
+      :transition-props="{animation: animationOptions}"
     >
       <template #default="{close}">
         <h2>Hello, world</h2>

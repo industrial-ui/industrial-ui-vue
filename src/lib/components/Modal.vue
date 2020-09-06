@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="transitionName" :options="transitionOptions">
+  <Transition :name="transitionName" v-bind="transitionProps">
     <dialog
       v-show="val"
       :class="overlayClasses"
@@ -64,7 +64,7 @@
       bodyClass: String,
 
       transition: String,
-      transitionOptions: Object as PropType<TransitionOptions>,
+      transitionProps: Object as PropType<TransitionOptions>,
     },
     data () {
       return {
