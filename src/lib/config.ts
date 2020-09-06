@@ -2,7 +2,7 @@
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
 import { Config } from './types';
-import transitions from './utils/transitions';
+import transitions from './transitions';
 
 const config: Config = {
   stylesheets: [],

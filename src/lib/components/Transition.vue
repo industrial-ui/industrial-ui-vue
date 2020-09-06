@@ -58,10 +58,7 @@
     },
     computed: {
       transition (): TransitionType {
-        if (!this.name) {
-          console.warn('Transition component: no name provided, so no transition effect will be applied.'); // eslint-disable-line no-console
-          return {name: '', animation: {}, options: {}};
-        }
+        if (!this.name) return {name: '', animation: {}, options: {}};
 
         const {transitions} = this.$iui;
         const transition = transitions[this.name];
