@@ -42,6 +42,11 @@
     componentInstance: TabPanelInstance,
   }
 
+  /**
+   * Component is working but still unstable. Needs more
+   * tests and thoughts about the implementation
+   */
+
   export default Vue.extend({
     name: 'Tabs',
     // components: {Transition},
@@ -50,27 +55,43 @@
       event: 'change',
     },
     props: {
+      /**
+       * Array of TabPanelProps with required `label` inside
+       */
       options: {
         type: Array as PropType<TabPanelProps[]>,
         default: () => ([]),
       },
 
+      /**
+       * Active tab's label
+       */
       active: {
         type: String,
         default: null,
       },
 
+      /**
+       * Whether to display the tab as nav->div or ul->li
+       */
       isList: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * Dynamic classes for navigation, tab and panel elements
+       */
       navClass: String,
       tabClass: String,
       panelsWrapperClass: String,
 
+      /**
+       * Customize transition of dropdown opening.
+       * Read more about it on the special page in documentation
+       */
       transition: String,
-      transitionOptions: Object as PropType<TransitionOptions>,
+      transitionProps: Object as PropType<TransitionOptions>,
     },
     data () {
       return {
@@ -135,6 +156,11 @@
       },
     },
     mounted () {
+      /**
+       * Depending on the type of rendering: SPA|SSR, we need to work with tabs differently.
+       * In any case, weird two-way data passing is used, which should be at least refactored.w
+       */
+
       const tabpanels = this.$slots.default?.filter((panel) => panel.componentOptions?.tag === 'TabPanel') as TabPanel[] || [];
       this.panels = tabpanels;
 

@@ -25,6 +25,10 @@
   export default Vue.extend({
     name: 'CustomTransition',
     props: {
+      /**
+       * The name of the transition effect to be used. Can be one of built-in effects,
+       * or a name of a custom effect defined in the configuration.
+       */
       name: {
         type: String,
         default: null,
@@ -57,6 +61,9 @@
       },
     },
     computed: {
+      /**
+       * Compose all data of the transition in the single object to pass where it is needed
+       */
       transition (): TransitionType {
         if (!this.name) return {name: '', animation: {}, options: {}};
 
@@ -82,7 +89,7 @@
       },
 
       /**
-       * Transition hooks are JS-functions that are mapped as events. They draw the animation
+       * Transition hooks are JS-functions that are mapped as events. They draw an animation
        */
       hooks () {
         const hooks = this.transition?.hooks;

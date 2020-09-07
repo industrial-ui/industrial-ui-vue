@@ -1,6 +1,16 @@
 import {AnimationOptions} from '@/lib/types/transitions';
 import animate from './animate';
 
+/**
+ * Perform the transition of the element
+ *
+ * @param duration – how long will the animation last
+ * @param delay – how long should we wait before the start of animation
+ * @param easing – the function that defines how should the animation go (linear, easeIn, etc)
+ * @param done – first callback of the animation. Usually taken by the Vue's done() function
+ * @param draw – function to change the styles of the element
+ * @param callback – function that invokes after the end of the transition
+ */
 const tick = (
   {
     duration, delay, easing, done,

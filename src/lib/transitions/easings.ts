@@ -1,5 +1,11 @@
 import {Easings} from '@/lib/types/transitions';
 
+/**
+ * The set of built-in easing functions.
+ * Math functions are taken from the website https://easings.net/
+ *
+ * They implement the behavior of the animation
+ */
 const easings: Easings = {
   linear: (x: number) => x,
   easeIn: (x: number) => 1 - Math.cos((x * Math.PI) / 2),

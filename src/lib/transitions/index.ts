@@ -1,10 +1,16 @@
-import fade from './fade';
-import blur from './blur';
-import scale from './scale';
-import slide from './slide';
-import fly from './fly';
+import fade from './effects/fade';
+import blur from './effects/blur';
+import scale from './effects/scale';
+import slide from './effects/slide';
+import fly from './effects/fly';
 
-const index = {
+/**
+ * The list of all built-in transitions.
+ *
+ * All of them can be referenced as, for example,
+ * <CustomTransition name="blur" :animation={duration: 500, ...restOptions}>
+ */
+const transitions = {
   fade,
   blur,
   scale,
@@ -12,4 +18,4 @@ const index = {
   fly,
 };
 
-export default index;
+export default transitions;

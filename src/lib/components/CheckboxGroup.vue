@@ -33,25 +33,41 @@
       event: 'change',
     },
     props: {
+      /**
+       * Required inputs name for making them work as a group
+       */
+      groupName: {
+        type: String,
+        required: true,
+      },
+
+      /**
+       * HTML-element of the wrapper. If you want it to be a list, pass `ul`
+       */
       tag: {
         type: String,
         default: 'div',
       },
 
-      groupName: String,
-
+      /**
+       * Array of {slug: string, ...checkboxProps}
+       */
       options: {
         type: Array as PropType<Option[]>,
         default: null,
       },
 
+      /**
+       * Array of active options of the type {slug: string, ...checkboxProps}
+       */
       values: {
         type: Array as PropType<Option[]>,
         default: () => ([]),
       },
 
       /**
-       * Disable the group to select to checkboxes if maxAmount is already checked
+       * Maximum allowed amount of checkex checkboxes.
+       * If values.length >= maxAmount – disable the group
        */
       maxAmount: [Number, String],
     },

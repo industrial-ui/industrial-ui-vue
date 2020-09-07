@@ -39,9 +39,15 @@
       event: 'toggle',
     },
     props: {
+      /**
+       * Identifications of the toggle – will be passed to the input
+       */
       id: String,
       name: String,
 
+      /**
+       * Control the value of the toggle
+       */
       value: {
         type: Boolean,
         default: false,
@@ -52,9 +58,16 @@
         default: false,
       },
 
+      /**
+       * Text labels from both sides of the toggle
+       */
       labelLeft: String,
       labelRight: String,
 
+      /**
+       * Dynamic classes for html-elements of the toggle: input, base (toggle itself),
+       * left and right label spans
+       */
       inputClass: String,
       baseClass: String,
       leftLabelClass: String,

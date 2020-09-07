@@ -11,6 +11,10 @@
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
 
+  /**
+   * ! WARN !
+   * This component is not ready yet and will definitely changed in future!!!
+   */
   export default Vue.extend({
     name: 'Button',
     props: {

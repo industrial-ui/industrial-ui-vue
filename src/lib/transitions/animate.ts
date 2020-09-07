@@ -3,6 +3,15 @@ import easings from '@/lib/transitions/easings';
 
 const isString = (str: any): str is string => typeof str === 'string';
 
+/**
+ * Animate the change in styles of some element. It depends on requestAnimationFrame() API
+ * and will not work with old browsers.
+ *
+ * @param easing
+ * @param draw
+ * @param duration
+ * @param callback
+ */
 const animate = ({
   easing,
   draw,

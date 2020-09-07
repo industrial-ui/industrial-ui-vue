@@ -30,12 +30,12 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
+  import {TransitionOptions} from '@/lib/types/transitions';
   import ClickOutside from 'vue-click-outside';
   import checkPosition from '@/lib/utils/check-position';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
   import Transition from '@/lib/components/Transition.vue';
-  import {TransitionOptions} from '@/lib/types/transitions';
 
   export default Vue.extend({
     name: 'Dropdown',
@@ -71,16 +71,12 @@
       },
 
       /**
-       * Pass a dynamic class to the trigger element
+       * Dynamic classes for trigger and dropdown elements
        */
       triggerClass: {
         type: String,
         default: '',
       },
-
-      /**
-       * Pass a dynamic class to the dropdown element
-       */
       dropdownClass: {
         type: String,
         default: '',
@@ -112,6 +108,10 @@
         default: null,
       },
 
+      /**
+       * Customize transition of dropdown opening.
+       * Read more about it on the special page in documentation
+       */
       transition: String,
       transitionProps: Object as PropType<TransitionOptions>,
     },

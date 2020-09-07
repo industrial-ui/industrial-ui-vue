@@ -31,22 +31,42 @@
       event: 'toggle',
     },
     props: {
+      /**
+       * HTML-input's name – required in order to properly group your checkboxes
+       */
       name: {
         type: String,
         required: true,
       },
-      id: String,
-      slug: String,
-      label: String,
 
+      /**
+       * Control the value of the input
+       */
       value: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * `id` and `slug` are needed for identification of the input, though optional
+       */
+      id: String,
+      slug: String,
+
+      /**
+       * Text to pass as a label for the checkbox
+       */
+      label: String,
+
+      /**
+       * HTML-specified disabled and required attributes
+       */
       disabled: Boolean,
       required: Boolean,
 
+      /**
+       * Dynamic classes for the rendered html-input and the label-span for it
+       */
       inputClass: String,
       spanClass: String,
     },

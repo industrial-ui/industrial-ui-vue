@@ -98,6 +98,10 @@
         default: false,
       },
 
+      /**
+       * Props to pass to the inner Dropdown component and Checkbox or Radio group,
+       * depending on whether select is multiple or not
+       */
       dropdownProps: Object,
       groupProps: Object,
     },

@@ -14,12 +14,21 @@
   export default Vue.extend({
     name: 'TabPanel',
     props: {
+      /**
+       * Initial active flag for the Panel. After the mount, it will become useless,
+       * because the panel is synchronized with the Tabs
+       */
       active: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * The label (name) of the tab – unique identifier. If not provided as a prop,
+       * the Tabs will give it after the mount
+       */
       label: String,
+
       disabled: Boolean,
       removable: Boolean,
     },
@@ -31,6 +40,9 @@
       };
     },
     watch: {
+      /**
+       * Watch for the parent's data change and update the panel's data
+       */
       updater () {
         const parent = this.$parent as unknown as {value?: string; active?: string};
         if (parent.value) this.val = parent.value;
@@ -38,6 +50,9 @@
       },
     },
     computed: {
+      /**
+       * Synchronize the TabPanel with Tabs component
+       */
       isActive (): boolean {
         // Return initial active value on SSR and while labels from parent are not mounted
         if (typeof window === 'undefined' || (!this.label && !this.mountedLabel)) return this.active;

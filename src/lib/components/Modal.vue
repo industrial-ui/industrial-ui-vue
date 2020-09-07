@@ -45,24 +45,41 @@
       event: 'toggle',
     },
     props: {
+      /**
+       * Boolean that indicates whether modal is open or not
+       */
       value: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * Prohibit closing modal by clicking on the overlay or by pressing Esc.
+       * Therefore, modal could be closed only with close() function from the slot
+       */
       nonClosable: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * If true – forceUpdate all child components when the modal is closed.
+       */
       destroyable: {
         type: Boolean,
         default: false,
       },
 
+      /**
+       * Dynamic classes of the overlay and the document.body
+       */
       overlayClass: String,
       bodyClass: String,
 
+      /**
+       * Customize transition of dropdown opening.
+       * Read more about it on the special page in documentation
+       */
       transition: String,
       transitionProps: Object as PropType<TransitionOptions>,
     },
@@ -117,6 +134,10 @@
           });
         }
       },
+
+      /**
+       * Watch for bodyClasses change and update document.body's classes
+       */
       bodyClasses (val: string|null) {
         if (typeof window !== 'undefined') {
           document.body.setAttribute('class', composeClasses(this.body, val || '') || '');

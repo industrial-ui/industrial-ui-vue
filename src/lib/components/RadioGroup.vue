@@ -33,22 +33,37 @@
       event: 'change',
     },
     props: {
+      /**
+       * Required inputs name for making them work as a group
+       */
+      groupName: {
+        type: String,
+        required: true,
+      },
+
+      /**
+       * HTML-element of the wrapper. If you want it to be a list, pass `ul`
+       */
       tag: {
         type: String,
         default: 'div',
       },
 
+      /**
+       * Array of {slug: string, ...radioProps}
+       */
       options: {
         type: Array as PropType<Option[]>,
         default: null,
       },
 
+      /**
+       * Object of active option of the type {slug: string, ...radioProps}
+       */
       value: {
         type: Object as PropType<Option|null>,
         default: null,
       },
-
-      groupName: String,
     },
     data () {
       return {
