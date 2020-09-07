@@ -11,7 +11,8 @@
 
     <Modal
       v-model="open"
-      transition="slide"
+      transition="fly"
+      :transition-props="{animation: {x: 100, y: 100, opacity: 0.3}}"
     >
       <template #default="{close}">
         <h2>Simple modal</h2>

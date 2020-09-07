@@ -19,7 +19,9 @@ export interface AnimationOptions {
   // Special for different effects
   amount: number, // Used in blur
   scale: number, // Used in scale
-  opacity: number, // Used in scale
+  opacity: number, // Used in scale and fly
+  x: number, // Used in fly
+  y: number, // Used in fly
 }
 
 export interface TransitionOptions {
@@ -48,7 +50,7 @@ export interface Transition extends Partial<TransitionOptions> {
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
-  transition?: 'fade'|'blur'|'scale'|string|null,
+  transition?: 'fade'|'blur'|'scale'|'slide'|'fly'|string|null,
 }
 
 export type ButtonConfig = ComponentConfig
