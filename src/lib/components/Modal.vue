@@ -118,8 +118,8 @@
         }
       },
       bodyClasses (val: string|null) {
-        if (val && typeof window !== 'undefined') {
-          document.body.setAttribute('class', composeClasses(this.body, val) || '');
+        if (typeof window !== 'undefined') {
+          document.body.setAttribute('class', composeClasses(this.body, val || '') || '');
         }
       },
     },
