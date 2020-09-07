@@ -13,7 +13,7 @@
   import {AnimationOptions, TransitionOptions} from '@/lib/types';
 
   interface TransitionType extends Partial<TransitionOptions> {
-    name: 'fade'|string|null,
+    name: 'fade'|'blur'|string|null,
     hooks?: any,
     options: {
       appear?: boolean,
@@ -71,7 +71,7 @@
         } else {
           return {
             ...transition,
-            animation: this.animation || transition.animation,
+            animation: {...transition.animation, ...this.animation},
             options: {
               appear: this.appear,
               mode: this.mode || null,

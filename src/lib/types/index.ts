@@ -15,6 +15,9 @@ export interface AnimationOptions {
   type: 'only-in'|'only-out'|'both',
   // Get easings here: https://easings.net/
   easing: (fraction: number) => number,
+
+  // Special for different effects
+  amount: number,
 }
 
 export interface TransitionOptions {
@@ -43,7 +46,7 @@ export interface Transition extends Partial<TransitionOptions> {
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
-  transition?: 'fade'|string|null,
+  transition?: 'fade'|'blur'|string|null,
 }
 
 export type ButtonConfig = ComponentConfig

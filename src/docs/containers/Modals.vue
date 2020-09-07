@@ -13,6 +13,7 @@
     <Modal
       v-model="open"
       :transition-props="{animation: animationOptions}"
+      transition="blur"
     >
       <template #default="{close}">
         <h2>Hello, world</h2>
