@@ -1,6 +1,6 @@
 {
   "name": "industrial-ui-vue",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "main": "./dist/iui-vue.umd.min.js",
   "types": "./src/lib/types/index.d.ts",
   "scripts": {
