@@ -5,19 +5,12 @@
     <Button @click.native="open1 = true" is:primary class="mt-4">
       Open high-transitioned modal
     </Button>
-    <Button @click.native="open1 = true" is:danger class="mt-4">
+    <Button @click.native="open2 = true" is:danger class="mt-4">
       Open destroyable non-closable modal
     </Button>
 
-    <Modal
-      v-model="open"
-      transition="fly"
-      :transition-props="{animation: {x: 100, y: 100, opacity: 0.3}}"
-    >
-      <template #default="{close}">
-        <h2>Simple modal</h2>
-        <Button @click.native="close" is:danger>Close modal</Button>
-      </template>
+    <Modal v-model="open">
+      <h2>Simple modal</h2>
     </Modal>
 
     <Modal

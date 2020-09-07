@@ -6,6 +6,13 @@
       <Button v-if="shown" key="on" is:primary>Hello</Button>
       <Button v-else key="off" is:danger>Good bye</Button>
     </Transition>
+
+    <br>
+    <br class="mt-4">
+    <Toggle v-model="shown1" />
+    <Transition name="slide" appear :animation="{easing: 'easeInOutBack', duration: 500}">
+      <Button v-if="shown1" key="on" is:primary>Slide with easeInOutBack easing</Button>
+    </Transition>
   </section>
 </template>
 
@@ -25,6 +32,7 @@
     data () {
       return {
         shown: true,
+        shown1: true,
       };
     },
   });

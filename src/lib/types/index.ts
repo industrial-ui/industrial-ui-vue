@@ -9,12 +9,24 @@ export interface IsProperties {
   [isProp: string]: string,
 }
 
+export type EasingFunction = (x: number) => number;
+
+export type Easings = {
+  linear: EasingFunction,
+  easeIn: EasingFunction,
+  easeOut: EasingFunction,
+  easeInOut: EasingFunction,
+  easeInBack: EasingFunction,
+  easeOutBack: EasingFunction,
+  easeInOutBack: EasingFunction,
+}
+
 export interface AnimationOptions {
   delay: number,
   duration: number,
   type: 'only-in'|'only-out'|'both',
   // Get easings here: https://easings.net/
-  easing: (fraction: number) => number,
+  easing: Extract<keyof Easings, string> | EasingFunction,
 
   // Special for different effects
   amount: number, // Used in blur
