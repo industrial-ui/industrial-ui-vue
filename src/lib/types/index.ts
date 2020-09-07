@@ -9,12 +9,31 @@ export interface IsProperties {
   [isProp: string]: string,
 }
 
+export type EasingFunction = (x: number) => number;
+
+export type Easings = {
+  linear: EasingFunction,
+  easeIn: EasingFunction,
+  easeOut: EasingFunction,
+  easeInOut: EasingFunction,
+  easeInBack: EasingFunction,
+  easeOutBack: EasingFunction,
+  easeInOutBack: EasingFunction,
+}
+
 export interface AnimationOptions {
   delay: number,
   duration: number,
   type: 'only-in'|'only-out'|'both',
   // Get easings here: https://easings.net/
-  easing: (fraction: number) => number,
+  easing: Extract<keyof Easings, string> | EasingFunction,
+
+  // Special for different effects
+  amount: number, // Used in blur
+  scale: number, // Used in scale
+  opacity: number, // Used in scale and fly
+  x: number, // Used in fly
+  y: number, // Used in fly
 }
 
 export interface TransitionOptions {
@@ -43,7 +62,7 @@ export interface Transition extends Partial<TransitionOptions> {
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
-  transition?: 'fade'|string|null,
+  transition?: 'fade'|'blur'|'scale'|'slide'|'fly'|string|null,
 }
 
 export type ButtonConfig = ComponentConfig

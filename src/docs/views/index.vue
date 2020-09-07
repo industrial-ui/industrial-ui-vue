@@ -24,6 +24,9 @@
     <div class="w-full">
       <Toggles />
     </div>
+    <div class="w-full">
+      <Transitions />
+    </div>
   </div>
 </template>
 
@@ -37,6 +40,7 @@
   import Modals from '../containers/Modals.vue';
   import Tabs from '../containers/Tabs.vue';
   import Toggles from '../containers/Toggles.vue';
+  import Transitions from '../containers/Transitions.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -49,6 +53,7 @@
       Modals,
       Tabs,
       Toggles,
+      Transitions,
     },
   });
 </script>

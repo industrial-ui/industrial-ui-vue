@@ -10,10 +10,10 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import {TransitionOptions} from '@/lib/types';
+  import {AnimationOptions, TransitionOptions} from '@/lib/types';
 
   interface TransitionType extends Partial<TransitionOptions> {
-    name: 'fade'|string|null,
+    name: 'fade'|'blur'|'scale'|'slide'|'fly'|string|null,
     hooks?: any,
     options: {
       appear?: boolean,
@@ -30,7 +30,31 @@
         default: null,
       },
 
-      options: Object as PropType<TransitionOptions>,
+      /**
+       * Following properties are well-explained in the official Vue documentation:
+       * https://vuejs.org/v2/guide/transitions.html#Transition-Modes
+       *
+       * Shortly:
+       * * Appear – show transition on initial Transition mount
+       * * Mode – how to switch between if-else_if-else components. Supported: in-out, out-in
+       */
+      appear: {
+        type: Boolean,
+        default: false,
+      },
+      mode: {
+        type: String as PropType<'in-out'|'out-in'|null>,
+        default: null,
+      },
+
+      /**
+       * Animation object to configure such properties as:
+       * delay, duration, type (only in or only out), easing etc.
+       */
+      animation: {
+        type: Object as PropType<AnimationOptions>,
+        default: null,
+      },
     },
     computed: {
       transition (): TransitionType {
@@ -47,15 +71,19 @@
         } else {
           return {
             ...transition,
-            animation: this.options?.animation || transition.animation,
+            animation: {...transition.animation, ...this.animation},
             options: {
-              appear: !!this.options?.appear,
-              mode: this.options?.mode || null,
-              css: !this.options?.animation,
+              appear: this.appear,
+              mode: this.mode || null,
+              css: !this.animation,
             },
           };
         }
       },
+
+      /**
+       * Transition hooks are JS-functions that are mapped as events. They draw the animation
+       */
       hooks () {
         const hooks = this.transition?.hooks;
         const newHooks: any = {};

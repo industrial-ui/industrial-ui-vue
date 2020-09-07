@@ -2,25 +2,29 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Modal window</h2>
     <Button @click.native="open = true" is:primary>Open simple modal</Button>
-    <Button
-      @click.native="open1 = true"
-      is:danger
-      class="mt-4"
-    >
+    <Button @click.native="open1 = true" is:primary class="mt-4">
+      Open high-transitioned modal
+    </Button>
+    <Button @click.native="open2 = true" is:danger class="mt-4">
       Open destroyable non-closable modal
     </Button>
 
+    <Modal v-model="open">
+      <h2>Simple modal</h2>
+    </Modal>
+
     <Modal
-      v-model="open"
-      :transition-options="{animation: animationOptions}"
+      v-model="open1"
+      :transition-props="{animation: animationOptions}"
+      transition="blur"
     >
       <template #default="{close}">
-        <h2>Hello, world</h2>
+        <h2>High-transitioned modal</h2>
         <Button @click.native="close" is:danger>Close modal</Button>
       </template>
     </Modal>
 
-    <Modal v-model="open1" destroyable non-closable>
+    <Modal v-model="open2" destroyable non-closable>
       <template #default="{close}">
         <Counter :close="close" />
       </template>
@@ -41,6 +45,7 @@
       return {
         open: false,
         open1: false,
+        open2: false,
         animationOptions: {
           delay: 300,
           duration: 1000,
