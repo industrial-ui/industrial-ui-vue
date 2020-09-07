@@ -1,7 +1,7 @@
 import {Transition} from '@/lib/types';
 import tick from '@/lib/transitions/hook';
 
-const blurTransition: Transition = {
+const scaleTransition: Transition = {
   name: 'scale',
 
   // Animation object goes straight to hook functions as argument
@@ -54,4 +54,4 @@ const blurTransition: Transition = {
   },
 };
 
-export default blurTransition;
+export default scaleTransition;

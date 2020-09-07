@@ -11,7 +11,7 @@
 
     <Modal
       v-model="open"
-      transition="scale"
+      transition="slide"
     >
       <template #default="{close}">
         <h2>Simple modal</h2>
