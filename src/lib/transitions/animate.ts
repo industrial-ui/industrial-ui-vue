@@ -1,4 +1,4 @@
-import {EasingFunction, Easings} from '@/lib/types';
+import {EasingFunction, Easings} from '@/lib/types/transitions';
 import easings from '@/lib/transitions/easings';
 
 const isString = (str: any): str is string => typeof str === 'string';

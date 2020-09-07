@@ -1,0 +1,37 @@
+import {
+  ButtonConfig,
+  DropdownConfig,
+  ModalConfig,
+  CheckboxConfig,
+  CheckboxGroupConfig,
+  RadioGroupConfig,
+  RadioConfig,
+  TabsConfig,
+  ToggleConfig
+} from '@/lib/types/components';
+import {DeepPartial} from '@/lib/types/special';
+import {Transition} from '@/lib/types/transitions';
+
+export interface ConfigComponents {
+  button: ButtonConfig,
+  dropdown: DropdownConfig,
+  modal: ModalConfig,
+  checkbox: CheckboxConfig,
+  radio: RadioConfig,
+  radioGroup: RadioGroupConfig,
+  checkboxGroup: CheckboxGroupConfig,
+  tabs: TabsConfig,
+  toggle: ToggleConfig,
+  [key: string]: any,
+}
+
+export interface Config {
+  stylesheets: [string] | [],
+  globalClass: string,
+  transitions: {
+    [name: string]: Transition,
+  },
+  components: ConfigComponents,
+}
+
+export type PartialConfig = DeepPartial<Config>;

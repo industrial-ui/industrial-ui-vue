@@ -1,4 +1,4 @@
-import {AnimationOptions} from '@/lib/types';
+import {AnimationOptions} from '@/lib/types/transitions';
 import animate from './animate';
 
 const tick = (

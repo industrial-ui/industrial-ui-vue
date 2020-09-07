@@ -1,4 +1,4 @@
-import {Transition} from '@/lib/types';
+import {Transition} from '@/lib/types/transitions';
 import tick from '@/lib/transitions/hook';
 
 const flyTransition: Transition = {

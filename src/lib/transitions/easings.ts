@@ -1,4 +1,4 @@
-import {Easings} from '@/lib/types';
+import {Easings} from '@/lib/types/transitions';
 
 const easings: Easings = {
   linear: (x: number) => x,

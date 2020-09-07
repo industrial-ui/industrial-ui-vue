@@ -24,7 +24,7 @@
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
   // import Transition from '@/lib/components/Transition.vue';
-  import {TransitionOptions} from '@/lib/types';
+  import {TransitionOptions} from '@/lib/types/transitions';
 
   type TabPanelProps = {
     label: string,

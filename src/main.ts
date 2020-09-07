@@ -7,6 +7,7 @@ import tailwindConfig from './docs/config';
 Vue.config.productionTip = false;
 Vue.use(iui, tailwindConfig);
 
+// Documentation entry of the app
 new Vue({
   router,
   render: (h) => h(App),

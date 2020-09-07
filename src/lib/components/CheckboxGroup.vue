@@ -20,7 +20,7 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import {Option} from '@/lib/types';
+  import {Option} from '@/lib/types/components';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
   import Checkbox from './Checkbox.vue';

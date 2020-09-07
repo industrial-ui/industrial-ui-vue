@@ -10,7 +10,7 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import {AnimationOptions, TransitionOptions} from '@/lib/types';
+  import {AnimationOptions, TransitionOptions} from '@/lib/types/transitions';
 
   interface TransitionType extends Partial<TransitionOptions> {
     name: 'fade'|'blur'|'scale'|'slide'|'fly'|string|null,

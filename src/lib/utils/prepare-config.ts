@@ -5,7 +5,7 @@
  * @returns {object}
  */
 
-import { Config, ConfigComponents } from '../types';
+import { Config, ConfigComponents } from '../types/config';
 
 const isObject = (item: any): item is any => (item && typeof item === 'object' && !Array.isArray(item));
 
