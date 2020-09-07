@@ -17,7 +17,9 @@ export interface AnimationOptions {
   easing: (fraction: number) => number,
 
   // Special for different effects
-  amount: number,
+  amount: number, // Used in blur
+  scale: number, // Used in scale
+  opacity: number, // Used in scale
 }
 
 export interface TransitionOptions {
@@ -46,7 +48,7 @@ export interface Transition extends Partial<TransitionOptions> {
 export interface ComponentConfig {
   class: string,
   isProperties: IsProperties,
-  transition?: 'fade'|'blur'|string|null,
+  transition?: 'fade'|'blur'|'scale'|string|null,
 }
 
 export type ButtonConfig = ComponentConfig
