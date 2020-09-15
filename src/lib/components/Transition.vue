@@ -68,7 +68,7 @@
         if (!this.name) return {name: '', animation: {}, options: {}};
 
         const {transitions} = this.$iui;
-        const transition = transitions[this.name];
+        let transition = transitions[this.name];
 
         if (!transition) {
           throw new Error(
@@ -76,6 +76,14 @@
             Expected one of the names: ${Object.keys(transitions).join(', ')}`
           );
         } else {
+          if (transition.effectReference) {
+            const reference = transitions[transition.effectReference];
+            transition = {
+              ...reference,
+              ...transition,
+              animation: {...reference?.animation, ...transition?.animation},
+            };
+          }
           return {
             ...transition,
             animation: {...transition.animation, ...this.animation},

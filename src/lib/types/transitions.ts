@@ -26,6 +26,9 @@ export interface AnimationOptions {
 }
 
 export interface TransitionOptions {
+  // Reference this effect and give it another animation properties, but leave hooks untouched
+  effectReference: string,
+
   animation: Partial<AnimationOptions>,
 
   appear?: boolean,

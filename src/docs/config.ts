@@ -2,6 +2,19 @@ import {PartialConfig} from '@/lib/types/config';
 
 const config: PartialConfig = {
   globalClass: '',
+
+  transitions: {
+    flyFade: {
+      name: 'flyFade',
+      effectReference: 'fly',
+      animation: {
+        x: 5,
+        y: 5,
+        duration: 200,
+      },
+    },
+  },
+
   components: {
     button: {
       class: 'font-bold py-2 px-4 rounded outline-none',
@@ -12,7 +25,7 @@ const config: PartialConfig = {
     },
 
     dropdown: {
-      transition: null,
+      transition: 'flyFade',
       isProperties: {
         multiselect: 'rounded border-solid border border-gray-300 py-2 px-4',
         search: 'rounded border-solid border border-gray-300',
