@@ -109,6 +109,14 @@
       },
 
       /**
+       * Don't open dropdown if disabled is true
+       */
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
+
+      /**
        * Customize transition of dropdown opening.
        * Read more about it on the special page in documentation
        */
@@ -163,6 +171,8 @@
     },
     methods: {
       open () {
+        if (this.disabled) return;
+
         this.val = true;
         this.$emit('close');
         this.$emit('change', true);
