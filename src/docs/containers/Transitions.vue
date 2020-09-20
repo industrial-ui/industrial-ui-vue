@@ -13,6 +13,17 @@
     <Transition name="slide" appear :animation="{easing: 'easeInOutBack', duration: 500}">
       <Button v-if="shown1" key="on" is:primary>Slide with easeInOutBack easing</Button>
     </Transition>
+
+    <h2 class="text-xl mt-8 mb-2">Transition Group</h2>
+    <Button is:primary @click.native="add" class="mr-2">Add</Button>
+    <Button is:primary @click.native="remove" class="mr-2">Remove</Button>
+    <Button is:primary @click.native="shuffle">Shuffle</Button>
+
+    <TransitionGroup tag="p" name="fly" :animation="{y: 16}">
+      <span v-for="item in items" v-bind:key="item" class="inline-block mr-2">
+        {{ item }}
+      </span>
+    </TransitionGroup>
   </section>
 </template>
 
@@ -20,6 +31,7 @@
   import Vue from 'vue';
   import Button from '@/lib/components/Button.vue';
   import Transition from '@/lib/components/Transition.vue';
+  import TransitionGroup from '@/lib/components/TransitionGroup.vue';
   import Toggle from '@/lib/components/Toggle.vue';
 
   export default Vue.extend({
@@ -27,13 +39,29 @@
     components: {
       Button,
       Transition,
+      TransitionGroup,
       Toggle,
     },
     data () {
       return {
         shown: true,
         shown1: true,
+        items: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       };
+    },
+    methods: {
+      randomIndex () {
+        return Math.floor(Math.random() * this.items.length);
+      },
+      add () {
+        this.items.splice(this.randomIndex(), 0, Math.max(...this.items) + 1);
+      },
+      remove () {
+        this.items.splice(this.randomIndex(), 1);
+      },
+      shuffle () {
+        this.items.sort(() => Math.random() - 0.5);
+      },
     },
   });
 </script>
