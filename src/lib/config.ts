@@ -118,6 +118,25 @@ const config: Config = {
       leftLabelClass: '',
       rightLabelClass: '',
     },
+
+    dropzone: {
+      class: '',
+      isProperties: {},
+
+      dragOverClass: '',
+      hasFilesClass: '',
+      hasNoFilesClass: '',
+      disabledClass: '',
+      requiredClass: '',
+
+      maxAmount: null,
+      maxSize: null,
+      maxRatio: null,
+      minRatio: null,
+      formats: null,
+
+      inputAttrs: null,
+    },
   },
 };
 export default config;

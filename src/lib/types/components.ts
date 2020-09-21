@@ -91,3 +91,27 @@ export interface TabsConfig extends ComponentConfig {
   activePanelClass: string,
   inactivePanelClass: string,
 }
+
+export type FileInputAttrs = {
+  id: string,
+  name: string,
+  accept: string,
+  capture: string,
+  autofocus: string,
+}
+
+export interface DropzoneConfig extends ComponentConfig {
+  dragOverClass: string,
+  hasFilesClass: string,
+  hasNoFilesClass: string,
+  disabledClass: string,
+  requiredClass: string,
+
+  maxAmount: number | null,
+  maxSize: number | null,
+  maxRatio: number | null,
+  minRatio: number | null,
+  formats: string[] | null,
+
+  inputAttrs: Partial<FileInputAttrs> | null,
+}

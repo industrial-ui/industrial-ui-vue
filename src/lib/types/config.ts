@@ -7,8 +7,10 @@ import {
   RadioGroupConfig,
   RadioConfig,
   TabsConfig,
-  ToggleConfig
+  ToggleConfig,
+  DropzoneConfig
 } from '@/lib/types/components';
+
 import {DeepPartial} from '@/lib/types/special';
 import {Transition} from '@/lib/types/transitions';
 
@@ -22,6 +24,7 @@ export interface ConfigComponents {
   checkboxGroup: CheckboxGroupConfig,
   tabs: TabsConfig,
   toggle: ToggleConfig,
+  dropzone: DropzoneConfig,
   [key: string]: any,
 }
 
