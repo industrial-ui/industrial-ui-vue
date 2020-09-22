@@ -1,5 +1,5 @@
 <template>
-  <button :class="wrapperClasses">
+  <button :class="wrapperClasses" @click="$emit('click', $event)">
     <slot>
       {{ label }}
     </slot>

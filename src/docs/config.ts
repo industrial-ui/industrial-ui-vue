@@ -72,6 +72,10 @@ const config: PartialConfig = {
       leftLabelClass: 'mr-2',
       rightLabelClass: 'ml-2',
     },
+
+    dropzone: {
+      class: 'w-full flex relative align-center justify-center p-8 rounded border-dashed border-2 border-gray-600 cursor-pointer hover:bg-teal-100',
+    },
   },
 };
 
