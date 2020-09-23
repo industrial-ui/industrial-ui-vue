@@ -75,6 +75,7 @@ const config: PartialConfig = {
 
     dropzone: {
       class: 'w-full flex relative align-center justify-center p-8 rounded border-dashed border-2 border-gray-600 cursor-pointer hover:bg-teal-100',
+      disabledClass: 'cursor-not-allowed',
     },
   },
 };

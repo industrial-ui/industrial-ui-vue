@@ -4,6 +4,12 @@
       <Dropzones />
     </div>
     <div class="w-full">
+      <Transitions />
+    </div>
+    <div class="w-full">
+      <Modals />
+    </div>
+    <div class="w-full">
       <Buttons />
     </div>
     <div class="w-full">
@@ -19,16 +25,10 @@
       <Radios />
     </div>
     <div class="w-full">
-      <Modals />
-    </div>
-    <div class="w-full">
       <Tabs />
     </div>
     <div class="w-full">
       <Toggles />
-    </div>
-    <div class="w-full">
-      <Transitions />
     </div>
   </div>
 </template>

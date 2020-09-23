@@ -17,5 +17,8 @@ export { default as TabPanel } from './lib/components/TabPanel.vue';
 export { default as Toggle } from './lib/components/Toggle.vue';
 
 export { default as CustomTransition } from './lib/components/Transition.vue';
+export { default as CustomTransitionGroup } from './lib/components/TransitionGroup.vue';
+
+export { default as Dropzone } from './lib/components/Dropzone.vue';
 
 export { default as iui } from './lib/utils/plugin';

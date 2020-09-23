@@ -100,6 +100,13 @@ export type FileInputAttrs = {
   autofocus: string,
 }
 
+export type DropzoneError = {
+  type: 'FormatsError'|'MaxAmountError'|'MaxSizeError'|'MaxRatioError'|'MinRatioError',
+  value: number | string, // value of the exceeded property like file size, or extension, or ration.
+  allowed: number | string | [] | {}, // value of the passed property that checks the error
+  name?: string, // name of the file
+};
+
 export interface DropzoneConfig extends ComponentConfig {
   dragOverClass: string,
   hasFilesClass: string,
