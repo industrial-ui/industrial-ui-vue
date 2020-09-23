@@ -105,28 +105,6 @@
         default: null,
       },
 
-      // TODO: work with ratio for image files
-      maxRatio: {
-        type: Number,
-        default: null,
-        validator: (val) => !Number.isNaN(val) && val > 0,
-      },
-      minRatio: {
-        type: Number,
-        default: null,
-        validator: (val) => !Number.isNaN(val) && val > 0,
-      },
-
-      /**
-       * If true, return files with blobs. For example, if images are selected, blobs
-       * will return the generated url of the image to display it immediately on the page.
-       */
-      // TODO: blobs property
-      blobs: {
-        type: Boolean,
-        default: false,
-      },
-
       /**
        * Input HTML-attributes. Pass in the object
        */
