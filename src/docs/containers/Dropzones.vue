@@ -3,11 +3,12 @@
     <h2 class="text-xl mb-2">Dropzone</h2>
 
     <Dropzone
+      v-model="files"
       multiple
-      disabled
-      :max-amount="2"
+      :max-size="1"
+      :formats="['jpg', 'jpeg']"
+      :max-amount="3"
       @errors="handleErrors"
-      @change="handle"
     >
       <template #default="slotProps">
         <Button is:primary @click="slotProps.select">Select files</Button>
@@ -22,6 +23,13 @@
         </Transition>
       </template>
     </Dropzone>
+
+    <div v-for="file in files" :key="file.name" class="w-full py-1 px-2">
+      {{ file.name }}
+      <span @click="files = []" class="inline-block ml-4 text-orange-700 cursor-pointer">Remove</span>
+    </div>
+
+    <Dropzone disabled class="mt-4">Disabled dropzone</Dropzone>
   </section>
 </template>
 
@@ -47,10 +55,12 @@
   export default Vue.extend({
     name: 'Dropdowns',
     components: {Button, Dropzone, Transition},
+    data () {
+      return {
+        files: [],
+      };
+    },
     methods: {
-      handle (e: any) {
-        console.log(e);
-      },
       handleErrors (errors: DropzoneError[]) {
         alert(errors.map((error) => ErrTexts.print(error)).join('\n'));
       },

@@ -64,16 +64,6 @@
       },
 
       /**
-       * If true, return files with blobs. For example, if images are selected, blobs
-       * will return the generated url of the image to display it immediately on the page.
-       */
-      // TODO: blobs property
-      blobs: {
-        type: Boolean,
-        default: false,
-      },
-
-      /**
        * Make the input required and give dropzone a special class
        */
       required: {
@@ -125,6 +115,16 @@
         type: Number,
         default: null,
         validator: (val) => !Number.isNaN(val) && val > 0,
+      },
+
+      /**
+       * If true, return files with blobs. For example, if images are selected, blobs
+       * will return the generated url of the image to display it immediately on the page.
+       */
+      // TODO: blobs property
+      blobs: {
+        type: Boolean,
+        default: false,
       },
 
       /**
