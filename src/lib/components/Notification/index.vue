@@ -1,26 +1,27 @@
 <template>
   <TransitionGroup
     :class="wrapperClasses"
-    :name="transitionName"
-    v-bind="transitionProps"
+    :name="defaultProps.transition || null"
+    v-bind="defaultProps.transitionProps || null"
     tag="div"
   >
-    <div
-      v-for="notification in notifications"
-      :key="notification.id"
-    >
-      {{ notification.id }}
-    </div>
+    <template v-for="notification in notifications">
+      <component
+        :is="notification.component"
+        :key="notification.id"
+        v-bind="notification"
+      />
+    </template>
   </TransitionGroup>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
-  import {TransitionOptions} from '@/lib/types/transitions';
-  import {NotificationConfig} from '@/lib/types/notification';
+  import {ComponentOrOptions, NotificationConfig, NotificationGroupConfig} from '@/lib/types/notification';
   import hastString from '@/lib/utils/hash-string';
   import TransitionGroup from '../TransitionGroup';
+  import Notification from './Notification.vue';
 
   type Notification = {
     id: string,
@@ -36,42 +37,52 @@
     props: {},
     data () {
       return {
-        value: [] as string[],
         notifications: [] as Notification[],
       };
     },
     computed: {
       hasNotifications () {
-        return !!(this.$data.value.length);
+        return !!(this.$data.notifications.length);
       },
+
+      defaultProps (): NotificationGroupConfig {
+        return this.$iui.config.components.notification;
+      },
+
       wrapperClasses (): string|null {
-        const component = this.$iui.config.components.notification;
         return composeClasses(
           this.$iui.config.globalClass,
-          component.class,
-          this.hasNotifications ? component.hasNotificationsClass : component.hasNoNotificationsClass
+          this.defaultProps.class,
+          this.hasNotifications ? this.defaultProps.hasNotificationsClass : this.defaultProps.hasNoNotificationsClass
         );
-      },
-
-      transitionName (): string | null {
-        const component = this.$iui.config.components.notification;
-        return component.transition || null;
-      },
-
-      transitionProps (): TransitionOptions|null {
-        const component = this.$iui.config.components.notification;
-        return component.transitionProps || null;
       },
     },
     methods: {
-      add (options: NotificationConfig | string): string {
-        const id = hastString(6);
-        this.value = [...this.value, id];
-        if (typeof options === 'string') {
-          this.notifications = [...this.notifications, {id, message: options}];
+      add (
+        componentOrOptions: ComponentOrOptions,
+        options: Partial<NotificationConfig> = {}
+      ): string|null {
+        let properties;
+
+        // Check if first argument is a vNode
+        if (componentOrOptions !== null && typeof componentOrOptions === 'function') {
+          properties = {component: componentOrOptions, ...options};
+        } else if (typeof componentOrOptions === 'object') {
+          // Check if the Notification props are passed
+          properties = {component: this.defaultProps.notificationComponent ? this.defaultProps.notificationComponent : Notification, ...componentOrOptions};
+        } else if (typeof componentOrOptions === 'string') {
+          // Check if the message is passed
+          properties = {message: componentOrOptions, component: this.defaultProps.notificationComponent ? this.defaultProps.notificationComponent : Notification};
         } else {
-          this.notifications = [...this.notifications, {id, ...options}];
+          // In other case – nothing useful is passed. Show a warn
+          console.warn(`Please, provide the $iui.notify() function with a proper argument.
+           It could a custom Vue component, config object or a message string.`);
+          return null;
         }
+
+        const id = hastString(6);
+
+        this.notifications = [...this.notifications, {id, ...properties}];
         return id;
       },
     },

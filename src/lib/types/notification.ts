@@ -37,7 +37,12 @@ type NotData = () => {
   value: string[],
 };
 
-export type NotificationAddMethod = (options: NotificationConfig | string) => string;
+export type ComponentOrOptions = CombinedVueInstance<any, any, any, any, any> | NotificationConfig | string
+export type NotificationAddMethod = (
+  componentOrOptions: ComponentOrOptions,
+  options?: Partial<NotificationConfig>,
+) => string|null;
+
 type NotMethods = {
   add: NotificationAddMethod,
 };
