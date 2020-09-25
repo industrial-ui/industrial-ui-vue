@@ -35,7 +35,7 @@
   import checkPosition from '@/lib/utils/check-position';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
-  import Transition from '@/lib/components/Transition.vue';
+  import Transition from '@/lib/components/Transition';
 
   export default Vue.extend({
     name: 'Dropdown',

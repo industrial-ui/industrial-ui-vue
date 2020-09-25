@@ -23,7 +23,7 @@
   import {Option} from '@/lib/types/components';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
-  import Radio from './Radio.vue';
+  import Radio from '../Radio';
 
   export default Vue.extend({
     name: 'RadioGroup',

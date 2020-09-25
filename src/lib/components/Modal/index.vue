@@ -34,7 +34,7 @@
   import Vue, {PropType} from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
-  import Transition from '@/lib/components/Transition.vue';
+  import Transition from '@/lib/components/Transition';
   import {TransitionOptions} from '@/lib/types/transitions';
 
   export default Vue.extend({

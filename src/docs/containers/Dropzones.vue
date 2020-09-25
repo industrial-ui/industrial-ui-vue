@@ -65,9 +65,9 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Dropzone from '@/lib/components/Dropzone.vue';
-  import Transition from '@/lib/components/Transition.vue';
-  import Button from '@/lib/components/Button.vue';
+  import Dropzone from '@/lib/components/Dropzone';
+  import Transition from '@/lib/components/Transition';
+  import Button from '@/lib/components/Button';
   import {DropzoneError} from '@/lib/types/components';
 
   const ErrTexts = {

@@ -3,6 +3,8 @@ dist/demo.html
 src/docs
 src/main.ts
 node_modules
+.eslintrc.js
+.vercel
 .git
 .idea
 .DS_Store

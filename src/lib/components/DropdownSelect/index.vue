@@ -37,9 +37,9 @@
 <script lang="ts">
   import Vue, {PropType} from 'vue';
   import {Option} from '@/lib/types/components';
-  import Dropdown from '@/lib/components/Dropdown.vue';
-  import CheckboxGroup from '@/lib/components/CheckboxGroup.vue';
-  import RadioGroup from '@/lib/components/RadioGroup.vue';
+  import Dropdown from '../Dropdown';
+  import CheckboxGroup from '../CheckboxGroup';
+  import RadioGroup from '../RadioGroup';
 
   export default Vue.extend({
     name: 'DropdownSelect',

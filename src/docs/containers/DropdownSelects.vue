@@ -44,8 +44,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import DropdownSelect from '@/lib/components/DropdownSelect.vue';
-  import Button from '@/lib/components/Button.vue';
+  import DropdownSelect from '@/lib/components/DropdownSelect';
+  import Button from '@/lib/components/Button';
 
   export default Vue.extend({
     name: 'Dropdowns',
