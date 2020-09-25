@@ -137,6 +137,29 @@ const config: Config = {
 
       inputAttrs: null,
     },
+
+    notification: {
+      class: '',
+      hasNotificationsClass: '',
+      hasNoNotificationsClass: '',
+      isProperties: {},
+
+      notificationClass: '',
+      messageClass: '',
+      notificationComponent: null,
+
+      position: 'top-right',
+      next: 'replace',
+      maxAmount: null,
+      timeout: 5000,
+
+      closeOnClick: true,
+      closeOnDrag: true,
+      pauseOnFocusLost: true,
+
+      transition: null,
+      transitionProps: null,
+    },
   },
 };
 export default config;

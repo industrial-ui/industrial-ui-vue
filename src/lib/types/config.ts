@@ -10,6 +10,7 @@ import {
   ToggleConfig,
   DropzoneConfig
 } from '@/lib/types/components';
+import {NotificationGroupConfig} from '@/lib/types/notification';
 
 import {DeepPartial} from '@/lib/types/special';
 import {Transition} from '@/lib/types/transitions';
@@ -25,6 +26,7 @@ export interface ConfigComponents {
   tabs: TabsConfig,
   toggle: ToggleConfig,
   dropzone: DropzoneConfig,
+  notification: NotificationGroupConfig,
   [key: string]: any,
 }
 

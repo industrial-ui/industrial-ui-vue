@@ -1,21 +1,24 @@
 import Vue from 'vue';
-import {NotificationInstance} from '@/lib/types/notification';
+import {NotificationAddMethod, NotificationInstance} from '@/lib/types/notification';
 import Component from './index.vue';
 
 const NotificationConstructor = Vue.extend(Component);
 let instance: NotificationInstance;
 
-const Notification = () => {
-  if (typeof window === 'undefined') return;
+const Notification: NotificationAddMethod = (options) => {
+  if (typeof window === 'undefined') return '';
 
   if (!instance) {
-    instance = new NotificationConstructor({});
-
+    instance = new NotificationConstructor({
+      propsData: {
+        message: 'Sometext',
+      },
+    });
     instance.$mount();
     document.body.appendChild(instance.$el);
   }
 
-  instance.add();
+  return instance.add(options);
 };
 
 export default Notification;

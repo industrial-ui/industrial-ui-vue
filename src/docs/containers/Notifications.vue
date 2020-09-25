@@ -14,7 +14,7 @@
     components: {Button},
     methods: {
       not () {
-        this.$iui.notify();
+        this.$iui.notify('Hello');
       },
     },
   });

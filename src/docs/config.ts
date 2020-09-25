@@ -77,6 +77,10 @@ const config: PartialConfig = {
       class: 'w-full flex relative align-center justify-center p-8 rounded border-dashed border-2 border-gray-600 cursor-pointer hover:bg-teal-100',
       disabledClass: 'cursor-not-allowed',
     },
+
+    notification: {
+      class: 'fixed left-0 top-0 w-full h-full bg-gray-100',
+    },
   },
 };
 

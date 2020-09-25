@@ -20,6 +20,7 @@ module.exports = {
     indent: 0,
     'spaced-comment': 0,
     'max-len': 0,
+    'no-plusplus': 0,
     camelcase: 0,
     'no-console': ['warn', { 'allow': ['warn', 'error'] }],
     'space-before-function-paren': 0,
