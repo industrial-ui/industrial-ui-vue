@@ -134,16 +134,16 @@
        * to pass to wrapper, trigger or dropdown
        */
       wrapperClasses (): string|null {
-        const component = this.$iui.components.dropdown;
+        const component = this.$iui.config.components.dropdown;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.val ? component.openClass : component.closeClass
         );
       },
       triggerClasses (): string|null {
-        const component = this.$iui.components.dropdown;
+        const component = this.$iui.config.components.dropdown;
         return composeClasses(
           this.triggerClass,
           component.triggerClass,
@@ -151,7 +151,7 @@
         );
       },
       dropdownClasses (): string|null {
-        const component = this.$iui.components.dropdown;
+        const component = this.$iui.config.components.dropdown;
         return composeClasses(
           this.dropdownClass,
           component.dropdownClass,
@@ -160,7 +160,7 @@
       },
 
       transitionName (): string | null {
-        const component = this.$iui.components.dropdown;
+        const component = this.$iui.config.components.dropdown;
         return this.transition || component.transition || null;
       },
     },

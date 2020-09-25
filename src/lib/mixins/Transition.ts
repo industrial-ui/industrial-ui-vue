@@ -55,7 +55,7 @@ export default Vue.extend({
     transition (): TransitionType {
       if (!this.name) return {name: '', animation: {}, options: {}};
 
-      const {transitions} = this.$iui;
+      const {transitions} = this.$iui.config;
       let transition = transitions[this.name];
 
       if (!transition) {

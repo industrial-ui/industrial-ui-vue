@@ -77,9 +77,9 @@
     },
     computed: {
       wrapperClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+        const component = this.$iui.config.components.checkbox;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.checked ? component.checkedClass : component.uncheckedClass,
@@ -88,14 +88,14 @@
         );
       },
       inputClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+        const component = this.$iui.config.components.checkbox;
         return composeClasses(
           this.inputClass,
           component.inputClass
         );
       },
       spanClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+        const component = this.$iui.config.components.checkbox;
         return composeClasses(
           this.spanClass,
           component.spanClass

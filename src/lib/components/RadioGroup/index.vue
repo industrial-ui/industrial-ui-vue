@@ -72,9 +72,9 @@
     },
     computed: {
       wrapperClasses (): string | null {
-        const component = this.$iui.components.radioGroup;
+        const component = this.$iui.config.components.radioGroup;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs)
         );

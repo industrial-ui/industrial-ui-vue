@@ -123,22 +123,22 @@
       },
 
       wrapperClasses (): string|null {
-        const component = this.$iui.components.tabs;
+        const component = this.$iui.config.components.tabs;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs)
         );
       },
       navClasses (): string|null {
-        const component = this.$iui.components.tabs;
+        const component = this.$iui.config.components.tabs;
         return composeClasses(
           this.navClass,
           component.navClass
         );
       },
       panelsWrapperClasses (): string|null {
-        const component = this.$iui.components.tabs;
+        const component = this.$iui.config.components.tabs;
         return composeClasses(
           this.panelsWrapperClass,
           component.panelsWrapperClass
@@ -146,7 +146,7 @@
       },
 
       // transitionName (): string | null {
-      //   const component = this.$iui.components.tabs;
+      //   const component = this.$iui.config.components.tabs;
       //   return this.transition || component.transition || null;
       // },
     },
@@ -200,7 +200,7 @@
     },
     methods: {
       getTabClass (option: TabPanelProps): string|null {
-        const component = this.$iui.components.tabs;
+        const component = this.$iui.config.components.tabs;
         return composeClasses(
           this.tabClass,
           component.tabClass,

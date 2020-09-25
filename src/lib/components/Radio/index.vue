@@ -81,9 +81,9 @@
        * to pass to all elements of the radio: wrapper, input, label, customizer
        */
       wrapperClasses (): string | null {
-        const component = this.$iui.components.radio;
+        const component = this.$iui.config.components.radio;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.checked ? component.checkedClass : component.uncheckedClass,
@@ -92,14 +92,14 @@
         );
       },
       inputClasses (): string|null {
-        const component = this.$iui.components.radio;
+        const component = this.$iui.config.components.radio;
         return composeClasses(
           this.inputClass,
           component.inputClass
         );
       },
       spanClasses (): string|null {
-        const component = this.$iui.components.radio;
+        const component = this.$iui.config.components.radio;
         return composeClasses(
           this.spanClass,
           component.spanClass

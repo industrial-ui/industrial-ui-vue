@@ -145,9 +145,9 @@
       },
 
       wrapperClasses (): string|null {
-        const component = this.$iui.components.dropzone;
+        const component = this.$iui.config.components.dropzone;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.required ? component.requiredClass : '',

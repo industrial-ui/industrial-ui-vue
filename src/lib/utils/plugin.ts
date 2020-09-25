@@ -7,7 +7,9 @@ import defaultConfig from '@/lib/config';
  * IUI plugin to apply configuration on all components
  */
 const iui = (Vue: VueConstructor, options: Partial<Config>) => {
-  Vue.prototype.$iui = prepareConfig(defaultConfig, options);
+  Vue.prototype.$iui = {
+    config: prepareConfig(defaultConfig, options),
+  };
 };
 
 export default iui;

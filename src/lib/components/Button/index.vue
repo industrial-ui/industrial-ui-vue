@@ -26,9 +26,9 @@
        * to pass to the button's wrapper
        */
       wrapperClasses(): string | null {
-        const component = this.$iui.components.button;
+        const component = this.$iui.config.components.button;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           isProperties(component.isProperties, this.$attrs),
           component.class
         );

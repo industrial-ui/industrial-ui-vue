@@ -3,6 +3,8 @@ import {Config} from './types/config';
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $iui: Config,
+    $iui: {
+      config: Config,
+    },
   }
 }

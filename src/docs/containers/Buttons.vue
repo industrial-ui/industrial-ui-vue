@@ -2,7 +2,7 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Buttons</h2>
     <Button is:primary>LOOL!</Button>
-    <Button is:danger>DANGEEER!</Button>
+    <Button is:danger class="ml-4">DANGEEER!</Button>
   </section>
 </template>
 

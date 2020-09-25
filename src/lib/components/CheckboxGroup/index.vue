@@ -78,9 +78,9 @@
     },
     computed: {
       wrapperClasses (): string | null {
-        const component = this.$iui.components.checkboxGroup;
+        const component = this.$iui.config.components.checkboxGroup;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs)
         );

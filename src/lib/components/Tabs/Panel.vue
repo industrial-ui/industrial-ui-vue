@@ -64,7 +64,7 @@
         return this.mountedLabel ? (this.mountedLabel === this.val) : (this.label === this.val);
       },
       panelClasses (): string|null {
-        const component = this.$iui.components.tabs;
+        const component = this.$iui.config.components.tabs;
         return composeClasses(
           component.panelClass,
           this.isActive ? component.activePanelClass : component.inactivePanelClass
