@@ -5,6 +5,7 @@ declare module 'vue/types/vue' {
   interface Vue {
     $iui: {
       config: Config,
+      notify: () => void,
     },
   }
 }

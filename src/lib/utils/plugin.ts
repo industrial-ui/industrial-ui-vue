@@ -2,6 +2,7 @@ import {VueConstructor} from 'vue';
 import {Config} from '@/lib/types/config';
 import prepareConfig from '@/lib/utils/prepare-config';
 import defaultConfig from '@/lib/config';
+import Notification from '@/lib/components/Notification';
 
 /**
  * IUI plugin to apply configuration on all components
@@ -9,6 +10,7 @@ import defaultConfig from '@/lib/config';
 const iui = (Vue: VueConstructor, options: Partial<Config>) => {
   Vue.prototype.$iui = {
     config: prepareConfig(defaultConfig, options),
+    notify: Notification,
   };
 };
 

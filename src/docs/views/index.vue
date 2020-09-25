@@ -7,6 +7,9 @@
       <Transitions />
     </div>
     <div class="w-full">
+      <Notifications />
+    </div>
+    <div class="w-full">
       <Modals />
     </div>
     <div class="w-full">
@@ -45,6 +48,7 @@
   import Tabs from '../containers/Tabs.vue';
   import Toggles from '../containers/Toggles.vue';
   import Transitions from '../containers/Transitions.vue';
+  import Notifications from '../containers/Notifications.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -59,6 +63,7 @@
       Tabs,
       Toggles,
       Transitions,
+      Notifications,
     },
   });
 </script>
