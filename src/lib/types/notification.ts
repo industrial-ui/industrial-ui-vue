@@ -38,14 +38,30 @@ type NotData = () => {
   value: string[],
 };
 
+export type NotificationClass = {
+  id: string,
+  remove: () => void,
+  removeFirst: () => void,
+  removeLast: () => void,
+  removeAll: () => void,
+};
+
 export type ComponentOrOptions = CombinedVueInstance<any, any, any, any, any> | NotificationConfig | string
+
 export type NotificationAddMethod = (
   componentOrOptions: ComponentOrOptions,
   options?: Partial<NotificationConfig>,
-) => string|null;
+) => NotificationClass|null;
 
 type NotMethods = {
-  add: NotificationAddMethod,
+  pushNotification: (notification: Notification) => void,
+  checkClosing: (e: Event, id: string) => void,
+  add: (componentOrOptions: ComponentOrOptions,
+        options?: Partial<NotificationConfig>) => string|null,
+  remove: (id: string) => void,
+  removeFirst: () => void,
+  removeLast: () => void,
+  removeAll: () => void,
 };
 
 type NotComputed = {

@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="flex justify-between">
     {{ text }}
+    <span class="cursor-pointer" @click="$emit('close')">❌</span>
   </div>
 </template>
 

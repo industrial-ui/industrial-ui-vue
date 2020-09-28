@@ -4,26 +4,45 @@
     <Button is:primary @click="not">Notification</Button>
     <Button class="mt-4 block" is:danger @click="not2">Custom notification</Button>
     <Button class="mt-4 block" is:primary @click="not3">Not auto closable</Button>
+
+    <div class="flex mt-4">
+      <Button class="" is:danger @click="() => lastNot ? lastNot.removeLast() : null">Remove Last</Button>
+      <Button class="ml-2" is:danger @click="() => lastNot ? lastNot.removeAll() : null">Remove ALL</Button>
+    </div>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
   import Button from '@/lib/components/Button';
+  import {NotificationClass} from '@/lib/types/notification';
   import CustomNotification from '../components/CustomNotification.vue';
 
   export default Vue.extend({
     name: 'TabsContainer',
     components: {Button},
+    data () {
+      return {
+        lastNot: null as NotificationClass|null,
+      };
+    },
     methods: {
       not () {
-        this.$iui.notify('Hello', {isProp: 'success'});
+        this.lastNot = this.$iui.notify('Hello', {isProp: 'success'});
       },
       not2 () {
-        this.$iui.notify(CustomNotification, {text: 'Wow, working!', isProp: 'success'});
+        this.lastNot = this.$iui.notify(CustomNotification, {
+          text: 'Wow, working!',
+          isProp: 'info',
+          closeOnClick: false,
+        });
       },
       not3 () {
-        this.$iui.notify(CustomNotification, {text: 'Try clicking.', timeout: null, isProp: 'danger'});
+        this.lastNot = this.$iui.notify(CustomNotification, {
+          text: 'Try clicking.',
+          timeout: null,
+          isProp: 'danger',
+        });
       },
     },
   });

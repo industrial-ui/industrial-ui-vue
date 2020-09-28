@@ -6,7 +6,7 @@ const NotificationConstructor = Vue.extend(Component);
 let instance: NotificationInstance;
 
 const Notification: NotificationAddMethod = (componentOrOptions, options) => {
-  if (typeof window === 'undefined') return '';
+  if (typeof window === 'undefined') return null;
 
   if (!instance) {
     instance = new NotificationConstructor();
@@ -14,7 +14,16 @@ const Notification: NotificationAddMethod = (componentOrOptions, options) => {
     document.body.appendChild(instance.$el);
   }
 
-  return instance.add(componentOrOptions, options);
+  const id = instance.add(componentOrOptions, options);
+  if (!id) return null;
+
+  return {
+    id,
+    remove: () => instance.remove(id),
+    removeFirst: () => instance.removeFirst(),
+    removeLast: () => instance.removeLast(),
+    removeAll: () => instance.removeAll(),
+  };
 };
 
 export default Notification;

@@ -11,8 +11,10 @@
         :key="notification.id"
         :id="notification.id"
         :class="notification.class"
+        :remover="() => remove(notification.id)"
         v-bind="notification.props"
         @click.native="checkClosing($event, notification.id)"
+        @close="remove(notification.id)"
       />
     </template>
   </TransitionGroup>
@@ -179,9 +181,28 @@
         }
       },
 
+      removeAll () {
+        this.notifications = [];
+        this.queue = [];
+      },
+
+      removeFirst () {
+        const first = this.notifications[0];
+        if (first) this.remove(first.id);
+      },
+
+      removeLast () {
+        const last = this.notifications[this.notifications.length - 1];
+        if (last) this.remove(last.id);
+      },
+
       checkClosing(e: Event, id: string) {
         const notificationOptions = this.notifications.find((notif) => notif.id === id)?.options;
-        if (e.type === 'click' && (notificationOptions?.closeOnClick || this.defaultProps.closeOnClick)) {
+        if (
+          e.type === 'click'
+          && ((notificationOptions?.closeOnClick === true)
+            || (notificationOptions?.closeOnClick !== false && this.defaultProps.closeOnClick))
+        ) {
           this.remove(id);
         }
       },
