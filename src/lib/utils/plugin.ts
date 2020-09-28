@@ -1,13 +1,17 @@
-import {CombinedVueInstance} from 'vue/types/vue'; // eslint-disable-line
+import {VueConstructor} from 'vue';
+import {Config} from '@/lib/types/config';
 import prepareConfig from '@/lib/utils/prepare-config';
-import {Config} from '../types/config';
-import defaultConfig from '../config';
+import defaultConfig from '@/lib/config';
+import Notification from '@/lib/components/Notification';
 
 /**
  * IUI plugin to apply configuration on all components
  */
-export default {
-  install (Vue: CombinedVueInstance<any, any, any, any, any>, options: Partial<Config>) {
-    Vue.prototype.$iui = prepareConfig(defaultConfig, options);
-  },
+const iui = (Vue: VueConstructor, options: Partial<Config>) => {
+  Vue.prototype.$iui = {
+    config: prepareConfig(defaultConfig, options),
+    notify: Notification,
+  };
 };
+
+export default iui;

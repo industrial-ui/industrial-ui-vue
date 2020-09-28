@@ -34,7 +34,7 @@
   import Vue, {PropType} from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
-  import Transition from '@/lib/components/Transition.vue';
+  import Transition from '@/lib/components/Transition';
   import {TransitionOptions} from '@/lib/types/transitions';
 
   export default Vue.extend({
@@ -92,16 +92,16 @@
     },
     computed: {
       wrapperClasses(): string | null {
-        const component = this.$iui.components.modal;
+        const component = this.$iui.config.components.modal;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.val ? component.openClass : component.closeClass
         );
       },
       overlayClasses(): string | null {
-        const component = this.$iui.components.modal;
+        const component = this.$iui.config.components.modal;
         return composeClasses(
           this.overlayClass,
           component.overlayClass,
@@ -109,7 +109,7 @@
         );
       },
       bodyClasses(): string | null {
-        const component = this.$iui.components.modal;
+        const component = this.$iui.config.components.modal;
         return composeClasses(
           this.bodyClass,
           component.bodyClass,
@@ -118,7 +118,7 @@
       },
 
       transitionName (): string | null {
-        const component = this.$iui.components.modal;
+        const component = this.$iui.config.components.modal;
         return this.transition || component.transition || null;
       },
     },

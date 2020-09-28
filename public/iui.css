@@ -1,0 +1,9 @@
+/**
+  Real rare styles that are required for proper work of something.
+  Cannot be added simply with javascript into the project
+ */
+
+/* Transition group class that allows Vue to detect the animations between elements in group */
+.iui-transition-group-move {
+  transition: transform .5s;
+}

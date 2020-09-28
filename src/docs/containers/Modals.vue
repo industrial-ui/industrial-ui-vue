@@ -34,8 +34,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '@/lib/components/Button.vue';
-  import Modal from '@/lib/components/Modal.vue';
+  import Button from '@/lib/components/Button';
+  import Modal from '@/lib/components/Modal';
   import Counter from '../components/Counter.vue';
 
   export default Vue.extend({

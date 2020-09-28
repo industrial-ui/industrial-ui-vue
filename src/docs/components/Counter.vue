@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '@/lib/components/Button.vue';
+  import Button from '@/lib/components/Button';
 
   export default Vue.extend({
     name: 'Counter',

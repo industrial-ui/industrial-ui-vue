@@ -1,6 +1,7 @@
 /**
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
+import Notification from '@/lib/components/Notification/Notification.vue';
 import { Config } from './types/config';
 import transitions from './transitions';
 
@@ -117,6 +118,45 @@ const config: Config = {
       labelClass: '',
       leftLabelClass: '',
       rightLabelClass: '',
+    },
+
+    dropzone: {
+      class: '',
+      isProperties: {},
+
+      dragOverClass: '',
+      hasFilesClass: '',
+      hasNoFilesClass: '',
+      disabledClass: '',
+      requiredClass: '',
+
+      maxAmount: null,
+      maxSize: null,
+      maxRatio: null,
+      minRatio: null,
+      formats: null,
+
+      inputAttrs: null,
+    },
+
+    notification: {
+      class: '',
+      isProperties: {},
+      hasNotificationsClass: '',
+      hasNoNotificationsClass: '',
+
+      notificationClass: '',
+      notificationComponent: Notification,
+
+      next: 'first',
+      maxAmount: null,
+      timeout: 5000,
+
+      closeOnClick: true,
+      closeOnDrag: true, // TODO: add support
+      pauseOnFocusLost: true,
+
+      transition: null,
     },
   },
 };

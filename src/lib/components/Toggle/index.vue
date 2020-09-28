@@ -80,9 +80,9 @@
     },
     computed: {
       wrapperClasses (): string | null {
-        const component = this.$iui.components.toggle;
+        const component = this.$iui.config.components.toggle;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.checked ? component.checkedClass : component.uncheckedClass,
@@ -90,21 +90,21 @@
         );
       },
       toggleBaseClasses (): string | null {
-        const component = this.$iui.components.toggle;
+        const component = this.$iui.config.components.toggle;
         return composeClasses(
           this.baseClass,
           component.baseClass
         );
       },
       inputClasses (): string|null {
-        const component = this.$iui.components.toggle;
+        const component = this.$iui.config.components.toggle;
         return composeClasses(
           this.inputClass,
           component.inputClass
         );
       },
       leftLabelClasses (): string|null {
-        const component = this.$iui.components.toggle;
+        const component = this.$iui.config.components.toggle;
         return composeClasses(
           this.leftLabelClass,
           component.labelClass,
@@ -112,7 +112,7 @@
         );
       },
       rightLabelClasses (): string|null {
-        const component = this.$iui.components.toggle;
+        const component = this.$iui.config.components.toggle;
         return composeClasses(
           this.rightLabelClass,
           component.labelClass,

@@ -13,6 +13,17 @@ const config: PartialConfig = {
         duration: 200,
       },
     },
+    flyRight: {
+      name: 'flyRight',
+      effectReference: 'fly',
+      animation: {
+        type: 'only-in',
+        easing: 'easeIn',
+        x: 200,
+        y: 0,
+        duration: 300,
+      },
+    },
   },
 
   components: {
@@ -71,6 +82,25 @@ const config: PartialConfig = {
       baseClass: 'toggle-base',
       leftLabelClass: 'mr-2',
       rightLabelClass: 'ml-2',
+    },
+
+    dropzone: {
+      class: 'w-full flex relative align-center justify-center p-8 rounded border-dashed border-2 border-gray-600 cursor-pointer hover:bg-teal-100',
+      disabledClass: 'cursor-not-allowed',
+    },
+
+    notification: {
+      class: 'iui-notifications fixed right-0 top-0 mt-6 mr-8 w-64 h-auto',
+      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md',
+      isProperties: {
+        success: 'bg-green-700 text-white cursor-pointer',
+        danger: 'bg-red-700 text-white cursor-pointer',
+        info: 'bg-blue-700 text-white',
+      },
+
+      transition: 'flyRight',
+      next: 'first',
+      maxAmount: 3,
     },
   },
 };

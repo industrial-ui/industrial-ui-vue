@@ -23,7 +23,7 @@
   import {Option} from '@/lib/types/components';
   import composeClasses from '@/lib/utils/compose-classes';
   import isProperties from '@/lib/utils/is-properties';
-  import Checkbox from './Checkbox.vue';
+  import Checkbox from '../Checkbox';
 
   export default Vue.extend({
     name: 'RadioGroup',
@@ -78,9 +78,9 @@
     },
     computed: {
       wrapperClasses (): string | null {
-        const component = this.$iui.components.checkboxGroup;
+        const component = this.$iui.config.components.checkboxGroup;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs)
         );

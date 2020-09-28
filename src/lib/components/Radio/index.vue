@@ -2,7 +2,7 @@
   <label :class="wrapperClasses">
     <input
       :id="id"
-      type="checkbox"
+      type="radio"
       :name="name"
       :value="slug"
       :checked="checked"
@@ -25,14 +25,14 @@
   import isProperties from '@/lib/utils/is-properties';
 
   export default Vue.extend({
-    name: 'Checkbox',
+    name: 'radio',
     model: {
       prop: 'value',
       event: 'toggle',
     },
     props: {
       /**
-       * HTML-input's name – required in order to properly group your checkboxes
+       * HTML-input's name – required in order to properly group your radios
        */
       name: {
         type: String,
@@ -54,7 +54,7 @@
       slug: String,
 
       /**
-       * Text to pass as a label for the checkbox
+       * Text to pass as a label for the radio
        */
       label: String,
 
@@ -76,10 +76,14 @@
       };
     },
     computed: {
-      wrapperClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+      /**
+       * Compose classes from the ui-configuration and dynamic properties
+       * to pass to all elements of the radio: wrapper, input, label, customizer
+       */
+      wrapperClasses (): string | null {
+        const component = this.$iui.config.components.radio;
         return composeClasses(
-          this.$iui.globalClass,
+          this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
           this.checked ? component.checkedClass : component.uncheckedClass,
@@ -88,14 +92,14 @@
         );
       },
       inputClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+        const component = this.$iui.config.components.radio;
         return composeClasses(
           this.inputClass,
           component.inputClass
         );
       },
       spanClasses (): string|null {
-        const component = this.$iui.components.checkbox;
+        const component = this.$iui.config.components.radio;
         return composeClasses(
           this.spanClass,
           component.spanClass
