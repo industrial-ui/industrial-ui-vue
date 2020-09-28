@@ -33,9 +33,3 @@
     },
   });
 </script>
-
-<style>
-.iui-transition-group-move {
-  transition: transform .5s;
-}
-</style>
