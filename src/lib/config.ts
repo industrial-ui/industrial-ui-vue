@@ -148,13 +148,12 @@ const config: Config = {
       notificationClass: '',
       notificationComponent: Notification,
 
-      position: 'top-right',
       next: 'first',
       maxAmount: null,
       timeout: 5000,
 
       closeOnClick: true,
-      closeOnDrag: true,
+      closeOnDrag: true, // TODO: add support
       pauseOnFocusLost: true,
 
       transition: null,

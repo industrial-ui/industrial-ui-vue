@@ -28,6 +28,7 @@
     NotificationTimeouts
   } from '@/lib/types/notification';
   import hastString from '@/lib/utils/hash-string';
+  import Timer from '@/lib/utils/timer';
   import TransitionGroup from '../TransitionGroup';
 
   type Notification = {
@@ -49,12 +50,14 @@
      * In here, all the props are written in the configuration $iui.config.notification
      */
     props: {},
+
     data () {
       return {
         notifications: [] as Notification[],
         queue: [] as Notification[],
       };
     },
+
     computed: {
       hasNotifications () {
         return !!(this.$data.notifications.length);
@@ -72,6 +75,17 @@
         );
       },
     },
+
+    mounted () {
+      if (this.defaultProps.pauseOnFocusLost) document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          Object.values(timeouts).forEach((timer) => timer.pause());
+        } else {
+          Object.values(timeouts).forEach((timer) => timer.resume());
+        }
+      });
+    },
+
     methods: {
       add (
         componentOrOptions: ComponentOrOptions,
@@ -148,7 +162,7 @@
           this.queue.push(notification);
         }
 
-        if (notification.options?.timeout !== null) timeouts[notification.id] = setTimeout(
+        if (notification.options?.timeout !== null) timeouts[notification.id] = new Timer(
           () => this.remove(notification.id),
           notification.options?.timeout || this.defaultProps.timeout
         );
@@ -156,7 +170,7 @@
 
       remove (id: string) {
         this.notifications = this.notifications.filter((notification) => notification.id !== id);
-        clearTimeout(timeouts[id]);
+        delete timeouts[id];
 
         // Check if the queue is not empty and push the first notification out of it
         if (this.queue.length) {

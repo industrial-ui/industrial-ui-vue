@@ -1,9 +1,10 @@
 // eslint-disable-next-line import/extensions
 import {CombinedVueInstance} from 'vue/types/vue';
 import {ComponentConfig} from '@/lib/types/components';
+import Timer from '@/lib/utils/timer';
 
 export type NotificationTimeouts = {
-  [key: string]: number|undefined,
+  [key: string]: Timer,
 }
 
 export interface NotificationGroupConfig extends ComponentConfig {
@@ -12,7 +13,6 @@ export interface NotificationGroupConfig extends ComponentConfig {
   notificationClass: string,
   notificationComponent: CombinedVueInstance<any, any, any, any, any>|null,
 
-  position: 'top-left'|'top'|'top-right'|'bottom-right'|'bottom'|'bottom-left',
   next: 'first'|'last'|'replace'|'force-replace',
   maxAmount: number|null,
   timeout: number,
