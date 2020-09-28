@@ -6,11 +6,10 @@ export type NotificationTimeouts = {
   [key: string]: number|undefined,
 }
 
-export interface NotificationGroupConfig extends Omit<ComponentConfig, 'isProperties'> {
+export interface NotificationGroupConfig extends ComponentConfig {
   hasNotificationsClass: string,
   hasNoNotificationsClass: string,
   notificationClass: string,
-  messageClass: string,
   notificationComponent: CombinedVueInstance<any, any, any, any, any>|null,
 
   position: 'top-left'|'top'|'top-right'|'bottom-right'|'bottom'|'bottom-left',
@@ -25,6 +24,7 @@ export interface NotificationGroupConfig extends Omit<ComponentConfig, 'isProper
 
 export interface NotificationConfig {
   class: string,
+  isProp: string, // IsProperty string. Configurable in the NotificationGroupConfig
   next: 'first'|'last'|'replace',
   timeout: number|null,
 

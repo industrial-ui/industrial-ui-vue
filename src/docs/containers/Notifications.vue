@@ -17,13 +17,13 @@
     components: {Button},
     methods: {
       not () {
-        this.$iui.notify('Hello');
+        this.$iui.notify('Hello', {isProp: 'success'});
       },
       not2 () {
-        this.$iui.notify(CustomNotification, {text: 'Wow, working!'});
+        this.$iui.notify(CustomNotification, {text: 'Wow, working!', isProp: 'success'});
       },
       not3 () {
-        this.$iui.notify(CustomNotification, {text: 'Try clicking.', timeout: null});
+        this.$iui.notify(CustomNotification, {text: 'Try clicking.', timeout: null, isProp: 'danger'});
       },
     },
   });

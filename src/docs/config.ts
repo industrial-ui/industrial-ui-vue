@@ -90,9 +90,14 @@ const config: PartialConfig = {
     },
 
     notification: {
-      transition: 'flyRight',
       class: 'iui-notifications fixed right-0 top-0 mt-6 mr-8 w-64 h-auto',
-      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md bg-green-800 text-white',
+      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md',
+      isProperties: {
+        success: 'bg-green-700 text-white',
+        danger: 'bg-red-700 text-white',
+      },
+
+      transition: 'flyRight',
     },
   },
 };

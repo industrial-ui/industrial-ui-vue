@@ -83,14 +83,24 @@
         // Check if first argument is a vNode
         if (componentOrOptions !== null && typeof componentOrOptions === 'function') {
           componentOptions = options;
-          properties = {component: componentOrOptions, props: options};
+          properties = {
+            component: componentOrOptions,
+            props: options,
+          };
         } else if (typeof componentOrOptions === 'object') {
           // Check if the Notification props are passed
           componentOptions = componentOrOptions;
-          properties = {component: groupOptions.notificationComponent, props: componentOrOptions};
+          properties = {
+            component: groupOptions.notificationComponent,
+            props: componentOrOptions,
+          };
         } else if (typeof componentOrOptions === 'string') {
           // Check if the message is passed
-          properties = {component: groupOptions.notificationComponent, props: {message: componentOrOptions}};
+          componentOptions = options;
+          properties = {
+            component: groupOptions.notificationComponent,
+            props: {message: componentOrOptions},
+          };
         } else {
           // In other case – nothing useful is passed. Show a warn
           console.warn(`Please, provide the $iui.notify() function with a proper argument.
@@ -107,7 +117,11 @@
 
         this.notifications = [...this.notifications, {
           id,
-          class: composeClasses(groupOptions.notificationClass, componentOptions?.class || '') || '',
+          class: composeClasses(
+            groupOptions.notificationClass,
+            componentOptions?.class || '',
+            groupOptions.isProperties?.[`is:${componentOptions?.isProp || ''}`] || ''
+          ) || '',
           options: {...componentOptions},
           ...properties,
         }];

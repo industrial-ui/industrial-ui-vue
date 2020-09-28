@@ -141,11 +141,11 @@ const config: Config = {
 
     notification: {
       class: '',
+      isProperties: {},
       hasNotificationsClass: '',
       hasNoNotificationsClass: '',
 
       notificationClass: '',
-      messageClass: '',
       notificationComponent: Notification,
 
       position: 'top-right',
