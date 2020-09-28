@@ -1,6 +1,7 @@
 /**
  * Default IUI configuration. Read more about it here: https://industrial-ui.com/docs/configuration
  */
+import Notification from '@/lib/components/Notification/Notification.vue';
 import { Config } from './types/config';
 import transitions from './transitions';
 
@@ -142,11 +143,10 @@ const config: Config = {
       class: '',
       hasNotificationsClass: '',
       hasNoNotificationsClass: '',
-      isProperties: {},
 
       notificationClass: '',
       messageClass: '',
-      notificationComponent: null,
+      notificationComponent: Notification,
 
       position: 'top-right',
       next: 'replace',
@@ -158,7 +158,6 @@ const config: Config = {
       pauseOnFocusLost: true,
 
       transition: null,
-      transitionProps: null,
     },
   },
 };

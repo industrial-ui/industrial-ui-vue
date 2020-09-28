@@ -9,11 +9,7 @@ const Notification: NotificationAddMethod = (componentOrOptions, options) => {
   if (typeof window === 'undefined') return '';
 
   if (!instance) {
-    instance = new NotificationConstructor({
-      propsData: {
-        message: 'Sometext',
-      },
-    });
+    instance = new NotificationConstructor();
     instance.$mount();
     document.body.appendChild(instance.$el);
   }

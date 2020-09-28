@@ -3,6 +3,7 @@
     <h2 class="text-xl mb-2">Notifications</h2>
     <Button is:primary @click="not">Notification</Button>
     <Button class="mt-4 block" is:danger @click="not2">Custom notification</Button>
+    <Button class="mt-4 block" is:primary @click="not3">Not auto closable</Button>
   </section>
 </template>
 
@@ -20,6 +21,9 @@
       },
       not2 () {
         this.$iui.notify(CustomNotification, {text: 'Wow, working!'});
+      },
+      not3 () {
+        this.$iui.notify(CustomNotification, {text: 'Try clicking.', timeout: null});
       },
     },
   });

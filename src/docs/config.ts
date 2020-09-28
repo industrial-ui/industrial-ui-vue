@@ -13,6 +13,17 @@ const config: PartialConfig = {
         duration: 200,
       },
     },
+    flyRight: {
+      name: 'flyRight',
+      effectReference: 'fly',
+      animation: {
+        type: 'only-in',
+        easing: 'easeIn',
+        x: 200,
+        y: 0,
+        duration: 300,
+      },
+    },
   },
 
   components: {
@@ -79,7 +90,9 @@ const config: PartialConfig = {
     },
 
     notification: {
-      class: 'fixed left-0 top-0 w-full h-full bg-gray-100',
+      transition: 'flyRight',
+      class: 'iui-notifications fixed right-0 top-0 mt-6 mr-8 w-64 h-auto',
+      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md bg-green-800 text-white',
     },
   },
 };

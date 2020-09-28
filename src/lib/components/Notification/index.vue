@@ -9,7 +9,10 @@
       <component
         :is="notification.component"
         :key="notification.id"
-        v-bind="notification"
+        :id="notification.id"
+        :class="notification.class"
+        v-bind="notification.props"
+        @click.native="checkClosing($event, notification.id)"
       />
     </template>
   </TransitionGroup>
@@ -18,15 +21,26 @@
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/lib/utils/compose-classes';
-  import {ComponentOrOptions, NotificationConfig, NotificationGroupConfig} from '@/lib/types/notification';
+  import {
+    ComponentOrOptions,
+    NotificationConfig,
+    NotificationGroupConfig,
+    NotificationTimeouts
+  } from '@/lib/types/notification';
   import hastString from '@/lib/utils/hash-string';
   import TransitionGroup from '../TransitionGroup';
-  import Notification from './Notification.vue';
 
   type Notification = {
     id: string,
-    [key: string]: any,
+    options: Partial<NotificationConfig>,
+    class: string,
+    props: {
+      message?: string,
+      [key: string]: any,
+    },
   };
+
+  const timeouts: NotificationTimeouts = {};
 
   export default Vue.extend({
     name: 'Notification',
@@ -62,17 +76,21 @@
         componentOrOptions: ComponentOrOptions,
         options: Partial<NotificationConfig> = {}
       ): string|null {
+        const groupOptions = this.defaultProps;
+        let componentOptions: Partial<NotificationConfig> = {};
         let properties;
 
         // Check if first argument is a vNode
         if (componentOrOptions !== null && typeof componentOrOptions === 'function') {
-          properties = {component: componentOrOptions, ...options};
+          componentOptions = options;
+          properties = {component: componentOrOptions, props: options};
         } else if (typeof componentOrOptions === 'object') {
           // Check if the Notification props are passed
-          properties = {component: this.defaultProps.notificationComponent ? this.defaultProps.notificationComponent : Notification, ...componentOrOptions};
+          componentOptions = componentOrOptions;
+          properties = {component: groupOptions.notificationComponent, props: componentOrOptions};
         } else if (typeof componentOrOptions === 'string') {
           // Check if the message is passed
-          properties = {message: componentOrOptions, component: this.defaultProps.notificationComponent ? this.defaultProps.notificationComponent : Notification};
+          properties = {component: groupOptions.notificationComponent, props: {message: componentOrOptions}};
         } else {
           // In other case – nothing useful is passed. Show a warn
           console.warn(`Please, provide the $iui.notify() function with a proper argument.
@@ -82,8 +100,30 @@
 
         const id = hastString(6);
 
-        this.notifications = [...this.notifications, {id, ...properties}];
+        if (componentOptions?.timeout !== null) timeouts[id] = setTimeout(
+          () => this.remove(id),
+          componentOptions?.timeout || groupOptions?.timeout
+        );
+
+        this.notifications = [...this.notifications, {
+          id,
+          class: composeClasses(groupOptions.notificationClass, componentOptions?.class || '') || '',
+          options: {...componentOptions},
+          ...properties,
+        }];
         return id;
+      },
+
+      remove (id: string) {
+        this.notifications = this.notifications.filter((notification) => notification.id !== id);
+        clearTimeout(timeouts[id]);
+      },
+
+      checkClosing(e: Event, id: string) {
+        const notificationOptions = this.notifications.find((notif) => notif.id === id)?.options;
+        if (e.type === 'click' && (notificationOptions?.closeOnClick || this.defaultProps.closeOnClick)) {
+          this.remove(id);
+        }
       },
     },
   });

@@ -1,9 +1,12 @@
 // eslint-disable-next-line import/extensions
 import {CombinedVueInstance} from 'vue/types/vue';
 import {ComponentConfig} from '@/lib/types/components';
-import {TransitionOptions} from '@/lib/types/transitions';
 
-export interface NotificationGroupConfig extends ComponentConfig {
+export type NotificationTimeouts = {
+  [key: string]: number|undefined,
+}
+
+export interface NotificationGroupConfig extends Omit<ComponentConfig, 'isProperties'> {
   hasNotificationsClass: string,
   hasNoNotificationsClass: string,
   notificationClass: string,
@@ -18,13 +21,12 @@ export interface NotificationGroupConfig extends ComponentConfig {
   closeOnClick: boolean,
   closeOnDrag: boolean,
   pauseOnFocusLost: boolean,
-
-  transitionProps: TransitionOptions|null,
 }
 
 export interface NotificationConfig {
+  class: string,
   next: 'first'|'last'|'replace',
-  timeout: number,
+  timeout: number|null,
 
   closeOnClick: boolean,
   closeOnDrag: boolean,
