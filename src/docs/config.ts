@@ -91,13 +91,15 @@ const config: PartialConfig = {
 
     notification: {
       class: 'iui-notifications fixed right-0 top-0 mt-6 mr-8 w-64 h-auto',
-      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md',
+      notificationClass: 'w-full mt-2 py-4 px-8 rounded shadow-md cursor-pointer',
       isProperties: {
         success: 'bg-green-700 text-white',
         danger: 'bg-red-700 text-white',
       },
 
       transition: 'flyRight',
+      next: 'first',
+      maxAmount: 3,
     },
   },
 };

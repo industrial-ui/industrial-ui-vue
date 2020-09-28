@@ -13,7 +13,7 @@ export interface NotificationGroupConfig extends ComponentConfig {
   notificationComponent: CombinedVueInstance<any, any, any, any, any>|null,
 
   position: 'top-left'|'top'|'top-right'|'bottom-right'|'bottom'|'bottom-left',
-  next: 'first'|'last'|'replace',
+  next: 'first'|'last'|'replace'|'force-replace',
   maxAmount: number|null,
   timeout: number,
 
@@ -25,7 +25,6 @@ export interface NotificationGroupConfig extends ComponentConfig {
 export interface NotificationConfig {
   class: string,
   isProp: string, // IsProperty string. Configurable in the NotificationGroupConfig
-  next: 'first'|'last'|'replace',
   timeout: number|null,
 
   closeOnClick: boolean,

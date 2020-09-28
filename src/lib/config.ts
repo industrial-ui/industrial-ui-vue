@@ -149,7 +149,7 @@ const config: Config = {
       notificationComponent: Notification,
 
       position: 'top-right',
-      next: 'replace',
+      next: 'first',
       maxAmount: null,
       timeout: 5000,
 

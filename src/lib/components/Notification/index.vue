@@ -52,6 +52,7 @@
     data () {
       return {
         notifications: [] as Notification[],
+        queue: [] as Notification[],
       };
     },
     computed: {
@@ -110,27 +111,58 @@
 
         const id = hastString(6);
 
-        if (componentOptions?.timeout !== null) timeouts[id] = setTimeout(
-          () => this.remove(id),
-          componentOptions?.timeout || groupOptions?.timeout
-        );
-
-        this.notifications = [...this.notifications, {
+        const newNotification = {
           id,
           class: composeClasses(
             groupOptions.notificationClass,
             componentOptions?.class || '',
             groupOptions.isProperties?.[`is:${componentOptions?.isProp || ''}`] || ''
           ) || '',
-          options: {...componentOptions},
+          options: componentOptions,
           ...properties,
-        }];
+        };
+
+        this.pushNotification(newNotification);
         return id;
+      },
+
+      /**
+       * Push new notification to either stack of notifications or to the queue.
+       * If it is in the main stack, set the timeout for its removal
+       */
+      pushNotification (notification: Notification) {
+        const {next} = this.defaultProps;
+
+        if (next === 'replace') {
+          if (!this.notifications.length) this.notifications = [notification];
+          else {
+            this.queue.push(notification);
+            return;
+          }
+        } else if (next === 'force-replace') {
+          this.notifications = [notification];
+        } else if (!this.defaultProps.maxAmount || this.notifications.length < this.defaultProps.maxAmount) {
+          if (next === 'first') this.notifications = [notification, ...this.notifications];
+          else this.notifications = [...this.notifications, notification];
+        } else {
+          this.queue.push(notification);
+        }
+
+        if (notification.options?.timeout !== null) timeouts[notification.id] = setTimeout(
+          () => this.remove(notification.id),
+          notification.options?.timeout || this.defaultProps.timeout
+        );
       },
 
       remove (id: string) {
         this.notifications = this.notifications.filter((notification) => notification.id !== id);
         clearTimeout(timeouts[id]);
+
+        // Check if the queue is not empty and push the first notification out of it
+        if (this.queue.length) {
+          const notification = this.queue.shift();
+          if (notification) this.pushNotification(notification);
+        }
       },
 
       checkClosing(e: Event, id: string) {
