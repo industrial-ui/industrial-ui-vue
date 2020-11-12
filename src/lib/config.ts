@@ -23,6 +23,7 @@ const config: Config = {
       class: '',
       openClass: '',
       closeClass: '',
+      disabledClass: '',
 
       triggerClass: '',
       openTriggerClass: '',

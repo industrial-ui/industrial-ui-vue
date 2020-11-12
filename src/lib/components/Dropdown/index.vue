@@ -144,6 +144,7 @@
           this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
+          this.disabled ? component.disabledClass : '',
           this.val ? component.openClass : component.closeClass
         );
       },
