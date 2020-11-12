@@ -47,6 +47,15 @@ export default Vue.extend({
       type: Object as PropType<AnimationOptions>,
       default: null,
     },
+
+    /**
+     * Only for development purposes: the configuration object (to be passed
+     * from components that use Transition in it)
+     */
+    transitionConfig: {
+      type: Object,
+      default: () => ({transitions: {}}),
+    },
   },
   computed: {
     /**
@@ -55,7 +64,7 @@ export default Vue.extend({
     transition (): TransitionType {
       if (!this.name) return {name: '', animation: {}, options: {}};
 
-      const {transitions} = this.$iui.config;
+      const {transitions} = this.$iui?.config || this.transitionConfig;
       let transition = transitions[this.name];
 
       if (!transition) {

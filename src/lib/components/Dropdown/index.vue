@@ -20,7 +20,12 @@
         :value="val"
       />
     </div>
-    <Transition :name="transitionName" v-bind="transitionProps">
+
+    <Transition
+      :name="transitionName"
+      v-bind="transitionProps"
+      :transition-config="{transitions: $iui.config.transitions}"
+    >
       <div v-show="val" v-check-position="{position, positionRelative}" :class="dropdownClasses">
         <slot :open="open" :close="close" :value="val" />
       </div>
@@ -139,6 +144,7 @@
           this.$iui.config.globalClass,
           component.class,
           isProperties(component.isProperties, this.$attrs),
+          this.disabled ? component.disabledClass : '',
           this.val ? component.openClass : component.closeClass
         );
       },

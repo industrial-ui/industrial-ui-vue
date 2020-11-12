@@ -18,6 +18,7 @@ export type ButtonConfig = ComponentConfig
 export interface DropdownConfig extends ComponentConfig {
   openClass: string,
   closeClass: string,
+  disabledClass: string,
 
   triggerClass: string,
   openTriggerClass: string,
