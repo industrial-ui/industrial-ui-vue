@@ -1,20 +1,54 @@
 {
   "name": "industrial-ui-vue",
   "version": "0.5.1",
-  "main": "./dist/iui-vue.umd.min.js",
-  "types": "./src/index.ts",
+  "description": "Production-oriented styleless, pure functional UI components with Vue.js",
+
+  "main": "dist/iui.ssr.js",
+  "browser": "dist/iui.esm.js",
+  "module": "dist/iui.esm.js",
+  "unpkg": "dist/iui.min.js",
+  "types": "src/iui.d.ts",
+
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "lib": "vue-cli-service build --target lib --name iui-vue ./src/index.ts",
+    "dev": "vue-cli-service serve demo/app.ts",
     "build": "vue-cli-service build --dest ./docs",
     "lint": "vue-cli-service lint --fix",
     "test": "vue-cli-service test:unit",
-    "prepublish": "npm run lib"
+    "prepublish": "npm run lib",
+    "lib": "cross-env NODE_ENV=production rollup --config src/rollup.config.js",
+    "lib:ssr": "cross-env NODE_ENV=production rollup --config src/rollup.config.js --format cjs",
+    "lib:es": "cross-env NODE_ENV=production rollup --config src/rollup.config.js --format es",
+    "lib:unpkg": "cross-env NODE_ENV=production rollup --config src/rollup.config.js --format iife"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/VanishMax/industrial-ui-vue.git"
+  "dependencies": {
+    "vue-click-outside": "^1.1.0",
+    "vue-router": "^3.4.9"
   },
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "@babel/preset-typescript": "^7.9.0",
+    "@rollup/plugin-alias": "^2.2.0",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-replace": "^2.3.2",
+    "@vue/cli-plugin-babel": "^4.3.1",
+    "@vue/cli-plugin-typescript": "^4.3.1",
+    "@vue/cli-plugin-unit-jest": "^4.5.8",
+    "@vue/cli-service": "^4.3.1",
+    "cross-env": "^7.0.2",
+    "minimist": "^1.2.5",
+    "rollup": "^2.7.3",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "rollup-plugin-vue": "^5.1.6",
+    "typescript": "^3.8.3",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+
   "keywords": [
     "industrial-ui-vue",
     "industrial-ui",
@@ -27,35 +61,11 @@
   ],
   "author": "VanishMax (https://vanishmax.com)",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VanishMax/industrial-ui-vue.git"
+  },
   "bugs": {
     "url": "https://github.com/VanishMax/industrial-ui-vue/issues"
-  },
-  "homepage": "https://github.com/VanishMax/industrial-ui-vue#readme",
-  "dependencies": {
-    "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-click-outside": "^1.1.0",
-    "vue-router": "^3.2.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.14",
-    "@typescript-eslint/eslint-plugin": "^2.34.0",
-    "@typescript-eslint/parser": "^2.34.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-typescript": "~4.4.0",
-    "@vue/cli-plugin-unit-jest": "^4.5.6",
-    "@vue/cli-service": "~4.4.0",
-    "@vue/eslint-config-airbnb": "^5.0.2",
-    "@vue/eslint-config-typescript": "^5.0.2",
-    "@vue/test-utils": "^1.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "ts-jest": "^26.4.0",
-    "typescript": "~3.9.3",
-    "vue-eslint-parser": "^7.1.0",
-    "vue-template-compiler": "^2.6.11"
   }
 }
