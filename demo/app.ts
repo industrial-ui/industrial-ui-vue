@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from './app.vue';
 import router from './router';
-import iui from '@/main';
+import {iui} from '@/main';
 import tailwindConfig from './config';
 
 Vue.config.productionTip = false;

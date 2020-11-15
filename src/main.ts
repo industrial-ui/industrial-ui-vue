@@ -1,8 +1,9 @@
 import _Vue, { PluginFunction } from 'vue';
+import type {Config} from '@/types/config';
 
 import prepareConfig from '@/utils/prepare-config';
 import defaultConfig from '@/config';
-import type {Config} from '@/types/config';
+import Notification from '@/components/Notification';
 
 import * as components from '@/exports';
 
@@ -18,11 +19,21 @@ const install: InstallFunction = (Vue: typeof _Vue, options: Partial<Config>) =>
     Vue.component(componentName, component);
   });
 
-  Vue.prototype.$iui = prepareConfig(defaultConfig, options);
+  Vue.prototype.$iui = {
+    config: prepareConfig(defaultConfig, options),
+    notify: Notification,
+  };
 };
 
 const plugin = {
   install,
+};
+
+export const iui = (Vue: typeof _Vue, options: Partial<Config>) => {
+  Vue.prototype.$iui = {
+    config: prepareConfig(defaultConfig, options),
+    notify: Notification,
+  };
 };
 
 // To auto-install on non-es builds, when vue is found
