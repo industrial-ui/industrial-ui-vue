@@ -1,12 +1,11 @@
-docs
-dist/demo.html
-src/docs
-src/main.ts
+/demo
+/docs
+src/demo-config.js
 node_modules
 .eslintrc.js
 .vercel
+vercel.json
 .git
 .idea
 .DS_Store
-
 __tests__

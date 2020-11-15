@@ -14,6 +14,7 @@ module.exports = {
     ecmaVersion: 2020,
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
+  ignorePatterns: ['.github', '.idea', '.vscode', 'node_modules', 'dist', 'docs'],
   rules: {
     // ES options
     semi: [2, 'always'],
@@ -22,7 +23,7 @@ module.exports = {
     'max-len': 0,
     'no-plusplus': 0,
     camelcase: 0,
-    'no-console': ['warn', { 'allow': ['warn', 'error'] }],
+    'no-console': ['warn', { allow: ['warn', 'error'] }],
     'space-before-function-paren': 0,
     'jsx-quotes': 0,
     'no-class-assign': 0,
@@ -64,7 +65,7 @@ module.exports = {
 
     // Typescript options
     '@typescript-eslint/no-explicit-any': 0,
-    '@typescript-eslint/ban-ts-ignore': 0,
+    '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/member-delimiter-style': ['error', {
       multiline: {
         delimiter: 'comma',
