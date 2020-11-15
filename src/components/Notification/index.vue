@@ -23,7 +23,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import composeClasses from '@/utils/compose-classes';
-  import {
+  import type {
     ComponentOrOptions,
     NotificationConfig,
     NotificationGroupConfig,
@@ -31,7 +31,7 @@
   } from '@/types/notification';
   import hastString from '@/utils/hash-string';
   import Timer from '@/utils/timer';
-  import TransitionGroup from '../TransitionGroup';
+  import TransitionGroup from '@/components/TransitionGroup/index.vue';
 
   type Notification = {
     id: string,

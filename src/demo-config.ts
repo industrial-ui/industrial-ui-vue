@@ -1,4 +1,4 @@
-import {PartialConfig} from '../src/types/config';
+import {PartialConfig} from './types/config';
 
 const config: PartialConfig = {
   globalClass: '',

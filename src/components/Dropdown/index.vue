@@ -35,12 +35,12 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import {TransitionOptions} from '@/types/transitions';
+  import type {TransitionOptions} from '@/types/transitions';
   import ClickOutside from 'vue-click-outside';
   import checkPosition from '@/utils/check-position';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Transition from '@/components/Transition';
+  import Transition from '@/components/Transition/index.vue';
 
   export default Vue.extend({
     name: 'Dropdown',

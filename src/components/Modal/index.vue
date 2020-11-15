@@ -32,10 +32,10 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
+  import type {TransitionOptions} from '@/types/transitions';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Transition from '@/components/Transition';
-  import {TransitionOptions} from '@/types/transitions';
+  import Transition from '@/components/Transition/index.vue';
 
   export default Vue.extend({
     name: 'Modal',
