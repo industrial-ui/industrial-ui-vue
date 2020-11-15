@@ -1,6 +1,6 @@
 {
   "name": "industrial-ui-vue",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Production-oriented styleless, pure functional UI components with Vue.js",
   "main": "dist/iui.ssr.js",
   "browser": "dist/iui.esm.js",
