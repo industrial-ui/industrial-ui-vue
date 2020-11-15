@@ -1,10 +1,13 @@
-// rollup.config.js
+// Thanks https://github.com/team-innovation/vue-sfc-rollup for this
+// configuration boilerplate
+
 import fs from 'fs';
 import path from 'path';
 import vue from 'rollup-plugin-vue';
 import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
@@ -73,6 +76,9 @@ if (!argv.format || argv.format === 'es') {
         ...baseConfig.plugins.replace,
         'process.env.ES_BUILD': JSON.stringify('true'),
       }),
+      nodeResolve({
+        extensions: ['.ts', '.tsx', 'vue', 'js', 'jsx'],
+      }),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       babel({
@@ -85,8 +91,14 @@ if (!argv.format || argv.format === 'es') {
             },
           ],
         ],
+        plugins: ['@babel/plugin-proposal-class-properties'],
       }),
       commonjs(),
+      terser({
+        output: {
+          ecma: 5,
+        },
+      }),
     ],
   };
   buildFormats.push(esConfig);
@@ -107,6 +119,9 @@ if (!argv.format || argv.format === 'cjs') {
     plugins: [
       replace(baseConfig.plugins.replace),
       ...baseConfig.plugins.preVue,
+      nodeResolve({
+        extensions: ['.ts', '.tsx', 'vue', 'js', 'jsx'],
+      }),
       vue({
         ...baseConfig.plugins.vue,
         template: {
@@ -116,6 +131,11 @@ if (!argv.format || argv.format === 'cjs') {
       }),
       babel(baseConfig.plugins.babel),
       commonjs(),
+      terser({
+        output: {
+          ecma: 5,
+        },
+      }),
     ],
   };
   buildFormats.push(umdConfig);
@@ -135,6 +155,9 @@ if (!argv.format || argv.format === 'iife') {
     },
     plugins: [
       replace(baseConfig.plugins.replace),
+      nodeResolve({
+        extensions: ['.ts', '.tsx', 'vue', 'js', 'jsx'],
+      }),
       ...baseConfig.plugins.preVue,
       vue(baseConfig.plugins.vue),
       babel(baseConfig.plugins.babel),

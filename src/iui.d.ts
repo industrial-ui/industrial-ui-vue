@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import {iui} from '@/types/iui';
 
 declare module 'vue/types/vue' {

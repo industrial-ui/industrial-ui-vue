@@ -104,7 +104,7 @@ export type FileInputAttrs = {
 export type DropzoneError = {
   type: 'FormatsError'|'MaxAmountError'|'MaxSizeError',
   value: number | string, // value of the exceeded property like file size, or extension, or ration.
-  allowed: number | string | [] | {}, // value of the passed property that checks the error
+  allowed: number | string | string[] | Record<string, unknown>, // value of the passed property that checks the error
   name?: string, // name of the file
 };
 

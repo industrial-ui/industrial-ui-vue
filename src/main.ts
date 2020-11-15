@@ -1,14 +1,14 @@
 import _Vue, { PluginFunction } from 'vue';
 import type {Config} from '@/types/config';
 
-import prepareConfig from '@/utils/prepare-config';
 import defaultConfig from '@/config';
 import Notification from '@/components/Notification';
 
 import * as components from '@/exports';
+import prepareConfig from './utils/prepare-config';
 
 interface InstallFunction extends PluginFunction<any> {
-  installed?: boolean;
+  installed?: boolean,
 }
 
 const install: InstallFunction = (Vue: typeof _Vue, options: Partial<Config>) => {
@@ -39,7 +39,7 @@ export const iui = (Vue: typeof _Vue, options: Partial<Config>) => {
 // To auto-install on non-es builds, when vue is found
 // eslint-disable-next-line no-redeclare
 /* global window, global */
-if ('false' === process.env.ES_BUILD) {
+if (process.env.ES_BUILD === 'false') {
   let GlobalVue = null;
   if (typeof window !== 'undefined') {
     GlobalVue = window.Vue;

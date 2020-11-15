@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/extensions
+// eslint-disable-next-line import/no-unresolved,import/extensions
 import {CombinedVueInstance} from 'vue/types/vue';
 import {ComponentConfig} from '@/types/components';
 import Timer from '@/utils/timer';
@@ -65,7 +65,7 @@ type NotMethods = {
 };
 
 type NotComputed = {
-  properties: () => {},
+  properties: () => Record<string, unknown>,
   notifications: () => [],
 };
 
