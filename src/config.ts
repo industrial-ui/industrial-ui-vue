@@ -159,6 +159,19 @@ const config: Config = {
 
       transition: null,
     },
+
+    contextMenu: {
+      class: '',
+      openClass: '',
+      closeClass: '',
+
+      transition: null,
+      isProperties: {},
+
+      closeOnClickAway: true,
+      closeOnResize: true,
+      closeOnScroll: true,
+    },
   },
 };
 export default config;
