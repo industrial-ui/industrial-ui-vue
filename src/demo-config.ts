@@ -102,6 +102,10 @@ const config: PartialConfig = {
       next: 'first',
       maxAmount: 3,
     },
+
+    contextMenu: {
+      transition: 'flyFade',
+    },
   },
 };
 

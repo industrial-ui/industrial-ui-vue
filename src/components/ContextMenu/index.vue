@@ -5,9 +5,10 @@
     :transition-config="{transitions: $iui.config.transitions}"
   >
     <component
-      v-if="val"
+      v-show="val"
       :is="tag"
       :class="wrapperClasses"
+      :style="styles"
       v-click-outside="val ? close : () => null"
       ref="element"
     >
@@ -23,6 +24,11 @@
   import isProperties from '@/utils/is-properties';
   import Transition from '@/components/Transition/index.vue';
   import {TransitionOptions} from '@/types/transitions';
+
+  const pixelsOrString = (data: number|string): string => {
+    if (typeof data === 'number') return `${data}px`;
+    return data;
+  };
 
   export default Vue.extend({
     name: 'ContextMenu',
@@ -44,6 +50,16 @@
       tag: {
         type: String,
         default: 'div',
+      },
+
+      /**
+       * If the position of context menu is fixed, then you are not required to
+       * open it explicitly with $refs.contextMenu.open($event). Instead, just do:
+       * <context-menu v-mod{}el="open" :fixed-position="{x: 10, y: 10}" />
+       * */
+      fixedPosition: {
+        type: [Object, Boolean] as PropType<({ x: number|string; y: number|string })|boolean>,
+        default: false,
       },
 
       disabled: {
@@ -82,6 +98,31 @@
         const component = this.$iui.config.components.contextMenu;
         return this.transition || component.transition || null;
       },
+
+      position (): {x: string; y: string} {
+        const component = this.$iui.config.components.contextMenu;
+        if (this.fixedPosition) {
+          const pos = this.fixedPosition === true ? component.fixedPosition : this.fixedPosition;
+          return {
+            x: pixelsOrString(pos.x),
+            y: pixelsOrString(pos.y),
+          };
+        }
+
+        return {
+          x: '10px',
+          y: '10px',
+        };
+      },
+
+      styles () {
+        const {x, y} = this.position as {x: string; y: string};
+        return {
+          position: 'fixed',
+          top: y,
+          left: x,
+        };
+      },
     },
 
     watch: {
@@ -92,7 +133,9 @@
 
     methods: {
       open (e?: MouseEvent) {
-        if (!e) throw new Error('Please, consider opening the ContextMenu with $refs.contextMenu.open($event)');
+        if (!e || !e.type || !e.pageX || !e.pageY) {
+          throw new Error('Please, consider opening the ContextMenu with $refs.contextMenu.open($event)');
+        }
         if (this.disabled) return;
 
         e.preventDefault();
@@ -112,9 +155,9 @@
         this.$emit('close');
         this.$emit('change', false);
       },
-      toggle () {
+      toggle (e?: MouseEvent) {
         if (this.val) this.close();
-        else this.open();
+        else this.open(e);
       },
     },
   });

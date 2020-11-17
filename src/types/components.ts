@@ -130,4 +130,6 @@ export interface ContextMenu extends ComponentConfig {
   closeOnResize: boolean,
   closeOnScroll: boolean,
   closeOnClickAway: boolean,
+
+  fixedPosition: {x: number|string, y: number|string},
 }

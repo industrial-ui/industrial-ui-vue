@@ -2,8 +2,8 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Context menus</h2>
 
-    <Button is:primary @contextmenu.native="(e) => $refs.cm.open(e)">Right click me</Button>
-    <Button is:primary class="mt-4 block" @click.native="(e) => $refs.cm.open(e)">Left click me</Button>
+    <Button is:primary @contextmenu.native="(e) => $refs.cm.toggle(e)">Right click me</Button>
+    <Button is:primary class="mt-4 block" @click.native="(e) => $refs.cm.toggle(e)">Left click me</Button>
 
     <ContextMenu ref="cm" tag="ul">
       <li>Hello</li>

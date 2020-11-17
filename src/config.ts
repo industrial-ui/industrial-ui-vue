@@ -171,6 +171,8 @@ const config: Config = {
       closeOnClickAway: true,
       closeOnResize: true,
       closeOnScroll: true,
+
+      fixedPosition: {x: 0, y: 0},
     },
   },
 };
