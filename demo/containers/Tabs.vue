@@ -31,8 +31,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Tabs from '../../src/components/Tabs';
-  import TabPanel from '../../src/components/Tabs/Panel.vue';
+  import Tabs from '@/components/Tabs';
+  import TabPanel from '@/components/Tabs/Panel';
 
   export default Vue.extend({
     name: 'TabsContainer',

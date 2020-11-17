@@ -22,8 +22,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Radio from '../../src/components/Radio';
-  import RadioGroup from '../../src/components/RadioGroup';
+  import Radio from '@/components/Radio';
+  import RadioGroup from '@/components/RadioGroup';
 
   export default Vue.extend({
     name: 'Radios',

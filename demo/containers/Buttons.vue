@@ -8,7 +8,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '../../src/components/Button';
+  import Button from '@/components/Button';
 
   export default Vue.extend({
     name: 'Buttons',

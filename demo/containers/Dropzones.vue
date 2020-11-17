@@ -65,10 +65,10 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Dropzone from '../../src/components/Dropzone';
-  import Transition from '../../src/components/Transition';
-  import Button from '../../src/components/Button';
-  import {DropzoneError} from '../../src/types/components';
+  import type {DropzoneError} from '@/types/components';
+  import Dropzone from '@/components/Dropzone';
+  import Transition from '@/components/Transition';
+  import Button from '@/components/Button';
 
   const ErrTexts = {
     FormatsError: 'Incorrect format of the file',

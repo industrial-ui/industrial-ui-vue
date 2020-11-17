@@ -31,8 +31,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Checkbox from '../../src/components/Checkbox';
-  import CheckboxGroup from '../../src/components/CheckboxGroup';
+  import Checkbox from '@/components/Checkbox';
+  import CheckboxGroup from '@/components/CheckboxGroup';
 
   export default Vue.extend({
     name: 'Checkboxes',

@@ -8,7 +8,8 @@
       v-if="val"
       :is="tag"
       :class="wrapperClasses"
-      v-click-outside="close"
+      v-click-outside="val ? close : () => null"
+      ref="element"
     >
       <slot :open="open" :close="close" :value="val" />
     </component>
@@ -58,6 +59,7 @@
     data () {
       return {
         val: this.value,
+        clickOpener: false,
       };
     },
 
@@ -89,14 +91,23 @@
     },
 
     methods: {
-      open () {
+      open (e?: MouseEvent) {
+        if (!e) throw new Error('Please, consider opening the ContextMenu with $refs.contextMenu.open($event)');
         if (this.disabled) return;
+
+        e.preventDefault();
+        if (e.type === 'click') this.clickOpener = true;
 
         this.val = true;
         this.$emit('close');
         this.$emit('change', true);
       },
       close () {
+        if (this.clickOpener) {
+          this.clickOpener = false;
+          return;
+        }
+
         this.val = false;
         this.$emit('close');
         this.$emit('change', false);

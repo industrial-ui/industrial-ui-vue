@@ -29,10 +29,10 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '../../src/components/Button';
-  import Transition from '../../src/components/Transition';
-  import TransitionGroup from '../../src/components/TransitionGroup';
-  import Toggle from '../../src/components/Toggle';
+  import Button from '@/components/Button';
+  import Transition from '@/components/Transition';
+  import TransitionGroup from '@/components/TransitionGroup';
+  import Toggle from '@/components/Toggle';
 
   export default Vue.extend({
     name: 'Radios',

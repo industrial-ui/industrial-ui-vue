@@ -12,7 +12,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Toggle from '../../src/components/Toggle';
+  import Toggle from '@/components/Toggle';
 
   export default Vue.extend({
     name: 'TabsContainer',

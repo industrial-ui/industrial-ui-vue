@@ -37,8 +37,8 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Dropdown from '../../src/components/Dropdown';
-  import Button from '../../src/components/Button';
+  import Dropdown from '@/components/Dropdown';
+  import Button from '@/components/Button';
 
   export default Vue.extend({
     name: 'Dropdowns',
