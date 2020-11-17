@@ -4,13 +4,18 @@
     v-bind="transitionProps"
     :transition-config="{transitions: $iui.config.transitions}"
   >
+    <!--
+      Next lines had some framework and DOM limitations to deal with:
+      To get the width and height of the future ContextMenu, the display should be toggled
+      with `visibility` property. But in such case, no `v-if` or `v-show` is used, so the
+      transition can work if the :is property changed. That is why ContextMenu is a `figure`
+    -->
     <component
-      v-show="val"
-      :is="tag"
+      :is="val ? tag : 'figure'"
+      ref="menu"
       :class="wrapperClasses"
-      :style="styles"
+      :style="{...styles, visibility: val ? 'visible' : 'hidden'}"
       v-click-outside="val ? close : () => null"
-      ref="element"
     >
       <slot :open="open" :close="close" :value="val" />
     </component>
@@ -76,6 +81,7 @@
       return {
         val: this.value,
         clickOpener: false,
+        event: null as MouseEvent|null,
       };
     },
 
@@ -100,6 +106,8 @@
       },
 
       position (): {x: string; y: string} {
+        if (!this.val) return {x: '', y: ''};
+
         const component = this.$iui.config.components.contextMenu;
         if (this.fixedPosition) {
           const pos = this.fixedPosition === true ? component.fixedPosition : this.fixedPosition;
@@ -109,9 +117,13 @@
           };
         }
 
+        const menu = this.$refs.menu as HTMLDivElement;
+        if (!menu || typeof window === 'undefined') return {x: '', y: ''};
+        // const menuStyles = menu.getBoundingClientRect();
+        // console.log(menuStyles);
         return {
-          x: '10px',
-          y: '10px',
+          x: pixelsOrString(this.event?.pageX || 0),
+          y: pixelsOrString(this.event?.pageY || 0),
         };
       },
 
@@ -142,6 +154,7 @@
         if (e.type === 'click') this.clickOpener = true;
 
         this.val = true;
+        this.event = e;
         this.$emit('close');
         this.$emit('change', true);
       },
