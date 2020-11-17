@@ -6,19 +6,32 @@
     <Button is:danger class="mt-4 block" @click.native="(e) => $refs.cm.toggle(e)">Left click me</Button>
     <Button is:primary class="mt-4 block" @click.native="(e) => $refs.cm2.toggle(e)">Left click me</Button>
 
-    <ContextMenu ref="cm" tag="ul">
-      <li>Hello</li>
-      <li>World</li>
-    </ContextMenu>
     <ContextMenu
-      ref="cm2"
+      ref="cm"
       tag="ul"
+      class="bg-white w-32 py-2 px-0 m-0 list-none rounded z-50 shadow-lg"
       position="auto"
       position-relative="section"
-      style="width: 500px"
     >
-      <li>Hello</li>
-      <li>World</li>
+      <template #default="slotProps">
+        <li class="py-1 px-2 hover:bg-blue-100 border-b cursor-pointer" @click="slotProps.close()">Hello</li>
+        <li class="py-1 px-2 hover:bg-blue-100 cursor-pointer" @click="slotProps.close()">World</li>
+      </template>
+    </ContextMenu>
+
+    <ContextMenu
+      ref="cm2"
+      tag="div"
+      style="width: 150px"
+      class="bg-white py-2 px-0 rounded z-50 shadow-lg"
+      position="bottom left"
+    >
+      <template #default="slotProps">
+        <ul class="p-0 m-0 list-none">
+          <li class="py-1 px-2 hover:bg-blue-100 border-b cursor-pointer" @click="slotProps.close()">Hello</li>
+          <li class="py-1 px-2 hover:bg-blue-100 cursor-pointer" @click="slotProps.close()">World</li>
+        </ul>
+      </template>
     </ContextMenu>
   </section>
 </template>

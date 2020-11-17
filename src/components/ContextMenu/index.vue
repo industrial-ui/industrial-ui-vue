@@ -151,6 +151,7 @@
         const optimalPosition = getOptimalPosition(menu, {
           position: this.position as AllowedPosition,
           positionRelative: this.positionRelative,
+          cursor: {top: pageY, left: pageX},
         });
         const top = optimalPosition.indexOf('bottom') > -1 ? pageY - menuStyles.height : pageY;
         const left = optimalPosition.indexOf('right') > -1 ? pageX - menuStyles.width : pageX;

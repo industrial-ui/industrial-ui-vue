@@ -30,7 +30,7 @@ const changePosition = (node: HTMLElement, position: AllowedPosition) => {
 
 export const getOptimalPosition = (
   node: HTMLElement,
-  {position, positionRelative}: {position: AllowedPosition; positionRelative: string}
+  {position, positionRelative, cursor}: {position: AllowedPosition; positionRelative: string; cursor?: {top: number; left: number}}
 ) => {
   if (position !== 'auto') return position;
 
@@ -45,10 +45,10 @@ export const getOptimalPosition = (
     if (!relative) return DEFAULT_POSITION;
 
     const relProps = relative.getBoundingClientRect();
-    canGoLeft = nodeProps.left - nodeProps.width > relProps.left;
-    canGoRight = relProps.right - nodeProps.left > nodeProps.width;
-    canGoTop = nodeProps.top - relProps.top > nodeProps.height;
-    canGoBottom = relProps.bottom - nodeProps.top > nodeProps.height;
+    canGoLeft = (cursor?.left || nodeProps.left) - nodeProps.width > relProps.left;
+    canGoRight = relProps.right - (cursor?.left || nodeProps.left) > nodeProps.width;
+    canGoTop = (cursor?.top || nodeProps.top) - nodeProps.height > relProps.top;
+    canGoBottom = relProps.bottom - (cursor?.top || nodeProps.top) > nodeProps.height;
   } else {
     canGoLeft = nodeProps.left > nodeProps.width;
     canGoRight = window.innerWidth - nodeProps.right > nodeProps.width;
