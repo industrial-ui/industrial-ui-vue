@@ -37,7 +37,7 @@
   import Vue, {PropType} from 'vue';
   import type {TransitionOptions} from '@/types/transitions';
   import ClickOutside from 'vue-click-outside';
-  import checkPosition from '@/utils/check-position';
+  import checkPosition, {AllowedPosition, DEFAULT_POSITION} from '@/utils/check-position';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
   import Transition from '@/components/Transition/index.vue';
@@ -92,21 +92,20 @@
        * `auto` will calculate position and prevent dropdown to go out of the parent borders
        */
       position: {
-        type: String,
-        default: null,
+        type: String as PropType<AllowedPosition>,
+        default: DEFAULT_POSITION,
         validator: (val: string) => [
           'bottom left',
           'bottom right',
           'top left',
           'top right',
           'auto', // Automatically calculate position to not go out of the borders
-          'auto relative', // See positionRelative
         ].includes(val),
       },
 
       /**
-       * If position==='auto relative', then it is calculated relatively to the parent.
-       * This prop is a query selector of such a parent.
+       * If position==='auto' and positionRelative=".selector", then it is displayed within
+       * the provided element selector. If not specified – auto-positioned within the window object.
        */
       positionRelative: {
         type: String,

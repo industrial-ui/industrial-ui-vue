@@ -29,6 +29,7 @@
   import isProperties from '@/utils/is-properties';
   import Transition from '@/components/Transition/index.vue';
   import {TransitionOptions} from '@/types/transitions';
+  import {AllowedPosition, DEFAULT_POSITION, getOptimalPosition} from '@/utils/check-position';
 
   const pixelsOrString = (data: number|string): string => {
     if (typeof data === 'number') return `${data}px`;
@@ -65,6 +66,31 @@
       fixedPosition: {
         type: [Object, Boolean] as PropType<({ x: number|string; y: number|string })|boolean>,
         default: false,
+      },
+
+      /**
+       * Position of the context-menu relative to the clicked point on the screen.
+       * `auto` will calculate position and prevent context-menu to go out of the window borders
+       */
+      position: {
+        type: String as PropType<AllowedPosition>,
+        default: DEFAULT_POSITION,
+        validator: (val: string) => [
+          'bottom left',
+          'bottom right',
+          'top left',
+          'top right',
+          'auto', // Automatically calculate position to not go out of the borders
+        ].includes(val),
+      },
+
+      /**
+       * If position==='auto' and positionRelative=".selector", then it is displayed within
+       * the provided element selector. If not specified – auto-positioned within the window object.
+       */
+      positionRelative: {
+        type: String,
+        default: null,
       },
 
       disabled: {
@@ -105,7 +131,7 @@
         return this.transition || component.transition || null;
       },
 
-      position (): {x: string; y: string} {
+      placement (): {x: string; y: string} {
         if (!this.val) return {x: '', y: ''};
 
         const component = this.$iui.config.components.contextMenu;
@@ -119,16 +145,23 @@
 
         const menu = this.$refs.menu as HTMLDivElement;
         if (!menu || typeof window === 'undefined') return {x: '', y: ''};
-        // const menuStyles = menu.getBoundingClientRect();
-        // console.log(menuStyles);
+
+        const menuStyles = menu.getBoundingClientRect();
+        const {pageX, pageY} = this.event || {pageX: 0, pageY: 0};
+        const optimalPosition = getOptimalPosition(menu, {
+          position: this.position as AllowedPosition,
+          positionRelative: this.positionRelative,
+        });
+        const top = optimalPosition.indexOf('bottom') > -1 ? pageY - menuStyles.height : pageY;
+        const left = optimalPosition.indexOf('right') > -1 ? pageX - menuStyles.width : pageX;
         return {
-          x: pixelsOrString(this.event?.pageX || 0),
-          y: pixelsOrString(this.event?.pageY || 0),
+          x: pixelsOrString(left),
+          y: pixelsOrString(top),
         };
       },
 
       styles () {
-        const {x, y} = this.position as {x: string; y: string};
+        const {x, y} = this.placement as {x: string; y: string};
         return {
           position: 'fixed',
           top: y,

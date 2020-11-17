@@ -17,10 +17,26 @@
       </template>
     </Dropdown>
 
-    <h2 class="text-xl mb-2">On-hover dropdown</h2>
+    <h2 class="text-xl mb-2 mt-4">On-hover dropdown</h2>
     <Dropdown open-on-hover transition="fade">
       <template #trigger>
-        <Button is:primary>Hover on me</Button>
+        <Button is:danger>Hover on me</Button>
+      </template>
+      <template>
+        <span
+          v-for="text in ['Hello, there!', 'Do some action', 'Like dropdown?']"
+          :key="text"
+          class="hover:bg-gray-100 py-2 px-4 block whitespace-no-wrap cursor-pointer"
+        >
+          {{ text }}
+        </span>
+      </template>
+    </Dropdown>
+
+    <h2 class="text-xl mb-2 mt-4">Auto-positioned dropdown</h2>
+    <Dropdown position="auto" position-relative="section" transition="fade">
+      <template #trigger>
+        <Button is:primary>Click me</Button>
       </template>
       <template>
         <span
