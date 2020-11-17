@@ -12,3 +12,4 @@ export {default as Toggle} from '@/components/Toggle/index.vue';
 export {default as Transition} from '@/components/Transition/index.vue';
 export {default as TransitionGroup} from '@/components/TransitionGroup/index.vue';
 export {default as Dropzone} from '@/components/Dropzone/index.vue';
+export {default as ContextMenu} from '@/components/ContextMenu/index.vue';

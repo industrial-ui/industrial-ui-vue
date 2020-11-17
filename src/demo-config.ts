@@ -105,6 +105,10 @@ const config: PartialConfig = {
 
     contextMenu: {
       transition: 'flyFade',
+      fixedPosition: {
+        x: '10%',
+        y: '10%',
+      },
     },
   },
 };

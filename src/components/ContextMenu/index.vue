@@ -15,7 +15,7 @@
       ref="menu"
       :class="wrapperClasses"
       :style="{...styles, visibility: val ? 'visible' : 'hidden'}"
-      v-click-outside="val ? close : () => null"
+      v-click-outside="(configProps.closeOnClickAway && val) ? close : () => null"
     >
       <slot :open="open" :close="close" :value="val" />
     </component>
@@ -30,6 +30,14 @@
   import Transition from '@/components/Transition/index.vue';
   import {TransitionOptions} from '@/types/transitions';
   import {AllowedPosition, DEFAULT_POSITION, getOptimalPosition} from '@/utils/check-position';
+  import {ContextMenu} from '@/types/components';
+
+  type PartialMouseEvent = {
+    type: string,
+    pageX: number|string,
+    pageY: number|string,
+    preventDefault?: () => void,
+  }
 
   const pixelsOrString = (data: number|string): string => {
     if (typeof data === 'number') return `${data}px`;
@@ -64,7 +72,7 @@
        * <context-menu v-mod{}el="open" :fixed-position="{x: 10, y: 10}" />
        * */
       fixedPosition: {
-        type: [Object, Boolean] as PropType<({ x: number|string; y: number|string })|boolean>,
+        type: [Boolean, Object] as PropType<({ x: number|string; y: number|string })|boolean>,
         default: false,
       },
 
@@ -93,6 +101,7 @@
         default: null,
       },
 
+      /** Disable any opening of ContextMenu */
       disabled: {
         type: Boolean,
         default: false,
@@ -107,39 +116,39 @@
       return {
         val: this.value,
         clickOpener: false,
-        event: null as MouseEvent|null,
+        event: null as MouseEvent|PartialMouseEvent|null,
       };
     },
 
     computed: {
+      configProps (): ContextMenu {
+        return this.$iui.config.components.contextMenu;
+      },
+
       /**
        * Compose classes from the ui-configuration and dynamic properties
        * to pass to the wrapper
        */
       wrapperClasses (): string|null {
-        const component = this.$iui.config.components.contextMenu;
         return composeClasses(
           this.$iui.config.globalClass,
-          component.class,
-          isProperties(component.isProperties, this.$attrs),
-          this.val ? component.openClass : component.closeClass
+          this.configProps.class,
+          isProperties(this.configProps.isProperties, this.$attrs),
+          this.val ? this.configProps.openClass : this.configProps.closeClass
         );
       },
 
       transitionName (): string | null {
-        const component = this.$iui.config.components.contextMenu;
-        return this.transition || component.transition || null;
+        return this.transition || this.configProps.transition || null;
       },
 
       placement (): {x: string; y: string} {
-        if (!this.val) return {x: '', y: ''};
+        if (!this.val || !this.event) return {x: '', y: ''};
 
-        const component = this.$iui.config.components.contextMenu;
         if (this.fixedPosition) {
-          const pos = this.fixedPosition === true ? component.fixedPosition : this.fixedPosition;
           return {
-            x: pixelsOrString(pos.x),
-            y: pixelsOrString(pos.y),
+            x: pixelsOrString(this.event.pageX),
+            y: pixelsOrString(this.event.pageY),
           };
         }
 
@@ -147,14 +156,14 @@
         if (!menu || typeof window === 'undefined') return {x: '', y: ''};
 
         const menuStyles = menu.getBoundingClientRect();
-        const {pageX, pageY} = this.event || {pageX: 0, pageY: 0};
+        const {pageX, pageY} = this.event;
         const optimalPosition = getOptimalPosition(menu, {
           position: this.position as AllowedPosition,
           positionRelative: this.positionRelative,
-          cursor: {top: pageY, left: pageX},
+          cursor: {top: +pageY, left: +pageX},
         });
-        const top = optimalPosition.indexOf('bottom') > -1 ? pageY - menuStyles.height : pageY;
-        const left = optimalPosition.indexOf('right') > -1 ? pageX - menuStyles.width : pageX;
+        const top = optimalPosition.indexOf('bottom') > -1 ? +pageY - menuStyles.height : +pageY;
+        const left = optimalPosition.indexOf('right') > -1 ? +pageX - menuStyles.width : +pageX;
         return {
           x: pixelsOrString(left),
           y: pixelsOrString(top),
@@ -173,24 +182,25 @@
 
     watch: {
       value (val) {
-        this.val = val;
+        this.toggleByModelling(val);
       },
     },
 
     methods: {
-      open (e?: MouseEvent) {
-        if (!e || !e.type || !e.pageX || !e.pageY) {
-          throw new Error('Please, consider opening the ContextMenu with $refs.contextMenu.open($event)');
-        }
+      open (e: MouseEvent|PartialMouseEvent) {
+        if (!e) throw new Error('When opening ContextMenu with .open(), passing MouseEvent is required.');
         if (this.disabled) return;
 
-        e.preventDefault();
+        e.preventDefault?.();
         if (e.type === 'click') this.clickOpener = true;
 
         this.val = true;
         this.event = e;
         this.$emit('close');
         this.$emit('change', true);
+
+        if (this.configProps.closeOnResize) window.addEventListener('resize', this.close);
+        if (this.configProps.closeOnScroll) window.addEventListener('scroll', this.close);
       },
       close () {
         if (this.clickOpener) {
@@ -201,10 +211,23 @@
         this.val = false;
         this.$emit('close');
         this.$emit('change', false);
+
+        window.removeEventListener('resize', this.close);
+        window.removeEventListener('scroll', this.close);
       },
-      toggle (e?: MouseEvent) {
-        if (this.val) this.close();
+      toggle (e?: MouseEvent|PartialMouseEvent) {
+        if (!e) throw new Error('When opening ContextMenu with .toggle(), passing MouseEvent is required.');
+
+        if (this.fixedPosition) this.toggleByModelling(!this.val);
+        else if (this.val) this.close();
         else this.open(e);
+      },
+      toggleByModelling (val: boolean) {
+        if (!this.fixedPosition) throw new Error('Cannot toggle ContextMenu without `fixedPosition` property specified.');
+
+        const pos = this.fixedPosition === true ? this.configProps.fixedPosition : this.fixedPosition;
+        if (val) this.open({type: 'click', pageY: pos.y, pageX: pos.x});
+        else this.close();
       },
     },
   });

@@ -131,5 +131,5 @@ export interface ContextMenu extends ComponentConfig {
   closeOnScroll: boolean,
   closeOnClickAway: boolean,
 
-  fixedPosition: {x: number|string, y: number|string},
+  fixedPosition: {x: number|string; y: number|string},
 }
