@@ -33,7 +33,7 @@
   import isProperties from '@/utils/is-properties';
 
   export default Vue.extend({
-    name: 'Toggle',
+    name: 'IuiToggle',
     model: {
       prop: 'value',
       event: 'toggle',

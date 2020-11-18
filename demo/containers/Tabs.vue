@@ -2,41 +2,40 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Tabs</h2>
     <!-- SSR example -->
-    <Tabs :options="[{label: 'Good morning', active: true}, {label: 'World'}]">
-      <TabPanel class="mb1" active>
+    <IuiTabs :options="[{label: 'Good morning', active: true}, {label: 'World'}]">
+      <IuiTabPanel class="mb1" active>
         <h1>SSR tab 1</h1>
-      </TabPanel>
-      <TabPanel>
+      </IuiTabPanel>
+      <IuiTabPanel>
         <h1>SSR tab 2</h1>
-      </TabPanel>
-    </Tabs>
+      </IuiTabPanel>
+    </IuiTabs>
 
     <!-- SPA example -->
-    <Tabs v-model="act" class="mt-8">
-      <TabPanel label="Tab1" disabled>
+    <IuiTabs v-model="act" class="mt-8">
+      <IuiTabPanel label="Tab1" disabled>
         <h1>Tab #1</h1>
-      </TabPanel>
-      <TabPanel label="Tab2">
+      </IuiTabPanel>
+      <IuiTabPanel label="Tab2">
         <h1>Tab #2</h1>
-      </TabPanel>
-      <TabPanel label="Tab3">
+      </IuiTabPanel>
+      <IuiTabPanel label="Tab3">
         <h1>Tab #3</h1>
-      </TabPanel>
-      <TabPanel label="Tab4">
+      </IuiTabPanel>
+      <IuiTabPanel label="Tab4">
         <h1>Tab #4</h1>
-      </TabPanel>
-    </Tabs>
+      </IuiTabPanel>
+    </IuiTabs>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Tabs from '../../src/components/Tabs';
-  import TabPanel from '../../src/components/Tabs/Panel.vue';
+  import {IuiTabs, IuiTabPanel} from '@/main';
 
   export default Vue.extend({
     name: 'TabsContainer',
-    components: {Tabs, TabPanel},
+    components: {IuiTabs, IuiTabPanel},
     data () {
       // TODO: fix changing tabs manually
       return {

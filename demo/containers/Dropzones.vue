@@ -2,7 +2,7 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Dropzone</h2>
 
-    <Dropzone
+    <IuiDropzone
       v-model="files"
       multiple
       :max-size="1"
@@ -10,25 +10,25 @@
       @errors="handleErrors"
     >
       <template #default="slotProps">
-        <Button is:primary @click="slotProps.select">Select files</Button>
+        <IuiButton is:primary @click="slotProps.select">Select files</IuiButton>
 
-        <Transition name="fade">
+        <IuiTransition name="fade">
           <div
             v-show="slotProps.dragOver"
             class="absolute flex align-center justify-center rounded w-full h-full top-0 left-0 bg-teal-300"
           >
             Drop files here
           </div>
-        </Transition>
+        </IuiTransition>
       </template>
-    </Dropzone>
+    </IuiDropzone>
 
     <div v-for="file in files" :key="file.name" class="w-full py-1 px-2 bg-gray-200 flex justify-between rounded mt-1">
       {{ file.name }}
       <span @click="files = []" class="inline-block ml-4 text-orange-700 cursor-pointer">Remove</span>
     </div>
 
-    <Dropzone
+    <IuiDropzone
       :value="singleFile"
       :formats="['jpg', 'jpeg', 'png']"
       class="mt-4"
@@ -36,20 +36,20 @@
       @errors="handleErrors"
     >
       <template #default="slotProps">
-        <Button is:primary @click="slotProps.select">Select one image</Button>
+        <IuiButton is:primary @click="slotProps.select">Select one image</IuiButton>
 
-        <Transition name="fade">
+        <IuiTransition name="fade">
           <div
             v-show="slotProps.dragOver"
             class="absolute flex align-center justify-center rounded w-full h-full top-0 left-0 bg-teal-300"
           >
             Drop files here
           </div>
-        </Transition>
+        </IuiTransition>
       </template>
-    </Dropzone>
+    </IuiDropzone>
 
-    <Transition name="fade">
+    <IuiTransition name="fade">
       <img
         v-if="fileImg"
         :src="fileImg"
@@ -57,18 +57,16 @@
         alt=""
         @click="removeImg"
       >
-    </Transition>
+    </IuiTransition>
 
-    <Dropzone disabled class="mt-4">Disabled dropzone</Dropzone>
+    <IuiDropzone disabled class="mt-4">Disabled dropzone</IuiDropzone>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Dropzone from '../../src/components/Dropzone';
-  import Transition from '../../src/components/Transition';
-  import Button from '../../src/components/Button';
-  import {DropzoneError} from '../../src/types/components';
+  import type {DropzoneError} from '@/types/components';
+  import {IuiDropzone, IuiTransition, IuiButton} from '@/main';
 
   const ErrTexts = {
     FormatsError: 'Incorrect format of the file',
@@ -82,7 +80,7 @@
 
   export default Vue.extend({
     name: 'Dropdowns',
-    components: {Button, Dropzone, Transition},
+    components: {IuiButton, IuiDropzone, IuiTransition},
     data () {
       return {
         singleFile: null,

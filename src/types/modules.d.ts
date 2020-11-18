@@ -1,1 +1,1 @@
-declare module 'vue-click-outside';
+declare module 'v-click-outside';

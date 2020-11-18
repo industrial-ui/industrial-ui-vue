@@ -123,3 +123,13 @@ export interface DropzoneConfig extends ComponentConfig {
 
   inputAttrs: Partial<FileInputAttrs> | null,
 }
+
+export interface ContextMenu extends ComponentConfig {
+  openClass: string,
+  closeClass: string,
+  closeOnResize: boolean,
+  closeOnScroll: boolean,
+  closeOnClickAway: boolean,
+
+  fixedPosition: {x: number|string; y: number|string},
+}

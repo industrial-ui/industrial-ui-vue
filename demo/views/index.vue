@@ -1,6 +1,9 @@
 <template>
   <div class="p-8 grid row-gap-6 lg:col-gap-6 lg:grid-cols-3">
     <div class="w-full">
+      <ContextMenus />
+    </div>
+    <div class="w-full">
       <Dropzones />
     </div>
     <div class="w-full">
@@ -49,6 +52,7 @@
   import Toggles from '../containers/Toggles.vue';
   import Transitions from '../containers/Transitions.vue';
   import Notifications from '../containers/Notifications.vue';
+  import ContextMenus from '../containers/ContextMenus.vue';
 
   export default Vue.extend({
     name: 'Home',
@@ -64,6 +68,7 @@
       Toggles,
       Transitions,
       Notifications,
+      ContextMenus,
     },
   });
 </script>

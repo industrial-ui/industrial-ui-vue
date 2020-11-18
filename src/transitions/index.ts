@@ -8,7 +8,7 @@ import fly from '@/transitions/effects/fly';
  * The list of all built-in transitions.
  *
  * All of them can be referenced as, for example,
- * <CustomTransition name="blur" :animation={duration: 500, ...restOptions}>
+ * <IuiTransition name="blur" :animation={duration: 500, ...restOptions}>
  */
 const transitions = {
   fade,

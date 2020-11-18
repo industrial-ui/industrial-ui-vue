@@ -1,11 +1,11 @@
 <template>
-  <Dropdown v-bind="dropdownProps">
+  <IuiDropdown v-bind="dropdownProps">
     <template #trigger="slotProps">
       <slot name="trigger" v-bind="slotProps" />
     </template>
 
     <template v-slot:default="slotProps">
-      <CheckboxGroup
+      <IuiCheckboxGroup
         v-if="multiple"
         :values="val"
         :options="options"
@@ -16,9 +16,9 @@
         <template #option="optionProps">
           <slot name="option" v-bind="optionProps" />
         </template>
-      </CheckboxGroup>
+      </IuiCheckboxGroup>
 
-      <RadioGroup
+      <IuiRadioGroup
         v-else
         :value="val"
         :options="options"
@@ -29,21 +29,21 @@
         <template #option="optionProps">
           <slot name="option" v-bind="optionProps" />
         </template>
-      </RadioGroup>
+      </IuiRadioGroup>
     </template>
-  </Dropdown>
+  </IuiDropdown>
 </template>
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
   import {Option} from '@/types/components';
-  import Dropdown from '@/components/Dropdown/index.vue';
-  import CheckboxGroup from '@/components/CheckboxGroup/index.vue';
-  import RadioGroup from '@/components/RadioGroup/index.vue';
+  import IuiDropdown from '@/components/Dropdown/index.vue';
+  import IuiCheckboxGroup from '@/components/CheckboxGroup/index.vue';
+  import IuiRadioGroup from '@/components/RadioGroup/index.vue';
 
   export default Vue.extend({
-    name: 'DropdownSelect',
-    components: {Dropdown, CheckboxGroup, RadioGroup},
+    name: 'IuiDropdownSelect',
+    components: {IuiDropdown, IuiCheckboxGroup, IuiRadioGroup},
     model: {
       prop: 'value',
       event: 'change',

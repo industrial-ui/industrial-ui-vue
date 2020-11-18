@@ -5,7 +5,7 @@
     ref="group"
   >
     <template v-for="option in options">
-      <Radio
+      <IuiRadio
         :key="option.slug"
         :name="groupName"
         :value="val && val.slug === option.slug"
@@ -13,7 +13,7 @@
         @toggle="newVal => change(option.slug, newVal)"
       >
         <slot name="option" v-bind="option" />
-      </Radio>
+      </IuiRadio>
     </template>
   </component>
 </template>
@@ -23,11 +23,11 @@
   import {Option} from '@/types/components';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Radio from '@/components/Radio/index.vue';
+  import IuiRadio from '@/components/Radio/index.vue';
 
   export default Vue.extend({
-    name: 'RadioGroup',
-    components: {Radio},
+    name: 'IuiRadioGroup',
+    components: {IuiRadio},
     model: {
       prop: 'value',
       event: 'change',

@@ -2,21 +2,21 @@
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Toggle</h2>
 
-    <Toggle v-model="val" />
+    <IuiToggle v-model="val" />
 
-    <Toggle label-left="off" label-right="on" />
+    <IuiToggle label-left="off" label-right="on" />
 
-    <Toggle label-left="disabled toggle" label-right="on" disabled />
+    <IuiToggle label-left="disabled toggle" label-right="on" disabled />
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Toggle from '../../src/components/Toggle';
+  import {IuiToggle} from '@/main';
 
   export default Vue.extend({
     name: 'TabsContainer',
-    components: {Toggle},
+    components: {IuiToggle},
     data () {
       return {
         val: true,

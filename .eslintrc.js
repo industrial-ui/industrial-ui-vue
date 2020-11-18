@@ -63,6 +63,9 @@ module.exports = {
     'vue/no-v-html': 0,
     'vue/no-unused-components': ['warn'],
 
+    // Import disables
+    'import/extensions': 0,
+
     // Typescript options
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/ban-ts-comment': 0,

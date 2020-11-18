@@ -8,7 +8,8 @@ import {
   RadioConfig,
   TabsConfig,
   ToggleConfig,
-  DropzoneConfig
+  DropzoneConfig,
+  ContextMenu
 } from '@/types/components';
 import {NotificationGroupConfig} from '@/types/notification';
 
@@ -27,6 +28,7 @@ export interface ConfigComponents {
   toggle: ToggleConfig,
   dropzone: DropzoneConfig,
   notification: NotificationGroupConfig,
+  contextMenu: ContextMenu,
   [key: string]: any,
 }
 

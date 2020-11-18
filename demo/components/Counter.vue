@@ -1,19 +1,19 @@
 <template>
   <div>
     <h2>Hello, world</h2>
-    <Button @click.native="counter++" is:primary>Increase counter</Button>
+    <IuiButton @click.native="counter++" is:primary>Increase counter</IuiButton>
     <p>Counter: {{ counter }}</p>
-    <Button @click.native="close" is:danger>Close modal</Button>
+    <IuiButton @click.native="close" is:danger>Close modal</IuiButton>
   </div>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '../../src/components/Button';
+  import {IuiButton} from '@/main';
 
   export default Vue.extend({
     name: 'Counter',
-    components: {Button},
+    components: {IuiButton},
     props: {
       close: Function,
     },

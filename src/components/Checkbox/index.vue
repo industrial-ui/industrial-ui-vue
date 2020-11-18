@@ -25,7 +25,7 @@
   import isProperties from '@/utils/is-properties';
 
   export default Vue.extend({
-    name: 'Checkbox',
+    name: 'IuiCheckbox',
     model: {
       prop: 'value',
       event: 'toggle',
