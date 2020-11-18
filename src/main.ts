@@ -1,10 +1,10 @@
 import _Vue, { PluginFunction } from 'vue';
-import type {Config} from '@/types/config';
+import type {Config} from './types/config';
 
-import defaultConfig from '@/config';
-import Notification from '@/components/Notification';
+import defaultConfig from './config';
+import Notification from './components/Notification';
 
-import * as components from '@/exports';
+import * as components from './exports';
 import prepareConfig from './utils/prepare-config';
 
 interface InstallFunction extends PluginFunction<any> {
@@ -20,7 +20,8 @@ const install: InstallFunction = (Vue: typeof _Vue, options: Partial<Config>) =>
   });
 
   Vue.prototype.$iui = {
-    config: prepareConfig(defaultConfig, options),
+    // @ts-ignore
+    config: prepareConfig(defaultConfig, typeof IuiConfig !== 'undefined' ? IuiConfig : options),
     notify: Notification,
   };
 };
@@ -29,16 +30,7 @@ const plugin = {
   install,
 };
 
-export const iui = (Vue: typeof _Vue, options: Partial<Config>) => {
-  Vue.prototype.$iui = {
-    config: prepareConfig(defaultConfig, options),
-    notify: Notification,
-  };
-};
-
 // To auto-install on non-es builds, when vue is found
-// eslint-disable-next-line no-redeclare
-/* global window, global */
 if (process.env.ES_BUILD === 'false') {
   let GlobalVue = null;
   if (typeof window !== 'undefined') {
@@ -53,5 +45,12 @@ if (process.env.ES_BUILD === 'false') {
   }
 }
 
+export const iui = (Vue: typeof _Vue, options: Partial<Config>): void => {
+  Vue.prototype.$iui = {
+    config: prepareConfig(defaultConfig, options),
+    notify: Notification,
+  };
+};
+
 export default plugin;
-export * from '@/exports';
+export * from './exports';

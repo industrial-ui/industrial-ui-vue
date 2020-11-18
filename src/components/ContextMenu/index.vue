@@ -24,7 +24,7 @@
 
 <script lang="ts">
   import Vue, {PropType} from 'vue';
-  import ClickOutside from 'vue-click-outside';
+  import ClickOutside from 'v-click-outside';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
   import Transition from '@/components/Transition/index.vue';
@@ -47,7 +47,7 @@
   export default Vue.extend({
     name: 'ContextMenu',
     components: { Transition },
-    directives: { ClickOutside },
+    directives: { ClickOutside: ClickOutside.directive },
     model: {
       prop: 'value',
       event: 'change',

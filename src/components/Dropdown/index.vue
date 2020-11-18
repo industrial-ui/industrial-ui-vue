@@ -36,7 +36,7 @@
 <script lang="ts">
   import Vue, {PropType} from 'vue';
   import type {TransitionOptions} from '@/types/transitions';
-  import ClickOutside from 'vue-click-outside';
+  import ClickOutside from 'v-click-outside';
   import checkPosition, {AllowedPosition, DEFAULT_POSITION} from '@/utils/check-position';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
@@ -45,7 +45,7 @@
   export default Vue.extend({
     name: 'Dropdown',
     components: { Transition },
-    directives: { ClickOutside, checkPosition },
+    directives: { ClickOutside: ClickOutside.directive, checkPosition },
     model: {
       prop: 'value',
       event: 'change',

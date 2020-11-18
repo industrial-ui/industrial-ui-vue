@@ -57,7 +57,7 @@ const external = [
 
 const globals = {
   vue: 'Vue',
-  'vue-click-outside': 'vue-click-outside',
+  'vue-click-outside': 'VueClickOutside',
 };
 
 // Customize configs for individual targets
@@ -110,7 +110,7 @@ if (!argv.format || argv.format === 'cjs') {
     external,
     output: {
       compact: true,
-      file: 'dist/iui.ssr.js',
+      file: 'dist/iui.cjs.js',
       format: 'cjs',
       name: 'iui',
       exports: 'named',
