@@ -16,7 +16,7 @@
    * This component is not ready yet and will definitely changed in future!!!
    */
   export default Vue.extend({
-    name: 'Button',
+    name: 'IuiButton',
     props: {
       label: String,
     },

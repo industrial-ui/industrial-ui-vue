@@ -1,46 +1,46 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Transition</h2>
-    <Toggle v-model="shown" />
-    <Transition name="fade" appear mode="out-in">
-      <Button v-if="shown" key="on" is:primary>Hello</Button>
-      <Button v-else key="off" is:danger>Good bye</Button>
-    </Transition>
+    <IuiToggle v-model="shown" />
+    <IuiTransition name="fade" appear mode="out-in">
+      <IuiButton v-if="shown" key="on" is:primary>Hello</IuiButton>
+      <IuiButton v-else key="off" is:danger>Good bye</IuiButton>
+    </IuiTransition>
 
     <br>
     <br class="mt-4">
-    <Toggle v-model="shown1" />
-    <Transition name="slide" appear :animation="{easing: 'easeInOutBack', duration: 500}">
-      <Button v-if="shown1" key="on" is:primary>Slide with easeInOutBack easing</Button>
-    </Transition>
+    <IuiToggle v-model="shown1" />
+    <IuiTransition name="slide" appear :animation="{easing: 'easeInOutBack', duration: 500}">
+      <IuiButton v-if="shown1" key="on" is:primary>Slide with easeInOutBack easing</IuiButton>
+    </IuiTransition>
 
     <h2 class="text-xl mt-8 mb-2">Transition Group</h2>
-    <Button is:primary @click.native="add" class="mr-2">Add</Button>
-    <Button is:primary @click.native="remove" class="mr-2">Remove</Button>
-    <Button is:primary @click.native="shuffle">Shuffle</Button>
+    <IuiButton is:primary @click.native="add" class="mr-2">Add</IuiButton>
+    <IuiButton is:primary @click.native="remove" class="mr-2">Remove</IuiButton>
+    <IuiButton is:primary @click.native="shuffle">Shuffle</IuiButton>
 
-    <TransitionGroup tag="p" name="fly" :animation="{y: 16}">
+    <IuiTransitionGroup tag="p" name="fly" :animation="{y: 16}">
       <span v-for="item in items" v-bind:key="item" class="inline-block mr-2">
         {{ item }}
       </span>
-    </TransitionGroup>
+    </IuiTransitionGroup>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '@/components/Button';
-  import Transition from '@/components/Transition';
-  import TransitionGroup from '@/components/TransitionGroup';
-  import Toggle from '@/components/Toggle';
+  import IuiButton from '@/components/Button';
+  import IuiTransition from '@/components/Transition';
+  import IuiTransitionGroup from '@/components/TransitionGroup';
+  import IuiToggle from '@/components/Toggle';
 
   export default Vue.extend({
     name: 'Radios',
     components: {
-      Button,
-      Transition,
-      TransitionGroup,
-      Toggle,
+      IuiButton,
+      IuiTransition,
+      IuiTransitionGroup,
+      IuiToggle,
     },
     data () {
       return {

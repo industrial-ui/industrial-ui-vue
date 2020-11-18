@@ -48,7 +48,7 @@
    */
 
   export default Vue.extend({
-    name: 'Tabs',
+    name: 'IuiTabs',
     // components: {Transition},
     model: {
       prop: 'active',

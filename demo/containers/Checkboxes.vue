@@ -1,17 +1,17 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Checkbox</h2>
-    <Checkbox name="cbx1" id="opt1" label="Hello">
+    <IuiCheckbox name="cbx1" id="opt1" label="Hello">
       <span class="w-4 h-4 inline-block mr-6 rounded flex-no-shrink">
         <svg viewBox="0 0 12 10">
           <path d="M10 2L4.5 7.5L2 5" />
         </svg>
       </span>
       Hello
-    </Checkbox>
+    </IuiCheckbox>
 
     <h2 class="text-xl mb-2">Checkbox group</h2>
-    <CheckboxGroup
+    <IuiCheckboxGroup
       :options="options"
       :values="[options[0], options[2]]"
       :max-amount="3"
@@ -25,18 +25,18 @@
         </span>
         <span class="whitespace-no-wrap">{{ option.label }}</span>
       </template>
-    </CheckboxGroup>
+    </IuiCheckboxGroup>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Checkbox from '@/components/Checkbox';
-  import CheckboxGroup from '@/components/CheckboxGroup';
+  import IuiCheckbox from '@/components/Checkbox';
+  import IuiCheckboxGroup from '@/components/CheckboxGroup';
 
   export default Vue.extend({
     name: 'Checkboxes',
-    components: {Checkbox, CheckboxGroup},
+    components: {IuiCheckbox, IuiCheckboxGroup},
     data () {
       return {
         options: [
