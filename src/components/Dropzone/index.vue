@@ -32,7 +32,7 @@
   type ValueType = File | File[] | null;
 
   export default Vue.extend({
-    name: 'Dropzone',
+    name: 'IuiDropzone',
     model: {
       prop: 'value',
       event: 'change',

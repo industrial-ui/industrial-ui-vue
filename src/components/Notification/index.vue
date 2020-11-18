@@ -1,5 +1,5 @@
 <template>
-  <TransitionGroup
+  <IuiTransitionGroup
     :class="wrapperClasses"
     :name="defaultProps.transition || null"
     v-bind="defaultProps.transitionProps || null"
@@ -17,7 +17,7 @@
         @close="remove(notification.id)"
       />
     </template>
-  </TransitionGroup>
+  </IuiTransitionGroup>
 </template>
 
 <script lang="ts">
@@ -31,7 +31,7 @@
   } from '@/types/notification';
   import hastString from '@/utils/hash-string';
   import Timer from '@/utils/timer';
-  import TransitionGroup from '@/components/TransitionGroup/index.vue';
+  import IuiTransitionGroup from '@/components/TransitionGroup/index.vue';
 
   type Notification = {
     id: string,
@@ -46,8 +46,8 @@
   const timeouts: NotificationTimeouts = {};
 
   export default Vue.extend({
-    name: 'Notification',
-    components: {TransitionGroup},
+    name: 'IuiNotification',
+    components: {IuiTransitionGroup},
     /**
      * In here, all the props are written in the configuration $iui.config.notification
      */

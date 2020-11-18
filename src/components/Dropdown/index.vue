@@ -21,7 +21,7 @@
       />
     </div>
 
-    <Transition
+    <IuiTransition
       :name="transitionName"
       v-bind="transitionProps"
       :transition-config="{transitions: $iui.config.transitions}"
@@ -29,7 +29,7 @@
       <div v-show="val" v-check-position="{position, positionRelative}" :class="dropdownClasses">
         <slot :open="open" :close="close" :value="val" />
       </div>
-    </Transition>
+    </IuiTransition>
   </div>
 </template>
 
@@ -40,11 +40,11 @@
   import checkPosition, {AllowedPosition, DEFAULT_POSITION} from '@/utils/check-position';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Transition from '@/components/Transition/index.vue';
+  import IuiTransition from '@/components/Transition/index.vue';
 
   export default Vue.extend({
-    name: 'Dropdown',
-    components: { Transition },
+    name: 'IuiDropdown',
+    components: { IuiTransition },
     directives: { ClickOutside: ClickOutside.directive, checkPosition },
     model: {
       prop: 'value',

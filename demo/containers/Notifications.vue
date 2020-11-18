@@ -1,13 +1,13 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Notifications</h2>
-    <Button is:primary @click="not">Notification</Button>
-    <Button class="mt-4 block" is:danger @click="not2">Custom notification</Button>
-    <Button class="mt-4 block" is:primary @click="not3">Not auto closable</Button>
+    <IuiButton is:primary @click="not">Notification</IuiButton>
+    <IuiButton class="mt-4 block" is:danger @click="not2">Custom notification</IuiButton>
+    <IuiButton class="mt-4 block" is:primary @click="not3">Not auto closable</IuiButton>
 
     <div class="flex mt-4">
-      <Button class="" is:danger @click="() => lastNot ? lastNot.removeLast() : null">Remove Last</Button>
-      <Button class="ml-2" is:danger @click="() => lastNot ? lastNot.removeAll() : null">Remove ALL</Button>
+      <IuiButton class="" is:danger @click="() => lastNot ? lastNot.removeLast() : null">Remove Last</IuiButton>
+      <IuiButton class="ml-2" is:danger @click="() => lastNot ? lastNot.removeAll() : null">Remove ALL</IuiButton>
     </div>
   </section>
 </template>
@@ -15,12 +15,12 @@
 <script lang="ts">
   import Vue from 'vue';
   import type {NotificationClass} from '@/types/notification';
-  import Button from '@/components/Button';
+  import {IuiButton} from '@/main';
   import CustomNotification from '../components/CustomNotification.vue';
 
   export default Vue.extend({
     name: 'TabsContainer',
-    components: {Button},
+    components: {IuiButton},
     data () {
       return {
         lastNot: null as NotificationClass|null,

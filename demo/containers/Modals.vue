@@ -1,19 +1,19 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Modal window</h2>
-    <Button @click.native="open = true" is:primary>Open simple modal</Button>
-    <Button @click.native="open1 = true" is:primary class="mt-4">
+    <IuiButton @click.native="open = true" is:primary>Open simple modal</IuiButton>
+    <IuiButton @click.native="open1 = true" is:primary class="mt-4">
       Open high-transitioned modal
-    </Button>
-    <Button @click.native="open2 = true" is:danger class="mt-4">
+    </IuiButton>
+    <IuiButton @click.native="open2 = true" is:danger class="mt-4">
       Open destroyable non-closable modal
-    </Button>
+    </IuiButton>
 
-    <Modal v-model="open">
+    <IuiModal v-model="open">
       <h2>Simple modal</h2>
-    </Modal>
+    </IuiModal>
 
-    <Modal
+    <IuiModal
       v-model="open1"
       :transition-props="{animation: animationOptions}"
       transition="blur"
@@ -22,25 +22,24 @@
         <h2>High-transitioned modal</h2>
         <Button @click.native="close" is:danger>Close modal</Button>
       </template>
-    </Modal>
+    </IuiModal>
 
-    <Modal v-model="open2" destroyable non-closable>
+    <IuiModal v-model="open2" destroyable non-closable>
       <template #default="{close}">
         <Counter :close="close" />
       </template>
-    </Modal>
+    </IuiModal>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import Button from '@/components/Button';
-  import Modal from '@/components/Modal';
+  import {IuiButton, IuiModal} from '@/main';
   import Counter from '../components/Counter.vue';
 
   export default Vue.extend({
     name: 'Radios',
-    components: {Modal, Button, Counter},
+    components: {IuiModal, IuiButton, Counter},
     data () {
       return {
         open: false,

@@ -5,7 +5,7 @@
     ref="group"
   >
     <template v-for="option in options">
-      <Checkbox
+      <IuiCheckbox
         :key="option.slug"
         :name="groupName"
         :value="vals && vals.some(val => val.slug === option.slug)"
@@ -13,7 +13,7 @@
         @toggle="(newVal, event) => change(option, newVal, event)"
       >
         <slot name="option" v-bind="option" />
-      </Checkbox>
+      </IuiCheckbox>
     </template>
   </component>
 </template>
@@ -23,11 +23,11 @@
   import {Option} from '@/types/components';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Checkbox from '@/components/Checkbox/index.vue';
+  import IuiCheckbox from '@/components/Checkbox/index.vue';
 
   export default Vue.extend({
-    name: 'RadioGroup',
-    components: {Checkbox},
+    name: 'IuiRadioGroup',
+    components: {IuiCheckbox},
     model: {
       prop: 'values',
       event: 'change',

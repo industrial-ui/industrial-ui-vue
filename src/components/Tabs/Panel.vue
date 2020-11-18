@@ -12,7 +12,7 @@
   import composeClasses from '@/utils/compose-classes';
 
   export default Vue.extend({
-    name: 'TabPanel',
+    name: 'IuiTabPanel',
     props: {
       /**
        * Initial active flag for the Panel. After the mount, it will become useless,

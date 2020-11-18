@@ -1,5 +1,5 @@
 <template>
-  <Transition
+  <IuiTransition
     :name="transitionName"
     v-bind="transitionProps"
     :transition-config="{transitions: $iui.config.transitions}"
@@ -19,7 +19,7 @@
     >
       <slot :open="open" :close="close" :value="val" />
     </component>
-  </Transition>
+  </IuiTransition>
 </template>
 
 <script lang="ts">
@@ -27,7 +27,7 @@
   import ClickOutside from 'v-click-outside';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Transition from '@/components/Transition/index.vue';
+  import IuiTransition from '@/components/Transition/index.vue';
   import {TransitionOptions} from '@/types/transitions';
   import {AllowedPosition, DEFAULT_POSITION, getOptimalPosition} from '@/utils/check-position';
   import {ContextMenu} from '@/types/components';
@@ -45,8 +45,8 @@
   };
 
   export default Vue.extend({
-    name: 'ContextMenu',
-    components: { Transition },
+    name: 'IuiContextMenu',
+    components: { IuiTransition },
     directives: { ClickOutside: ClickOutside.directive },
     model: {
       prop: 'value',
@@ -115,7 +115,6 @@
     data () {
       return {
         val: this.value,
-        clickOpener: false,
         event: null as MouseEvent|PartialMouseEvent|null,
       };
     },
@@ -192,8 +191,6 @@
         if (this.disabled) return;
 
         e.preventDefault?.();
-        if (e.type === 'click') this.clickOpener = true;
-
         this.val = true;
         this.event = e;
         this.$emit('close');
@@ -203,11 +200,6 @@
         if (this.configProps.closeOnScroll) window.addEventListener('scroll', this.close);
       },
       close () {
-        if (this.clickOpener) {
-          this.clickOpener = false;
-          return;
-        }
-
         this.val = false;
         this.$emit('close');
         this.$emit('change', false);

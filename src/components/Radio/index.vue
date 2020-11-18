@@ -25,7 +25,7 @@
   import isProperties from '@/utils/is-properties';
 
   export default Vue.extend({
-    name: 'radio',
+    name: 'IuiRadio',
     model: {
       prop: 'value',
       event: 'toggle',

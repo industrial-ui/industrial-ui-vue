@@ -1,14 +1,14 @@
 <template>
   <section class="w-full rounded shadow-lg p-4">
     <h2 class="text-xl mb-2">Dropdown select</h2>
-    <DropdownSelect
+    <IuiDropdownSelect
       v-model="values"
       :options="options1"
       group-name="dd-select-1"
       :dropdown-props="{dropdownClass: 'mt-2 w-full'}"
     >
       <template #trigger>
-        <Button is:primary>Open multiselect</Button>
+        <IuiButton is:primary>Open multiselect</IuiButton>
       </template>
       <template #option="option">
         <span class="w-4 h-4 inline-block mr-6 rounded flex-no-shrink">
@@ -18,11 +18,11 @@
         </span>
         <span class="whitespace-no-wrap">{{ option.label }}</span>
       </template>
-    </DropdownSelect>
+    </IuiDropdownSelect>
 
     <br>
 
-    <DropdownSelect
+    <IuiDropdownSelect
       v-model="value"
       :options="options1"
       :multiple="false"
@@ -32,26 +32,25 @@
       :dropdown-props="{dropdownClass: 'mt-2 w-full p-2'}"
     >
       <template #trigger>
-        <Button is:danger>Open radio select</Button>
+        <IuiButton is:danger>Open radio select</IuiButton>
       </template>
       <template #option="option">
         <span class="w-6 h-6 inline-block mr-2 rounded-full border border-grey flex-no-shrink" />
         {{ option.label }}
       </template>
-    </DropdownSelect>
+    </IuiDropdownSelect>
   </section>
 </template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import DropdownSelect from '@/components/DropdownSelect';
-  import Button from '@/components/Button';
+  import {IuiDropdownSelect, IuiButton} from '@/main';
 
   export default Vue.extend({
     name: 'Dropdowns',
     components: {
-      Button,
-      DropdownSelect,
+      IuiButton,
+      IuiDropdownSelect,
     },
     data () {
       return {

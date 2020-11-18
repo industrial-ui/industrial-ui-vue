@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="transitionName" v-bind="transitionProps">
+  <IuiTransition :name="transitionName" v-bind="transitionProps">
     <dialog
       v-show="val"
       :class="overlayClasses"
@@ -27,7 +27,7 @@
         />
       </div>
     </dialog>
-  </Transition>
+  </IuiTransition>
 </template>
 
 <script lang="ts">
@@ -35,11 +35,11 @@
   import type {TransitionOptions} from '@/types/transitions';
   import composeClasses from '@/utils/compose-classes';
   import isProperties from '@/utils/is-properties';
-  import Transition from '@/components/Transition/index.vue';
+  import IuiTransition from '@/components/Transition/index.vue';
 
   export default Vue.extend({
-    name: 'Modal',
-    components: {Transition},
+    name: 'IuiModal',
+    components: {IuiTransition},
     model: {
       prop: 'value',
       event: 'toggle',
