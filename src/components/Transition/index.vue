@@ -13,7 +13,7 @@
   import TransitionMixin from '@/mixins/Transition';
 
   export default Vue.extend({
-    name: 'IuiCustomTransition',
+    name: 'IuiTransition',
     mixins: [TransitionMixin],
   });
 </script>

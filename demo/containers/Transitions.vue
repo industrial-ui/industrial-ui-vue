@@ -29,10 +29,9 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiButton from '@/components/Button';
-  import IuiTransition from '@/components/Transition';
-  import IuiTransitionGroup from '@/components/TransitionGroup';
-  import IuiToggle from '@/components/Toggle';
+  import {
+    IuiButton, IuiTransition, IuiTransitionGroup, IuiToggle
+  } from '@/main';
 
   export default Vue.extend({
     name: 'Radios',

@@ -15,7 +15,7 @@
   import TransitionMixin from '@/mixins/Transition';
 
   export default Vue.extend({
-    name: 'IuiCustomTransitionGroup',
+    name: 'IuiTransitionGroup',
     mixins: [TransitionMixin],
     props: {
       /**

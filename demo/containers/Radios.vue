@@ -22,8 +22,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiRadio from '@/components/Radio';
-  import IuiRadioGroup from '@/components/RadioGroup';
+  import {IuiRadio, IuiRadioGroup} from '@/main';
 
   export default Vue.extend({
     name: 'Radios',

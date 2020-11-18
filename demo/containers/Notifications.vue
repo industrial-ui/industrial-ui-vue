@@ -15,7 +15,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import type {NotificationClass} from '@/types/notification';
-  import IuiButton from '@/components/Button';
+  import {IuiButton} from '@/main';
   import CustomNotification from '../components/CustomNotification.vue';
 
   export default Vue.extend({

@@ -53,8 +53,7 @@ Iui<template>
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiDropdown from '@/components/Dropdown';
-  import IuiButton from '@/components/Button';
+  import {IuiDropdown, IuiButton} from '@/main';
 
   export default Vue.extend({
     name: 'Dropdowns',

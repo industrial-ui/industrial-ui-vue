@@ -34,8 +34,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiButton from '@/components/Button';
-  import IuiModal from '@/components/Modal';
+  import {IuiButton, IuiModal} from '@/main';
   import Counter from '../components/Counter.vue';
 
   export default Vue.extend({

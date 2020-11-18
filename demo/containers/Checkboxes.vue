@@ -31,8 +31,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiCheckbox from '@/components/Checkbox';
-  import IuiCheckboxGroup from '@/components/CheckboxGroup';
+  import {IuiCheckbox, IuiCheckboxGroup} from '@/main';
 
   export default Vue.extend({
     name: 'Checkboxes',

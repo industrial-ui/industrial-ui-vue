@@ -66,9 +66,7 @@
 <script lang="ts">
   import Vue from 'vue';
   import type {DropzoneError} from '@/types/components';
-  import IuiDropzone from '@/components/Dropzone';
-  import IuiTransition from '@/components/Transition';
-  import IuiButton from '@/components/Button';
+  import {IuiDropzone, IuiTransition, IuiButton} from '@/main';
 
   const ErrTexts = {
     FormatsError: 'Incorrect format of the file',

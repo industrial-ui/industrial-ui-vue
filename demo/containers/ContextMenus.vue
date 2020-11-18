@@ -64,8 +64,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiContextMenu from '@/components/ContextMenu';
-  import IuiButton from '@/components/Button';
+  import {IuiContextMenu, IuiButton} from '@/main';
 
   export default Vue.extend({
     name: 'Buttons',

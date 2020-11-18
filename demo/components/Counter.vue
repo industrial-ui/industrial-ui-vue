@@ -9,7 +9,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiButton from '../../src/components/Button';
+  import {IuiButton} from '@/main';
 
   export default Vue.extend({
     name: 'Counter',

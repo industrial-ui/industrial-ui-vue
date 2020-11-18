@@ -115,7 +115,6 @@
     data () {
       return {
         val: this.value,
-        clickOpener: false,
         event: null as MouseEvent|PartialMouseEvent|null,
       };
     },
@@ -192,8 +191,6 @@
         if (this.disabled) return;
 
         e.preventDefault?.();
-        if (e.type === 'click') this.clickOpener = true;
-
         this.val = true;
         this.event = e;
         this.$emit('close');
@@ -203,11 +200,6 @@
         if (this.configProps.closeOnScroll) window.addEventListener('scroll', this.close);
       },
       close () {
-        if (this.clickOpener) {
-          this.clickOpener = false;
-          return;
-        }
-
         this.val = false;
         this.$emit('close');
         this.$emit('change', false);

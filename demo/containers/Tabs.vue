@@ -31,8 +31,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import IuiTabs from '@/components/Tabs';
-  import IuiTabPanel from '@/components/Tabs/Panel';
+  import {IuiTabs, IuiTabPanel} from '@/main';
 
   export default Vue.extend({
     name: 'TabsContainer',
