@@ -114,3 +114,13 @@ Now, you are ready to use components inside the app:
   </iui-dropdown>
 </template>
 ```
+
+## Credits
+
+Powered by <a href="https://vercel.com/?utm_source=industrial-ui-team&utm_campaign=oss" target="_blank">
+  <img src="./public/vercel.png" alt="Vercel logo">
+</a>
+
+Copyright © <a href="https://github.com/VanishMax" target="_blank" rel="noreferrer noopener">VanishMax</a>
+
+2020
